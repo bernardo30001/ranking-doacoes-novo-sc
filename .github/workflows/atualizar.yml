@@ -43,6 +43,11 @@ jobs:
           mkdir -p _site
           cp index.html estilo.css app.js dados.json _site/
           cp historico.json _site/ 2>/dev/null || true
+          # O GitHub Pages cacheia os assets por ~10 min. Carimbar o commit na
+          # URL garante que um visitante recorrente pegue o CSS/JS novos.
+          V=$(git rev-parse --short HEAD)
+          sed -i "s|href=\"estilo.css\"|href=\"estilo.css?v=$V\"|; s|src=\"app.js\"|src=\"app.js?v=$V\"|" _site/index.html
+          grep -o 'estilo.css?v=[a-f0-9]*' _site/index.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
