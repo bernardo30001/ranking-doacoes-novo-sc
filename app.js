@@ -22,6 +22,10 @@ const RECEITAS = [
 
 let dados = null;
 let historico = [];
+
+/* So o servidor local tem o coletor atras de /api/atualizar. Publicado no
+   GitHub Pages a atualizacao vem do cron, entao o botao nao faz sentido. */
+const TEM_COLETOR = ['localhost', '127.0.0.1', ''].includes(location.hostname);
 const filtro = { cargo: 0, busca: '', ordem: 'total' };
 
 const $ = (s) => document.querySelector(s);
@@ -117,7 +121,9 @@ function renderStatus() {
   const d = new Date(dados.atualizadoEm);
   const min = Math.round((Date.now() - d.getTime()) / 60000);
   const quando = min < 1 ? 'agora mesmo' : min < 60 ? `há ${min} min` : `há ${Math.floor(min / 60)}h`;
-  $('#status').textContent = `Atualizado ${quando} · ${d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}`;
+  const cadencia = TEM_COLETOR ? '' : ' · atualiza sozinho de hora em hora';
+  $('#status').textContent =
+    `Atualizado ${quando} · ${d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}${cadencia}`;
   $('#rodape-atualizacao').textContent = ` Última coleta: ${d.toLocaleString('pt-BR')}.`;
 }
 
@@ -345,6 +351,8 @@ $('#ordem').addEventListener('change', (e) => { filtro.ordem = e.target.value; r
 $('#btn-refresh').addEventListener('click', forcarAtualizacao);
 $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') fecharModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharModal(); });
+
+if (!TEM_COLETOR) $('#btn-refresh').remove();
 
 carregar();
 setInterval(() => carregar(true), 60000);

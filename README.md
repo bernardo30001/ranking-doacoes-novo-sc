@@ -1,5 +1,7 @@
 # Ranking de Doações — NOVO / Santa Catarina · 2026
 
+**No ar:** <https://bernardo30001.github.io/ranking-doacoes-novo-sc/>
+
 Painel que acompanha quanto cada candidato do **Partido NOVO em Santa Catarina** a
 **Deputado Federal** e **Deputado Estadual** arrecadou na eleição de 2026, e de onde
 o dinheiro veio (Fundo Eleitoral, Fundo Partidário, doações privadas, vaquinhas).
@@ -61,17 +63,23 @@ O TSE fica atrás de um WAF (Akamai) que bloqueia clientes HTTP comuns pelo
 *fingerprint* de TLS — `curl` e `requests` levam 403. Por isso o coletor usa
 `curl_cffi`, que imita o handshake do Chrome.
 
-## Publicar na internet (opcional)
+## Como o site publicado se mantém atualizado
 
-O painel é estático: `index.html`, `estilo.css`, `app.js` e `dados.json`.
-Basta hospedar a pasta em qualquer lugar e manter alguém rodando `coletar.py`
-para regravar o `dados.json`.
+`.github/workflows/atualizar.yml` roda de hora em hora no GitHub Actions: coleta do
+TSE, monta a pasta do site e publica no GitHub Pages. Não é preciso deixar nada
+ligado aqui.
 
-Há um workflow pronto em `.github/workflows/atualizar.yml` que coleta de hora em hora
-e publica no GitHub Pages. Para usar: crie um repositório, suba a pasta e ligue
-Pages em *Settings → Pages → Source: GitHub Actions*. Nessa modalidade o botão
-"Atualizar agora" fica inativo (não há servidor para chamar) — a atualização passa
-a ser a do cron.
+O `historico.json` (usado para a variação diária) sobrevive entre execuções via
+cache do Actions.
+
+Para forçar uma atualização fora da hora:
+
+```bash
+gh workflow run "Atualizar dados e publicar"
+```
+
+No site publicado o botão "Atualizar agora" não aparece — não há coletor do outro
+lado. Ele só existe quando você roda `servidor.py` na sua máquina.
 
 ## Fonte
 
