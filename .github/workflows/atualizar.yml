@@ -1,0 +1,51 @@
+name: Atualizar dados e publicar
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # de hora em hora
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -r requirements.txt
+
+      # Guarda o historico entre execucoes, para o painel mostrar a variacao diaria.
+      - uses: actions/cache@v4
+        with:
+          path: historico.json
+          key: historico-${{ github.run_id }}
+          restore-keys: historico-
+
+      - name: Coletar dados do TSE
+        run: python coletar.py
+
+      - name: Montar o site
+        run: |
+          mkdir -p _site
+          cp index.html estilo.css app.js dados.json _site/
+          cp historico.json _site/ 2>/dev/null || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4

@@ -1,0 +1,4629 @@
+{
+ "atualizadoEm": "2026-08-27T00:31:35.622543-03:00",
+ "eleicao": {
+  "id": "20322002026",
+  "ano": 2026,
+  "uf": "SC",
+  "partido": "NOVO"
+ },
+ "resumo": {
+  "candidatos": 54,
+  "comArrecadacao": 45,
+  "totalArrecadado": 5159421.23,
+  "totalFundos": 3545000.0,
+  "totalPrivado": 1609621.23,
+  "totalDespesas": 61540.26,
+  "porCargo": {
+   "Deputado Federal": 4466089.0,
+   "Deputado Estadual": 693332.23
+  }
+ },
+ "candidatos": [
+  {
+   "id": "240002535434",
+   "nome": "GILSON MARQUES",
+   "nomeCompleto": "GILSON MARQUES VIEIRA",
+   "numero": 3050,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "00824207939",
+   "ocupacao": "Deputado",
+   "municipio": "RIO DO SUL",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535434/SC",
+   "sites": [
+    "HTTPS://WWW.YOUTUBE.COM/@GILSONMARQUESNOVO",
+    "HTTPS://WWW.FACEBOOK.COM/GILSON.MARQUES.NOVO/",
+    "HTTPS://WWW.GILSONMARQUES.COM",
+    "HTTPS://WWW.INSTAGRAM.COM/GILSON.MARQUES.NOVO/"
+   ],
+   "cnpjCampanha": "68329263000182",
+   "limiteGasto": 3176572.53,
+   "totalBens": 3907050.08,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535434/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "24/08/2026",
+   "total": 1621244.0,
+   "qtdDoacoes": 8,
+   "financeiro": 1621244.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 20500.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 1595000.0,
+    "roni": 0.0,
+    "proprios": 1000.0,
+    "financiamentoColetivo": 4744.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 1030000.0,
+    "outros": 591244.0
+   },
+   "despesas": {
+    "contratadas": 100.48,
+    "pagas": 100.48
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 3,
+     "valor": 1595000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "78882753972",
+     "nome": "GERALDO LEONEL ESTEVAM DA SILVEIRA",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "05666161903",
+     "nome": "RICARDO NUNES MATEUS",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 4744.0,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "00824207939",
+     "nome": "GILSON MARQUES VIEIRA",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 100.48
+    }
+   ],
+   "entregas": [
+    {
+     "data": "24/08/2026 14:07",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 10:54",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 22:42",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 21:47",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 19:16",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 11:36",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 13:38",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 1
+  },
+  {
+   "id": "240002535429",
+   "nome": "RODRIGO LIVRAMENTO",
+   "nomeCompleto": "RODRIGO LIVRAMENTO ARAUJO",
+   "numero": 3030,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "09631824985",
+   "ocupacao": "Vereador",
+   "municipio": "FLORIANÓPOLIS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535429/SC",
+   "sites": [
+    "HTTPS://RODRIGOLIVRAMENTO.COM.BR/",
+    "HTTPS://WWW.INSTAGRAM.COM/RODRIGO__LIVRAMENTO/",
+    "HTTPS://WWW.YOUTUBE.COM/@RODRIGOLIVRAMENTO30",
+    "HTTPS://WWW.FACEBOOK.COM/RODRIGO.LIVRAMENTOSC"
+   ],
+   "cnpjCampanha": "68329297000177",
+   "limiteGasto": 3176572.53,
+   "totalBens": 838000.67,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535429/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 735030.0,
+   "qtdDoacoes": 11,
+   "financeiro": 735030.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 49250.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 663000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 22780.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 100000.0,
+    "fundoEspecial": 150000.0,
+    "outros": 485030.0
+   },
+   "despesas": {
+    "contratadas": 466.21,
+    "pagas": 466.21
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "36738562000184",
+     "nome": "Direção Municipal/Comissão Provisória - NOVO - JARAGUÁ DO SUL - SC",
+     "qtd": 2,
+     "valor": 413000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 250000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "24880850900",
+     "nome": "WALTER JANSSEN NETO",
+     "qtd": 1,
+     "valor": 30000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 22780.0,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "44440820972",
+     "nome": "JULIO CESAR RAMIRES",
+     "qtd": 1,
+     "valor": 7000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 466.21
+    }
+   ],
+   "entregas": [
+    {
+     "data": "25/08/2026 14:56",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "25/08/2026 10:25",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 09:12",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 15:01",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 22:38",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 13:12",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "11/08/2026 15:22",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "11/08/2026 13:30",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 2
+  },
+  {
+   "id": "240002535425",
+   "nome": "BIA BORBA",
+   "nomeCompleto": "BEATRIZ IGNÁCIO BORBA",
+   "numero": 3022,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "14767550947",
+   "ocupacao": "Vereador",
+   "municipio": "BIGUAÇU",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535425/SC",
+   "sites": [
+    "https://www.biaborba.com.br",
+    "HTTPS://WWW.INSTAGRAM.COM/BEATRIZBORBASC/"
+   ],
+   "cnpjCampanha": "68329303000196",
+   "limiteGasto": 3176572.53,
+   "totalBens": 59900.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535425/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 270000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 270000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 270000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 100000.0,
+    "fundoEspecial": 170000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 37706.5,
+    "pagas": 37706.5
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 270000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "40748981000174",
+     "nome": "KLB IMPRESSOES E USINAGEM LTDA",
+     "qtd": 4,
+     "valor": 37706.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "21/08/2026 19:17",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 12:30",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 3
+  },
+  {
+   "id": "240002535435",
+   "nome": "ANDRÉ DE OLIVEIRA",
+   "nomeCompleto": "ANDRÉ DE OLIVEIRA",
+   "numero": 3010,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "08000755955",
+   "ocupacao": "Engenheiro",
+   "municipio": "TIJUCAS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535435/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/ANDREOLIVEIRA.SC",
+    "HTTPS://WWW.FACEBOOK.COM/ANDREDEOLIVEIRA"
+   ],
+   "cnpjCampanha": "68329293000199",
+   "limiteGasto": 3176572.53,
+   "totalBens": 1120000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535435/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 250000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 250000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 250000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 100000.0,
+    "fundoEspecial": 150000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 250000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 08:33",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 19:43",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 4
+  },
+  {
+   "id": "240002535431",
+   "nome": "ÉRICO VINICIUS",
+   "nomeCompleto": "ÉRICO VINICIUS PEREIRA",
+   "numero": 3000,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "00399711988",
+   "ocupacao": "Vereador",
+   "municipio": "JOINVILLE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535431/SC",
+   "sites": [
+    "HTTPS://X.COM/ERICODONOVO",
+    "HTTPS://WWW.FACEBOOK.COM/ERICOVINICIUSDONOVO/?LOCALE=PT_BR",
+    "HTTPS://WWW.INSTAGRAM.COM/ERICOVINICIUSDONOVO/",
+    "HTTPS://BR.LINKEDIN.COM/IN/%C3%A9RICO-VINICIUS-827916314"
+   ],
+   "cnpjCampanha": "68329258000170",
+   "limiteGasto": 3176572.53,
+   "totalBens": 1333000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535431/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 222900.0,
+   "qtdDoacoes": 3,
+   "financeiro": 222900.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 10000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 212900.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 100000.0,
+    "fundoEspecial": 112900.0,
+    "outros": 10000.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 212900.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "35119144934",
+     "nome": "LIVIA FREITAG NEERMANN",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 14:41",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 22:52",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 22:21",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 5
+  },
+  {
+   "id": "240002535430",
+   "nome": "LUCAS GOTARDO",
+   "nomeCompleto": "LUCAS WILSON GOTARDO",
+   "numero": 3088,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "07685421976",
+   "ocupacao": "Empresário",
+   "municipio": "ITAJAÍ",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535430/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/LUCASWGOTARDO/",
+    "HTTPS://WWW.FACEBOOK.COM/LUCAS.GOTARDO"
+   ],
+   "cnpjCampanha": "68329292000144",
+   "limiteGasto": 3176572.53,
+   "totalBens": 560000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535430/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 149255.0,
+   "qtdDoacoes": 3,
+   "financeiro": 149255.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 125000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 24255.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 24255.0
+   },
+   "despesas": {
+    "contratadas": 545.29,
+    "pagas": 545.29
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 24255.0,
+     "fcc": true
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 545.29
+    }
+   ],
+   "entregas": [
+    {
+     "data": "21/08/2026 18:35",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 17:04",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "17/08/2026 16:19",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 6
+  },
+  {
+   "id": "240002535461",
+   "nome": "MATHEUS CADORIN",
+   "nomeCompleto": "MATHEUS ANDREIS CADORIN",
+   "numero": 30000,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "00737340983",
+   "ocupacao": "Deputado",
+   "municipio": "JOINVILLE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535461/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/CADORIN.MATHEUS/",
+    "HTTPS://FACEBOOK.COM/MATHEUS.CADORIN.54",
+    "HTTPS://WWW.MATHEUSCADORIN.COM.BR/",
+    "HTTPS://X.COM/MATHEUSCADORIN"
+   ],
+   "cnpjCampanha": "68329262000138",
+   "limiteGasto": 1270629.01,
+   "totalBens": 900000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535461/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "24/08/2026",
+   "total": 147000.0,
+   "qtdDoacoes": 7,
+   "financeiro": 147000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 62000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 10000.0,
+    "partidos": 75000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 10000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 62000.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 75000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "75122693900",
+     "nome": "VANDERLEI PALHANO DA CRUZ",
+     "qtd": 1,
+     "valor": 25000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "02354441975",
+     "nome": "VOLNEI EYNG",
+     "qtd": 1,
+     "valor": 20000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "68329258000170",
+     "nome": "ERICO VINICIUS PEREIRA",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "01937227987",
+     "nome": "MIGUEL ABUHAB",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "24/08/2026 14:29",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 21:11",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 09:55",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 09:52",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 19:01",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "17/08/2026 15:55",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 7
+  },
+  {
+   "id": "240002535437",
+   "nome": "RAFAEL NOGUEIRA",
+   "nomeCompleto": "RAFAEL NOGUEIRA ALVES TAVARES DA SILVA",
+   "numero": 3006,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "32354829892",
+   "ocupacao": "Professor de Ensino Superior",
+   "municipio": "SANTOS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535437/SC",
+   "sites": [
+    "HTTPS://BR.LINKEDIN.COM/IN/RAFAEL-NOGUEIRA-ALVES-TAVARES-DA-SILVA-B178A320",
+    "HTTPS://WWW.INSTAGRAM.COM/NOGUEIRA.R",
+    "HTTPS://RAFAELNOGUEIRA.COM.BR",
+    "HTTPS://WWW.FACEBOOK.COM/PROFRAFAELNOGUEIRA/"
+   ],
+   "cnpjCampanha": "68329306000120",
+   "limiteGasto": 3176572.53,
+   "totalBens": 95000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535437/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 133800.0,
+   "qtdDoacoes": 3,
+   "financeiro": 133800.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 133800.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 8800.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 8800.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 08:26",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 20:25",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 22:06",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 8
+  },
+  {
+   "id": "240002535421",
+   "nome": "PAMELYS BARROS",
+   "nomeCompleto": "PAMELYS DE BARROS",
+   "numero": 3099,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "09334675918",
+   "ocupacao": "Vereador",
+   "municipio": "TOLEDO",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535421/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/PAMELYS.ADV/"
+   ],
+   "cnpjCampanha": "68329296000122",
+   "limiteGasto": 3176572.53,
+   "totalBens": 680000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535421/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "24/08/2026",
+   "total": 130000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 130000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 130000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 130000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 130000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "24/08/2026 14:20",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 9
+  },
+  {
+   "id": "240002535424",
+   "nome": "MORGANA DANIEL",
+   "nomeCompleto": "MORGANA COSTA DANIEL KINDERMANN",
+   "numero": 3033,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "00407439935",
+   "ocupacao": "Jornalista e Redator",
+   "municipio": "ARARANGUÁ",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535424/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/MORGANA.COSTADANIELKINDERMANN",
+    "HTTPS://WWW.INSTAGRAM.COM/MORGANADANIEL/"
+   ],
+   "cnpjCampanha": "68329260000149",
+   "limiteGasto": 3176572.53,
+   "totalBens": 145000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535424/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 129250.0,
+   "qtdDoacoes": 3,
+   "financeiro": 129250.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 129250.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 4250.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 4250.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 14:49",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 21:38",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "10/08/2026 11:19",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 10
+  },
+  {
+   "id": "240002535427",
+   "nome": "JUNGLES WEGHER",
+   "nomeCompleto": "JUNGLES SILVIO WEGHER",
+   "numero": 3017,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "06904189908",
+   "ocupacao": "Empresário",
+   "municipio": "CATANDUVAS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535427/SC",
+   "sites": [
+    "HTTPS://WWW.JUNGLESWEGHER.COM.BR",
+    "HTTPS://WWW.FACEBOOK.COM/JUNGLESWEGHER",
+    "HTTPS://WWW.INSTAGRAM.COM/JUNGLESWEGHER"
+   ],
+   "cnpjCampanha": "68329287000131",
+   "limiteGasto": 3176572.53,
+   "totalBens": 2217000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535427/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 128500.0,
+   "qtdDoacoes": 2,
+   "financeiro": 128500.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 128500.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 78500.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 128500.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "21/08/2026 19:00",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "21/08/2026 18:50",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 11
+  },
+  {
+   "id": "240002535423",
+   "nome": "REITOR CLAUDIO JACOSKI",
+   "nomeCompleto": "CLAUDIO ALCIDES JACOSKI",
+   "numero": 3090,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "52668924987",
+   "ocupacao": "Professor de Ensino Superior",
+   "municipio": "Chapecó",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535423/SC",
+   "sites": [
+    "HTTPS://WWW.TIKTOK.COM/@CLAUDIO.JACOSKI",
+    "HTTPS://WWW.FACEBOOK.COM/CLAUDIO.JACOSKI",
+    "HTTPS://CLAUDIOJACOSKI.WORDPRESS.COM/",
+    "HTTPS://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61591611250666",
+    "HTTPS://WWW.CLAUDIOJACOSKI.COM/",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1ER5QSRNY9/?MIBEXTID=WWXIFR",
+    "HTTPS://WWW.INSTAGRAM.COM/CLAUDIOJACOSKI"
+   ],
+   "cnpjCampanha": "68329311000132",
+   "limiteGasto": 3176572.53,
+   "totalBens": 2127891.75,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535423/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 125860.0,
+   "qtdDoacoes": 3,
+   "financeiro": 125860.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 125000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 860.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 860.0
+   },
+   "despesas": {
+    "contratadas": 17.1,
+    "pagas": 17.1
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 860.0,
+     "fcc": true
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 17.1
+    }
+   ],
+   "entregas": [
+    {
+     "data": "22/08/2026 10:02",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 21:22",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 18:10",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 12
+  },
+  {
+   "id": "240002535426",
+   "nome": "KAUE OLIVEIRA",
+   "nomeCompleto": "KAUE LUIZ DE OLIVEIRA",
+   "numero": 3049,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "05683616956",
+   "ocupacao": "Vereador",
+   "municipio": "CAPINZAL",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535426/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/KAUEOLIVEIRAA1/",
+    "HTTPS://WWW.FACEBOOK.COM/KAUE.L.DEOLIVEIRA/"
+   ],
+   "cnpjCampanha": "68329281000164",
+   "limiteGasto": 3176572.53,
+   "totalBens": 1225791.56,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535426/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 125000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 125000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 125000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "21/08/2026 22:08",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 16:49",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 13
+  },
+  {
+   "id": "240002535433",
+   "nome": "LUCIO VANDERLINDE",
+   "nomeCompleto": "LUCIO VANDERLINDE",
+   "numero": 3021,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "04651576966",
+   "ocupacao": "Empresário",
+   "municipio": "RIO DO OESTE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535433/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/18PCNWXR2M/",
+    "HTTPS://LUCIOVANDERLINDE.COM.BR",
+    "HTTPS://TIKTOK.COM/@LUCIOVANDERLINDE.DIREITA",
+    "HTTPS://WWW.INSTAGRAM.COM/LUCIOVANDERLINDE"
+   ],
+   "cnpjCampanha": "68329274000162",
+   "limiteGasto": 3176572.53,
+   "totalBens": 200000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535433/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 125000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 125000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 125000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 08:49",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 22:44",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 14
+  },
+  {
+   "id": "240002535428",
+   "nome": "RICARDO OLIVEIRA",
+   "nomeCompleto": "RICARDO SOARES DE OLIVEIRA",
+   "numero": 3060,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "81787057968",
+   "ocupacao": "Agente Administrativo",
+   "municipio": "CRICIÚMA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535428/SC",
+   "sites": [
+    "HTTPS://WWW.LINKEDIN.COM/IN/RICARDO-OLIVEIRA-48229741B",
+    "HTTPS://WWW.INSTAGRAM.COM/RICARDOOLIVEIRA.NOVO"
+   ],
+   "cnpjCampanha": "68329319000107",
+   "limiteGasto": 3176572.53,
+   "totalBens": 1200000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535428/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 125000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 125000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 125000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 50000.0,
+    "fundoEspecial": 75000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 125000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 13:39",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 22:17",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 15
+  },
+  {
+   "id": "240002535459",
+   "nome": "MARIO FELIPPI",
+   "nomeCompleto": "MARIO CESAR FELIPPI FILHO",
+   "numero": 30007,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "04760788905",
+   "ocupacao": "Professor de Ensino Superior",
+   "municipio": "JARAGUÁ DO SUL",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535459/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/MARIOFELIPPI",
+    "HTTPS://MARIOFELIPPI.COM.BR",
+    "HTTPS://WWW.FACEBOOK.COM/MARIOFELIPPI"
+   ],
+   "cnpjCampanha": "68329276000151",
+   "limiteGasto": 1270629.01,
+   "totalBens": 595000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535459/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "16/08/2026",
+   "total": 119998.3,
+   "qtdDoacoes": 1,
+   "financeiro": 119998.3,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 119998.3,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 119998.3
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 119998.3,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "16/08/2026 13:28",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "16/08/2026 13:23",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 16
+  },
+  {
+   "id": "240002535432",
+   "nome": "ANNA VALENTE",
+   "nomeCompleto": "ANNA CAROLINA GHIORZI VALENTE",
+   "numero": 3031,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "95012095987",
+   "ocupacao": "Administrador",
+   "municipio": "LAGES",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535432/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/ANNAVALENTE.SC",
+    "HTTPS://WWW.FACEBOOK.COM/ANNACAROLINAVALENTE",
+    "HTTPS://WWW.INSTAGRAM.COM/ANNACAROLVALENTE"
+   ],
+   "cnpjCampanha": "68329324000101",
+   "limiteGasto": 3176572.53,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535432/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 100000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 100000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 100000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 40000.0,
+    "fundoEspecial": 60000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 100000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 09:25",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 20:11",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 17
+  },
+  {
+   "id": "240002535468",
+   "nome": "CRYSLAN",
+   "nomeCompleto": "CRYSLAN JORJAN DE MORAES",
+   "numero": 30500,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "10260350907",
+   "ocupacao": "Administrador",
+   "municipio": "SÃO JOSÉ",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535468/SC",
+   "sites": [
+    "HTTPS://CRYSLAN.COM.BR/",
+    "HTTPS://WWW.LINKEDIN.COM/IN/CRYSLAN-DE-MORAES-842BB293/",
+    "HTTPS://WWW.INSTAGRAM.COM/CRYSLAN"
+   ],
+   "cnpjCampanha": "68329299000166",
+   "limiteGasto": 1270629.01,
+   "totalBens": 270555.61,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535468/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "24/08/2026",
+   "total": 88227.56,
+   "qtdDoacoes": 7,
+   "financeiro": 88227.56,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 26000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 4700.0,
+    "partidos": 4250.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 53277.56,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 88227.56
+   },
+   "despesas": {
+    "contratadas": 1177.98,
+    "pagas": 1177.98
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "08746641000100",
+     "nome": "APPCIVICO CONSULTORIA LTDA",
+     "qtd": 2,
+     "valor": 53277.56,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "12820900895",
+     "nome": "CARLOS ALBERTO VIANA GALVAO",
+     "qtd": 1,
+     "valor": 15000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "04638589995",
+     "nome": "THIAGO FREITAS POLLACHINI",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "68329297000177",
+     "nome": "RODRIGO LIVRAMENTO ARAUJO",
+     "qtd": 1,
+     "valor": 4700.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 4250.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "08746641000100",
+     "nome": "APPCIVICO CONSULTORIA LTDA",
+     "qtd": 2,
+     "valor": 1177.98
+    }
+   ],
+   "entregas": [
+    {
+     "data": "24/08/2026 11:04",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 18:04",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 11:58",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "11/08/2026 21:01",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "10/08/2026 10:56",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "06/08/2026 14:26",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 18
+  },
+  {
+   "id": "240002535436",
+   "nome": "GLENDA GERBER",
+   "nomeCompleto": "GLENDA SILVA DOS SANTOS GERBER",
+   "numero": 3007,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "06682854943",
+   "ocupacao": "Professor de Ensino Fundamental",
+   "municipio": "TUBARÃO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535436/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/GLENDA.GERBER.9?LOCALE=PT_BR",
+    "HTTPS://WWW.THREADS.NET/@GLENDAGERBER?IGSHID=NTC4MTIWNJQ2YQ==",
+    "HTTPS://WWW.INSTAGRAM.COM/HTTPS://WWW.INSTAGRAM.COM/GLENDAGERBER?IGSH=MXRSA3DLAW"
+   ],
+   "cnpjCampanha": "68329286000197",
+   "limiteGasto": 3176572.53,
+   "totalBens": 762200.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535436/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 75250.0,
+   "qtdDoacoes": 5,
+   "financeiro": 75250.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 16000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 59250.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 20000.0,
+    "fundoEspecial": 35000.0,
+    "outros": 20250.0
+   },
+   "despesas": {
+    "contratadas": 3952.0,
+    "pagas": 3951.01
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 2,
+     "valor": 55000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "34521812864",
+     "nome": "RENATO CURCIO MOURA",
+     "qtd": 1,
+     "valor": 15000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 4250.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "16544558818",
+     "nome": "FABIO ALEXANDRE LENZI",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "42168091000119",
+     "nome": "MR7 COMPANY LTDA",
+     "qtd": 1,
+     "valor": 1500.0
+    },
+    {
+     "cpfCnpj": "58495844000130",
+     "nome": "58.495.844 MICHAEL RENAN DALLPOSSO DA SILVA",
+     "qtd": 1,
+     "valor": 1000.0
+    },
+    {
+     "cpfCnpj": "13347016000117",
+     "nome": "FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.",
+     "qtd": 2,
+     "valor": 1000.0
+    },
+    {
+     "cpfCnpj": "63011954000110",
+     "nome": "63.011.954 LUANA RAMOS DA SILVA MARTINS",
+     "qtd": 1,
+     "valor": 450.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "21/08/2026 20:30",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 12:22",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "14/08/2026 23:39",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "14/08/2026 20:13",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 14:20",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 19
+  },
+  {
+   "id": "240002535460",
+   "nome": "NETO PETTERS DO NOVO",
+   "nomeCompleto": "ITALMAR JOSE PETTERS NETO",
+   "numero": 30456,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "05097698967",
+   "ocupacao": "Contador",
+   "municipio": "JOINVILLE",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535460/SC",
+   "sites": [
+    "HTTPS://WWW.YOUTUBE.COM/@ITALMARJOSEPETTERSNETO",
+    "HTTPS://TWITTER.COM/PETTERSNETO",
+    "HTTPS://WWW.TIKTOK.COM/@NETO.PETTERS",
+    "HTTPS://WWW.INSTAGRAM.COM/NETOPETTERS",
+    "HTTPS://WWW.FACEBOOK.COM/NETOPETTERS"
+   ],
+   "cnpjCampanha": "68329279000195",
+   "limiteGasto": 1270629.01,
+   "totalBens": 533300.6,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535460/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 72124.8,
+   "qtdDoacoes": 41,
+   "financeiro": 72124.8,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 52094.8,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 15000.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 5030.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 15000.0,
+    "fundoEspecial": 0.0,
+    "outros": 57124.8
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329258000170",
+     "nome": "ERICO VINICIUS PEREIRA",
+     "qtd": 1,
+     "valor": 15000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "03627609930",
+     "nome": "GABRIELA FREITAG NEERMANN",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "07130170905",
+     "nome": "LUAN ROBERTO TAVARES",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "05097698967",
+     "nome": "ITALMAR JOSE PETTERS NETO",
+     "qtd": 2,
+     "valor": 5030.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "04275493966",
+     "nome": "FILIPE AUGUSTO ZANICHELLI DE OLIVEIRA",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 22:40",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 16:37",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 17:05",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 22:49",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 12:52",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "13/08/2026 23:17",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 22:16",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 15:52",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 11:46",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 20
+  },
+  {
+   "id": "240002535452",
+   "nome": "ODAIR TRAMONTIN",
+   "nomeCompleto": "ODAIR TRAMONTIN",
+   "numero": 30300,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "48126730978",
+   "ocupacao": "Professor de Ensino Superior",
+   "municipio": "CAMPO ERÊ",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535452/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/ODAIRTRAMONTIN",
+    "HTTPS://WWW.INSTAGRAM.COM/ODAIRTRAMONTIN/"
+   ],
+   "cnpjCampanha": "68329310000198",
+   "limiteGasto": 1270629.01,
+   "totalBens": 14681572.65,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535452/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 34410.0,
+   "qtdDoacoes": 11,
+   "financeiro": 34410.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 14550.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 13000.0,
+    "financiamentoColetivo": 6860.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 34410.0
+   },
+   "despesas": {
+    "contratadas": 187.12,
+    "pagas": 187.12
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "48126730978",
+     "nome": "ODAIR TRAMONTIN",
+     "qtd": 2,
+     "valor": 13000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 6860.0,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "00714177962",
+     "nome": "FRANCISCO MANOEL SOARES SENS",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "59751088968",
+     "nome": "DARCI DE MARCO DEBASTIANI",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "50104713968",
+     "nome": "ELDO UMBELINO",
+     "qtd": 1,
+     "valor": 3000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 187.12
+    }
+   ],
+   "entregas": [
+    {
+     "data": "25/08/2026 22:17",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "25/08/2026 16:23",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "23/08/2026 15:34",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 20:49",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 23:57",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 13:59",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "13/08/2026 23:07",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 22:20",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 09:24",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 21
+  },
+  {
+   "id": "240002535456",
+   "nome": "LIZANDRA DADAM",
+   "nomeCompleto": "LIZANDRA DADAM",
+   "numero": 30123,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "02580064982",
+   "ocupacao": "Farmacêutico",
+   "municipio": "FLORIANÓPOLIS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535456/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/LIZANDRADADAM",
+    "HTTPS://WWW.FACEBOOK.COM/LIZANDRADADAM",
+    "HTTPS://WWW.LINKEDIN.COM/IN/LIZANDRA.DADAM"
+   ],
+   "cnpjCampanha": "68329271000129",
+   "limiteGasto": 1270629.01,
+   "totalBens": 218000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535456/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 33000.0,
+   "qtdDoacoes": 3,
+   "financeiro": 33000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 30000.0,
+    "partidos": 3000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 10000.0,
+    "fundoEspecial": 23000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 2,
+     "valor": 30000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 3000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 18:02",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 00:33",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 13:37",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 22
+  },
+  {
+   "id": "240002535448",
+   "nome": "MICHELE MARQUES",
+   "nomeCompleto": "MICHELE MARQUES SILVA SCOTTI",
+   "numero": 30600,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "01734417005",
+   "ocupacao": "Advogado",
+   "municipio": "SÃO LUIZ GONZAGA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535448/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/MICHELEMARQUES.SC/",
+    "HTTPS://NOVO.ORG.BR/PRE-CANDIDATO-2026/360/MICHELE-MARQUES/",
+    "HTTPS://MICHELEMARQUES.NOVOSC.ORG/",
+    "HTTPS://WWW.YOUTUBE.COM/@MICHELEMARQUES.OFICIAL",
+    "HTTPS://TWITTER.COM/@MICHELEMARXSC",
+    "HTTPS://WWW.FACEBOOK.COM/MICHELEMQS/?LOCALE=NB_NO"
+   ],
+   "cnpjCampanha": "68329266000116",
+   "limiteGasto": 1270629.01,
+   "totalBens": 740475.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535448/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 30544.0,
+   "qtdDoacoes": 6,
+   "financeiro": 30544.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 4000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 20000.0,
+    "partidos": 3500.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 3044.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 10000.0,
+    "fundoEspecial": 13500.0,
+    "outros": 7044.0
+   },
+   "despesas": {
+    "contratadas": 60.85,
+    "pagas": 60.85
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 2,
+     "valor": 20000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 3500.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 3044.0,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "03072934916",
+     "nome": "GUILHERME LONGO TRICHES",
+     "qtd": 1,
+     "valor": 3000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "00497750902",
+     "nome": "Lourival Manoel Machado",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 60.85
+    }
+   ],
+   "entregas": [
+    {
+     "data": "25/08/2026 21:53",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "22/08/2026 09:50",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "20/08/2026 12:27",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 23
+  },
+  {
+   "id": "240002535439",
+   "nome": "CRIS MILLI",
+   "nomeCompleto": "CRISTIANNE MILLI DA SILVA",
+   "numero": 30180,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "87706423972",
+   "ocupacao": "Cabeleireiro e Barbeiro",
+   "municipio": "CAPITÃO LEÔNIDAS MARQUES",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535439/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/CRISMILLI_?IGSH=BHOXZMXXY2NQBNZM&UTM_SOURCE=QR",
+    "HTTPS://WWW.TIKTOK.COM/@CRISMILLI_?_R=1&_T=ZS-97PPRVQHHP1",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1EE8USK4SR/?MIBEXTID=WWXIFR"
+   ],
+   "cnpjCampanha": "68329322000112",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535439/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 21100.0,
+   "qtdDoacoes": 4,
+   "financeiro": 21100.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 1500.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 15000.0,
+    "partidos": 4600.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 5000.0,
+    "fundoEspecial": 14600.0,
+    "outros": 1500.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 2,
+     "valor": 15000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 4600.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "02683266901",
+     "nome": "MARCELLO DE FREITAS CORTEZ",
+     "qtd": 1,
+     "valor": 1500.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 22:02",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "23/08/2026 15:10",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 16:16",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 16:12",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 24
+  },
+  {
+   "id": "240002535422",
+   "nome": "AMANDA TEIXEIRA",
+   "nomeCompleto": "AMANDA GEHLEN TEIXEIRA",
+   "numero": 3008,
+   "cargo": 6,
+   "cargoNome": "Deputado Federal",
+   "cpf": "10475909992",
+   "ocupacao": "Empresário",
+   "municipio": "PORTO ALEGRE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535422/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/AMANDATEIXEIRAHS/"
+   ],
+   "cnpjCampanha": "68329300000152",
+   "limiteGasto": 3176572.53,
+   "totalBens": 40000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535422/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "19/08/2026",
+   "total": 20000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 20000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 20000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 20000.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 20000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "19/08/2026 14:28",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 25
+  },
+  {
+   "id": "240002535443",
+   "nome": "CARLOS OTTO",
+   "nomeCompleto": "CARLOS EDUARDO OTTO",
+   "numero": 30111,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "00894805975",
+   "ocupacao": "Advogado",
+   "municipio": "UNIÃO DA VITÓRIA",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535443/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/NOVOPORTOUNIAO"
+   ],
+   "cnpjCampanha": "68329264000127",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1290000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535443/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 20000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 20000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 20000.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 20000.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "00894805975",
+     "nome": "CARLOS EDUARDO OTTO",
+     "qtd": 2,
+     "valor": 20000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "21/08/2026 09:14",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 26
+  },
+  {
+   "id": "240002535471",
+   "nome": "CÉSAR DAMIANI",
+   "nomeCompleto": "CÉSAR DAMIANI",
+   "numero": 30789,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "05682975987",
+   "ocupacao": "Empresário",
+   "municipio": "TUBARÃO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535471/SC",
+   "sites": [],
+   "cnpjCampanha": "68329280000110",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1300000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535471/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 18000.0,
+   "qtdDoacoes": 3,
+   "financeiro": 18000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 18000.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 18000.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "05682975987",
+     "nome": "CESAR DAMIANI",
+     "qtd": 3,
+     "valor": 18000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 22:51",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 18:31",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 27
+  },
+  {
+   "id": "240002535474",
+   "nome": "CARLA CORRÊA",
+   "nomeCompleto": "CARLA DANIELLE CORRÊA",
+   "numero": 30227,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "16123723847",
+   "ocupacao": "Representante Comercial",
+   "municipio": "SÃO PAULO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535474/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/CARLADANIELLECORREA?IGSH=MW91YWD4YXVWENDSDQ%3D%3D&UTM_",
+    "HTTPS://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61565794688806"
+   ],
+   "cnpjCampanha": "68329304000130",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535474/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 17800.0,
+   "qtdDoacoes": 4,
+   "financeiro": 17800.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 10000.0,
+    "partidos": 7800.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 5000.0,
+    "fundoEspecial": 10000.0,
+    "outros": 2800.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 2,
+     "valor": 10000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 2800.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 21:42",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "21/08/2026 20:55",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 22:53",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 19:05",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 28
+  },
+  {
+   "id": "240002535453",
+   "nome": "ISADORA PIANA",
+   "nomeCompleto": "ISADORA ROMANATTO PIANA",
+   "numero": 30900,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "10190644982",
+   "ocupacao": "Outros",
+   "municipio": "CAMPOS NOVOS",
+   "situacao": "Deferido",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535453/SC",
+   "sites": [
+    "HTTPS://WWW.LINKEDIN.COM/IN/ISADORA-ROMANATTO-PIANA-205038208/",
+    "HTTPS://WWW.INSTAGRAM.COM/ISADORAPIANA.SC/",
+    "HTTPS://WWW.FACEBOOK.COM/ISADORAPIANA.SC/",
+    "HTTPS://WWW.FACEBOOK.COM/ISADORAROMANATTOPIANA",
+    "HTTPS://WWW.ISADORAPIANA.COM.BR",
+    "HTTPS://WWW.YOUTUBE.COM/@ISADORAPIANASC"
+   ],
+   "cnpjCampanha": "68329298000111",
+   "limiteGasto": 1270629.01,
+   "totalBens": 91312.6,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535453/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "18/08/2026",
+   "total": 13590.3,
+   "qtdDoacoes": 2,
+   "financeiro": 13590.3,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 1000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 12590.3,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 13590.3
+   },
+   "despesas": {
+    "contratadas": 3295.01,
+    "pagas": 295.01
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 12590.3,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "16544558818",
+     "nome": "FABIO ALEXANDRE LENZI",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "58854016000141",
+     "nome": "FAMACAR LOCACOES LTDA",
+     "qtd": 1,
+     "valor": 3000.0
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 295.01
+    }
+   ],
+   "entregas": [
+    {
+     "data": "18/08/2026 11:13",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 29
+  },
+  {
+   "id": "240002535444",
+   "nome": "ROBERTO PEREIRA",
+   "nomeCompleto": "ROBERTO CHAVES PEREIRA",
+   "numero": 30999,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "32090307072",
+   "ocupacao": "Empresário",
+   "municipio": "MOSTARDAS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535444/SC",
+   "sites": [
+    "HTTPS://WWW.ROBERTOPEREIRA.NET.BR",
+    "HTTPS://WWW.FACEBOOK.COM/ROBERTOPEREIRA",
+    "HTTPS://WWW.INSTAGRAM.COM/ROBERTO.CPEREIRA"
+   ],
+   "cnpjCampanha": "68329305000185",
+   "limiteGasto": 1270629.01,
+   "totalBens": 4960000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535444/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 11700.0,
+   "qtdDoacoes": 20,
+   "financeiro": 11700.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 11500.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 200.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 11700.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "40196631068",
+     "nome": "LORIEN PASQUAL",
+     "qtd": 1,
+     "valor": 2000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "55698727449",
+     "nome": "ALEXANDRE TAVARES DE ANDRADE CUNHA",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "00771163053",
+     "nome": "SERGIO LUIZ NASI",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "42384303449",
+     "nome": "FRANCISCO BRUNO QUEIROGA DA SILVA",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "37653806015",
+     "nome": "EVERTON DE BONI SANTOS",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 22:50",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "21/08/2026 16:05",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "19/08/2026 15:50",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "15/08/2026 13:21",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "13/08/2026 13:36",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "10/08/2026 20:17",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "07/08/2026 19:03",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 30
+  },
+  {
+   "id": "240002535462",
+   "nome": "VINICIUS BORGES",
+   "nomeCompleto": "VINICIUS NUERNBERG BORGES",
+   "numero": 30333,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "04844636910",
+   "ocupacao": "Veterinário",
+   "municipio": "LAGES",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535462/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/VINICIUSNOVOLAGES",
+    "HTTPS://WWW.FACEBOOK.COM/VINICIUSNOVOLAGES"
+   ],
+   "cnpjCampanha": "68329277000104",
+   "limiteGasto": 1270629.01,
+   "totalBens": 175000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535462/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "20/08/2026",
+   "total": 10000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 10000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 10000.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 10000.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 1,
+     "valor": 10000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "20/08/2026 18:25",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 31
+  },
+  {
+   "id": "240002535472",
+   "nome": "RAMON TARTARI",
+   "nomeCompleto": "RAMON TARTARI",
+   "numero": 30147,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "89812590978",
+   "ocupacao": "Biomédico",
+   "municipio": "URUSSANGA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535472/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/RAMON.TARTARI.7",
+    "HTTPS://WWW.INSTAGRAM.COM/RAMONTARTARI"
+   ],
+   "cnpjCampanha": "68329323000167",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1653503.02,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535472/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 9800.0,
+   "qtdDoacoes": 2,
+   "financeiro": 5000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 5000.0,
+    "partidos": 0.0,
+    "roni": 4800.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 5000.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 19:45",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "21/08/2026 09:11",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 32
+  },
+  {
+   "id": "240002535465",
+   "nome": "RENATA FERREIRA",
+   "nomeCompleto": "RENATA VIEIRA FERREIRA",
+   "numero": 30220,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "04930559910",
+   "ocupacao": "Decorador",
+   "municipio": "PONTE ALTA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535465/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/RE_VIEIRA_HIPISMO",
+    "HTTPS://WWW.INSTAGRAM.COM/RENATAFERREIRA_GBA",
+    "HTTPS://WWW.FACEBOOK.COM/RENATAFERREIRA"
+   ],
+   "cnpjCampanha": "68329278000140",
+   "limiteGasto": 1270629.01,
+   "totalBens": 300000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535465/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 7000.0,
+   "qtdDoacoes": 2,
+   "financeiro": 7000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 5000.0,
+    "partidos": 2000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 7000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 2000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "25/08/2026 17:59",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "21/08/2026 19:03",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 33
+  },
+  {
+   "id": "240002535447",
+   "nome": "JÚLIA ILHA",
+   "nomeCompleto": "JULIA RUSCHEL CORREA DE OLIVEIRA JULIANO",
+   "numero": 30321,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "00722484089",
+   "ocupacao": "Administrador",
+   "municipio": "PORTO ALEGRE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535447/SC",
+   "sites": [
+    "HTTPS://JULIAILHA.RF.GD",
+    "HTTPS://WWW.INSTAGRAM.COM/JULIAILHAA/"
+   ],
+   "cnpjCampanha": "68329261000193",
+   "limiteGasto": 1270629.01,
+   "totalBens": 3074000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535447/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "19/08/2026",
+   "total": 5250.0,
+   "qtdDoacoes": 2,
+   "financeiro": 5250.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 1000.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 4250.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 5250.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 4250.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "02692938097",
+     "nome": "PEDRO TELLECHEA CHAVES BARCELLOS",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "19/08/2026 14:56",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "14/08/2026 20:03",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 34
+  },
+  {
+   "id": "240002535466",
+   "nome": "LUCAS JEAN",
+   "nomeCompleto": "LUCAS JEAN SLONCZEWSKI",
+   "numero": 30700,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "07589591920",
+   "ocupacao": "Advogado",
+   "municipio": "RIO DO SUL",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535466/SC",
+   "sites": [
+    "HTTPS://LUCASJEAN.COM.BR/",
+    "HTTPS://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61564165430861",
+    "HTTPS://WWW.INSTAGRAM.COM/LUCASJEAN.SC/"
+   ],
+   "cnpjCampanha": "68329290000155",
+   "limiteGasto": 1270629.01,
+   "totalBens": 500000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535466/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "25/08/2026",
+   "total": 5127.0,
+   "qtdDoacoes": 3,
+   "financeiro": 5127.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 5127.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 5127.0
+   },
+   "despesas": {
+    "contratadas": 1520.79,
+    "pagas": 1520.79
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "70137013949",
+     "nome": "MARCOS SAVIO ZANELLA",
+     "qtd": 1,
+     "valor": 2100.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "00578658925",
+     "nome": "MARCO AURELIO KUHNEN SCHULLE",
+     "qtd": 1,
+     "valor": 2027.0,
+     "fcc": false
+    },
+    {
+     "cpfCnpj": "04572799903",
+     "nome": " RAMON NARLO",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "25021356000132",
+     "nome": "DLOCAL BRASIL INSTITUICAO DE PAGAMENTO S.A.",
+     "qtd": 1,
+     "valor": 1000.0
+    },
+    {
+     "cpfCnpj": "45928391000147",
+     "nome": "45.928.391 LUCAS MATHEUS METZGER",
+     "qtd": 1,
+     "valor": 500.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "25/08/2026 18:02",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "13/08/2026 16:19",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "06/08/2026 15:12",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 35
+  },
+  {
+   "id": "240002535441",
+   "nome": "ROBSON CALIXTO",
+   "nomeCompleto": "ROBSON CALIXTO DOS REIS",
+   "numero": 30555,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "86262068953",
+   "ocupacao": "Empresário",
+   "municipio": "CURITIBA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535441/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/18RQGWJKWW/",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1ZJGK4HZMR/",
+    "HTTPS://WWW.INSTAGRAM.COM/DA_CAPITAL_PARA_O_INTERIOR?IGSH=ANN5A2OXBGLZCNHV",
+    "HTTPS://WWW.FACEBOOK.COM/ROBSON.CALIXTO.953782?MIBEXTID=WWXIFR&RDID=B7TR5BKYRNWV",
+    "HTTPS://WWW.INSTAGRAM.COM/ROBSONCALIXTOREIS?IGSH=AWFMBTY0BMO5NNZJ",
+    "HTTPS://WWW.TIKTOK.COM/@ROBSON_CALIXTO"
+   ],
+   "cnpjCampanha": "68329321000178",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1030000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535441/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 5000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 5000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 5000.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 5000.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329297000177",
+     "nome": "RODRIGO LIVRAMENTO ARAUJO",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 18:54",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 36
+  },
+  {
+   "id": "240002535438",
+   "nome": "ROGERIO SOUZA",
+   "nomeCompleto": "ROGERIO NUNES DE SOUZA",
+   "numero": 30100,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "69849315172",
+   "ocupacao": "Advogado",
+   "municipio": "ANÁPOLIS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535438/SC",
+   "sites": [
+    "HTTPS://WWW.TIKTOK.COM/@DR.SOUZA4",
+    "HTTPS://YOUTUBE.COM/@REVSOUZA?SI=TNYWOWNJRKAGIRVL",
+    "HTTPS://WWW.INSTAGRAM.COM/TOLERANCIA_ZERO_OFICIAL?IGSH=MXRVNGP3CZZJDNHPZG==",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1AS3FSRPJF/?MIBEXTID=WWXIFR",
+    "HTTPS://WWW.INSTAGRAM.COM/REVSOUZA02?IGSH=MTYZZZRQZHVXMM13DQ%3D%3D&UTM_SOURCE=QR",
+    "HTTPS://WWW.INSTAGRAM.COM/REVSOUZA01?IGSH=MWWZA2TTAZNOEXFICW==",
+    "HTTPS://TOLERANCIAZEROOFICIAL.COM.BR/",
+    "HTTPS://REVSOUZA.COM.BR/"
+   ],
+   "cnpjCampanha": "68329314000176",
+   "limiteGasto": 1270629.01,
+   "totalBens": 2436000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535438/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 5000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 5000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 5000.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 5000.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "68329293000199",
+     "nome": "ANDRE DE OLIVEIRA",
+     "qtd": 1,
+     "valor": 5000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 09:09",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 37
+  },
+  {
+   "id": "240002535473",
+   "nome": "MATHEUS TESTA",
+   "nomeCompleto": "MATHEUS LUIZ CERIOLI TESTA",
+   "numero": 30221,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "06091751905",
+   "ocupacao": "Agrônomo",
+   "municipio": "XANXERÊ",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535473/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/MATHEUSTESTASC",
+    "HTTPS://WWW.INSTAGRAM.COM/MATHEUSTESTASC"
+   ],
+   "cnpjCampanha": "68329282000109",
+   "limiteGasto": 1270629.01,
+   "totalBens": 947166.47,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535473/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 4020.0,
+   "qtdDoacoes": 3,
+   "financeiro": 4020.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 4020.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 4020.0
+   },
+   "despesas": {
+    "contratadas": 7468.38,
+    "pagas": 7468.38
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 3,
+     "valor": 4020.0,
+     "fcc": true
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "85351427000197",
+     "nome": "GRAF SUL EDITORA GRAFICA LTDA",
+     "qtd": 6,
+     "valor": 5920.0
+    },
+    {
+     "cpfCnpj": "41835590000150",
+     "nome": "ARTEKAP CHAPECO LTDA",
+     "qtd": 1,
+     "valor": 1184.0
+    },
+    {
+     "cpfCnpj": "13347016000117",
+     "nome": "FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.",
+     "qtd": 1,
+     "valor": 200.0
+    },
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 3,
+     "valor": 132.2
+    }
+   ],
+   "entregas": [
+    {
+     "data": "21/08/2026 17:53",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "18/08/2026 17:56",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "16/08/2026 20:42",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "11/08/2026 16:40",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "06/08/2026 17:20",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 38
+  },
+  {
+   "id": "240002535440",
+   "nome": "CAROL MATOS",
+   "nomeCompleto": "CAROLINE SIMÃO MATOS",
+   "numero": 30567,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "06562775990",
+   "ocupacao": "Empresário",
+   "municipio": "CURITIBA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535440/SC",
+   "sites": [],
+   "cnpjCampanha": "68329285000142",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535440/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "22/08/2026",
+   "total": 3500.0,
+   "qtdDoacoes": 1,
+   "financeiro": 3500.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 3500.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 3500.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 3500.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "22/08/2026 14:27",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 39
+  },
+  {
+   "id": "240002535457",
+   "nome": "BERNADETE SOUZA",
+   "nomeCompleto": "MARIA BERNADETE DE SOUZA",
+   "numero": 30003,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "55860702949",
+   "ocupacao": "Empresário",
+   "municipio": "GASPAR",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535457/SC",
+   "sites": [
+    "https://www.youtube.com/@mariabernadetedesouza5567",
+    "HTTPS://WWW.FACEBOOK.COM/MARIA.BERNADETE.SOUZA.2025",
+    "HTTPS://WWW.INSTAGRAM.COM/BERNADETESOUZA.SC",
+    "https://www.tiktok.com/@bernadetesouza.sc"
+   ],
+   "cnpjCampanha": "68329312000187",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1300000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535457/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "18/08/2026",
+   "total": 2640.0,
+   "qtdDoacoes": 3,
+   "financeiro": 2640.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 500.0,
+    "financiamentoColetivo": 2140.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 2640.0
+   },
+   "despesas": {
+    "contratadas": 42.55,
+    "pagas": 42.55
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QueroApoiar.com.br",
+     "qtd": 1,
+     "valor": 2140.0,
+     "fcc": true
+    },
+    {
+     "cpfCnpj": "55860702949",
+     "nome": "MARIA BERNADETE DE SOUZA",
+     "qtd": 2,
+     "valor": 500.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "39586155000197",
+     "nome": "QUEROAPOIAR.COM.BR LTDA",
+     "qtd": 1,
+     "valor": 42.55
+    }
+   ],
+   "entregas": [
+    {
+     "data": "18/08/2026 12:05",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "17/08/2026 16:31",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    },
+    {
+     "data": "12/08/2026 15:48",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 40
+  },
+  {
+   "id": "240002535469",
+   "nome": "JULIO BOLFE",
+   "nomeCompleto": "JULIO STRATE BOLFE",
+   "numero": 30021,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "04320679903",
+   "ocupacao": "Administrador",
+   "municipio": "SÃO MIGUEL DO OESTE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535469/SC",
+   "sites": [
+    "HTTPS://WWW.FACEBOOK.COM/JULIOBOLFE",
+    "HTTPS://WWW.JULIOBOLFE.COM.BR",
+    "HTTPS://WWW.INSTAGRAM.COM/JULIOBOLFE"
+   ],
+   "cnpjCampanha": "68329272000173",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1087564.35,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535469/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "19/08/2026",
+   "total": 2500.0,
+   "qtdDoacoes": 1,
+   "financeiro": 2500.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 2500.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 2500.0
+   },
+   "despesas": {
+    "contratadas": 2000.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "04320679903",
+     "nome": "JULIO STRATE BOLFE",
+     "qtd": 1,
+     "valor": 2500.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "25021356000132",
+     "nome": "DLOCAL BRASIL INSTITUICAO DE PAGAMENTO S.A.",
+     "qtd": 1,
+     "valor": 2000.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "19/08/2026 15:03",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 41
+  },
+  {
+   "id": "240002535463",
+   "nome": "LUCIANO PEREIRA",
+   "nomeCompleto": "LUCIANO PEREIRA",
+   "numero": 30030,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "76760189949",
+   "ocupacao": "Agente de Saúde e Sanitarista",
+   "municipio": "PALHOÇA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535463/SC",
+   "sites": [
+    "HTTPS://INSTAGRAM.COM/LUCIANOPEREIRAPH"
+   ],
+   "cnpjCampanha": "68329316000165",
+   "limiteGasto": 1270629.01,
+   "totalBens": 380000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535463/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "21/08/2026",
+   "total": 2200.27,
+   "qtdDoacoes": 1,
+   "financeiro": 2200.27,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 2200.27,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 2200.27
+   },
+   "despesas": {
+    "contratadas": 2000.0,
+    "pagas": 2000.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "08647588630",
+     "nome": "ABELARDO CERQUEIRA NETO",
+     "qtd": 1,
+     "valor": 2200.27,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "83597831000110",
+     "nome": "CLUBE RECREATIVO 7 DE SETEMBRO",
+     "qtd": 1,
+     "valor": 2000.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "21/08/2026 10:46",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 42
+  },
+  {
+   "id": "240002535470",
+   "nome": "THAYSE HELENA",
+   "nomeCompleto": "THAYSE HELENA DOMINGOS DE SOUZA",
+   "numero": 30707,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "06145182962",
+   "ocupacao": "Empresário",
+   "municipio": "TUBARÃO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535470/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/THAYSE_TUBARAO_SC"
+   ],
+   "cnpjCampanha": "68329284000106",
+   "limiteGasto": 1270629.01,
+   "totalBens": 65000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535470/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "23/08/2026",
+   "total": 2000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 2000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 2000.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 2000.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "13405866000124",
+     "nome": "Direção Nacional - NOVO",
+     "qtd": 1,
+     "valor": 2000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "23/08/2026 13:34",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 43
+  },
+  {
+   "id": "240002535450",
+   "nome": "RICK ZANATA",
+   "nomeCompleto": "RICARDO GIANESINI",
+   "numero": 30222,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "04419291923",
+   "ocupacao": "Vereador",
+   "municipio": "BRUSQUE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535450/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/RICKZANATA.BQ"
+   ],
+   "cnpjCampanha": "68329273000118",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535450/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "19/08/2026",
+   "total": 1000.0,
+   "qtdDoacoes": 1,
+   "financeiro": 1000.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 1000.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 1000.0
+   },
+   "despesas": {
+    "contratadas": 1000.0,
+    "pagas": 1000.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "04419291923",
+     "nome": "RICARDO GIANESINI",
+     "qtd": 1,
+     "valor": 1000.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [
+    {
+     "cpfCnpj": "13347016000117",
+     "nome": "FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.",
+     "qtd": 1,
+     "valor": 1000.0
+    }
+   ],
+   "entregas": [
+    {
+     "data": "19/08/2026 09:16",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 44
+  },
+  {
+   "id": "240002535451",
+   "nome": "GUILHERME MARTINS",
+   "nomeCompleto": "GUILHERME MARTINS PASSOS",
+   "numero": 30190,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "08937569973",
+   "ocupacao": "Empresário",
+   "municipio": "CAÇADOR",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535451/SC",
+   "sites": [],
+   "cnpjCampanha": "68329295000188",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535451/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "19/08/2026",
+   "total": 800.0,
+   "qtdDoacoes": 1,
+   "financeiro": 800.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 800.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 800.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [
+    {
+     "cpfCnpj": "28822118000114",
+     "nome": "Direção Estadual/Distrital - NOVO - SANTA CATARINA",
+     "qtd": 1,
+     "valor": 800.0,
+     "fcc": false
+    }
+   ],
+   "fornecedores": [],
+   "entregas": [
+    {
+     "data": "19/08/2026 18:43",
+     "tipo": "Relatório Financeiro",
+     "retificadora": false
+    }
+   ],
+   "posicao": 45
+  },
+  {
+   "id": "240002535467",
+   "nome": "CILIANE AUGUSTIN",
+   "nomeCompleto": "CILIANE RAQUEL WILLE AUGUSTIN",
+   "numero": 30130,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "61382760949",
+   "ocupacao": "Empresário",
+   "municipio": "RIO NEGRINHO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535467/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/CILIANE_W_AUGUSTIN",
+    "HTTPS://WWW.TIKTOK.COM/@CIWE2208"
+   ],
+   "cnpjCampanha": "68329313000121",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1964000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535467/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 46
+  },
+  {
+   "id": "240002535442",
+   "nome": "ELY SILVEIRA",
+   "nomeCompleto": "ELY EDSON SILVEIRA MELO FILHO",
+   "numero": 30777,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "02096944163",
+   "ocupacao": "Advogado",
+   "municipio": "ITAPETININGA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535442/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/ELYSILVEIRA",
+    "HTTPS://WWW.TIKTOK.COM/@ELYSILVEIRA1",
+    "HTTPS://WWW.FACEBOOK.COM/ELYSILVEIRA"
+   ],
+   "cnpjCampanha": "68329269000150",
+   "limiteGasto": 1270629.01,
+   "totalBens": 665000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535442/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 47
+  },
+  {
+   "id": "240002535455",
+   "nome": "GILSON CICONET",
+   "nomeCompleto": "GILSON JOEL CICONET",
+   "numero": 30033,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "07015833980",
+   "ocupacao": "Agrônomo",
+   "municipio": "DESCANSO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535455/SC",
+   "sites": [
+    "HTTPS://WWW.LINKEDIN.COM/IN/GILSON-CICONET-692897153?UTM_SOURCE=SHARE_VIA&UTM_CO",
+    "HTTPS://WWW.INSTAGRAM.COM/GILSONCICONET?IGSH=ZTA1BNJ1C2DJATFL&UTM_SOURCE=QR"
+   ],
+   "cnpjCampanha": "68329288000186",
+   "limiteGasto": 1270629.01,
+   "totalBens": 1287000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535455/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 48
+  },
+  {
+   "id": "240002535446",
+   "nome": "JAIRO TEIXEIRA",
+   "nomeCompleto": "JAIRO ANTÔNIO TEIXEIRA",
+   "numero": 30200,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "42796237087",
+   "ocupacao": "Empresário",
+   "municipio": "PORTO ALEGRE",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535446/SC",
+   "sites": [
+    "HTTPS://WWW.TIKTOK.COM/@JAIRONAAREA?_R=1&_T=ZS-983GUSG9SL3",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1BARWIGUHA/?MIBEXTID=WWXIFR",
+    "HTTPS://WWW.INSTAGRAM.COM/JAIRONAAREA",
+    "HTTPS://JAIROTEIXEIRA.LIFE"
+   ],
+   "cnpjCampanha": "68329308000119",
+   "limiteGasto": 1270629.01,
+   "totalBens": 316000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535446/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 49
+  },
+  {
+   "id": "240002535458",
+   "nome": "MARIA BARROS",
+   "nomeCompleto": "MARIA APARECIDA TELLES DE BARROS",
+   "numero": 30128,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "71074961900",
+   "ocupacao": "Secretário e Datilógrafo",
+   "municipio": "INDAIAL",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535458/SC",
+   "sites": [
+    "https://www.facebook.com/mariabarros2008",
+    "https://www.instagram.com/mariabarros__2008",
+    "HTTPS://WWW.INSTAGRAM.COM/HTTPS://DOCERIAPYRRHO?UTM_SOURCE=QR&IGSH=AHBWEMJOD2FWN",
+    "HTTPS://WWW.FACEBOOK.COM/HTTPS://SHARE/1DWQMVFH8K/"
+   ],
+   "cnpjCampanha": "68329315000110",
+   "limiteGasto": 1270629.01,
+   "totalBens": 450000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535458/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 50
+  },
+  {
+   "id": "240002535464",
+   "nome": "PROF NORMA RODRIGUES",
+   "nomeCompleto": "NORMA RODRIGUES DOS SANTOS",
+   "numero": 30050,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "83789995991",
+   "ocupacao": "Professor de Ensino Fundamental",
+   "municipio": "PONTE ALTA",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535464/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/NORMA_RODRIGUES0574",
+    "HTTPS://WWW.FACEBOOK.COM/NORMA.RODRIGUES.5205"
+   ],
+   "cnpjCampanha": "68329320000123",
+   "limiteGasto": 1270629.01,
+   "totalBens": 0.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535464/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 51
+  },
+  {
+   "id": "240002535445",
+   "nome": "TATIANE SANTANA",
+   "nomeCompleto": "TATIANE BUHLER SANT'ANA",
+   "numero": 30800,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "78466091068",
+   "ocupacao": "Empresário",
+   "municipio": "OSÓRIO",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535445/SC",
+   "sites": [
+    "HTTPS://TATIANE-SANTANA-2026.VERCEL.APP",
+    "HTTPS://VT.TIKTOK.COM/ZSCKRU91A/",
+    "HTTPS://WWW.FACEBOOK.COM/SHARE/1MHWJORHUZ/",
+    "HTTPS://WWW.INSTAGRAM.COM/TATIANE_B_SANTANA?IGSH=CHVKBMT1BNY1BMZQ",
+    "HTTPS://KWAI-VIDEO.COM/TATIANESANTANA531"
+   ],
+   "cnpjCampanha": "68329318000154",
+   "limiteGasto": 1270629.01,
+   "totalBens": 30000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535445/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 52
+  },
+  {
+   "id": "240002535454",
+   "nome": "TITA ALMEIDA",
+   "nomeCompleto": "JOÃO BATISTA RAMOS DE ALMEIDA",
+   "numero": 30001,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "01778179924",
+   "ocupacao": "Agricultor",
+   "municipio": "CAMPOS NOVOS",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535454/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/TITACN"
+   ],
+   "cnpjCampanha": "68329268000105",
+   "limiteGasto": 1270629.01,
+   "totalBens": 6000000.0,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535454/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 53
+  },
+  {
+   "id": "240002535449",
+   "nome": "WILSON CIDRÃO",
+   "nomeCompleto": "WILSON JUNIOR CIDRÃO",
+   "numero": 30022,
+   "cargo": 7,
+   "cargoNome": "Deputado Estadual",
+   "cpf": "08395783930",
+   "ocupacao": "Advogado",
+   "municipio": "CHAPECÓ",
+   "situacao": "Aguardando julgamento",
+   "totalizacao": "Concorrendo",
+   "foto": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/240002535449/SC",
+   "sites": [
+    "HTTPS://WWW.INSTAGRAM.COM/WILCIDRAO",
+    "HTTPS://WWW.FACEBOOK.COM/WILCIDRAO",
+    "HTTPS://WWW.WILCIDRAO.COM.BR"
+   ],
+   "cnpjCampanha": "68329294000133",
+   "limiteGasto": 1270629.01,
+   "totalBens": 406958.91,
+   "urlTse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUL/SC/20322002026/240002535449/2026/SC",
+   "temContas": true,
+   "contasAtualizadas": "1989-12-31",
+   "total": 0.0,
+   "qtdDoacoes": 0,
+   "financeiro": 0.0,
+   "estimado": 0.0,
+   "receitas": {
+    "pessoaFisica": 0.0,
+    "pessoaJuridica": 0.0,
+    "internet": 0.0,
+    "outrosCandidatos": 0.0,
+    "partidos": 0.0,
+    "roni": 0.0,
+    "proprios": 0.0,
+    "financiamentoColetivo": 0.0,
+    "comercializacao": 0.0,
+    "aplicacoes": 0.0,
+    "bens": 0.0,
+    "devolvidas": 0.0
+   },
+   "origem": {
+    "fundoPartidario": 0.0,
+    "fundoEspecial": 0.0,
+    "outros": 0.0
+   },
+   "despesas": {
+    "contratadas": 0.0,
+    "pagas": 0.0
+   },
+   "doadores": [],
+   "fornecedores": [],
+   "entregas": [],
+   "posicao": 54
+  }
+ ]
+}

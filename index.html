@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranking de Doações — NOVO/SC 2026</title>
+<meta name="description" content="Quanto cada candidato do Partido NOVO em Santa Catarina arrecadou na eleição de 2026, e de onde veio o dinheiro. Dados do TSE.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ranking de Doações — NOVO/SC 2026">
+<meta property="og:description" content="Quanto cada candidato do NOVO em Santa Catarina a Deputado Federal e Estadual arrecadou — e quanto disso é dinheiro público. Atualizado de hora em hora com dados do TSE.">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0d1117">
+<link rel="stylesheet" href="estilo.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💰</text></svg>">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="titulo">
+      <h1>Ranking de <span>Doações</span></h1>
+      <span class="selo">NOVO · Santa Catarina · 2026</span>
+    </div>
+    <p class="sub">Quanto cada candidato a Deputado Federal e Estadual arrecadou — e de onde veio o dinheiro.</p>
+    <div class="status">
+      <span class="pulso"></span>
+      <span id="status">carregando…</span>
+      <button class="btn-refresh" id="btn-refresh">Atualizar agora</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="resumo" id="resumo"></section>
+
+  <section class="composicao">
+    <h2>De onde vem o dinheiro — fundos públicos x outros recursos</h2>
+    <div class="barra" id="barra-global"></div>
+    <div class="legenda" id="legenda-global"></div>
+  </section>
+
+  <div class="controles">
+    <div class="abas" id="abas">
+      <button data-cargo="0" class="on">Todos</button>
+      <button data-cargo="6">Federal</button>
+      <button data-cargo="7">Estadual</button>
+    </div>
+    <input type="search" id="busca" placeholder="Buscar candidato…" autocomplete="off">
+    <select id="ordem">
+      <option value="total">Mais arrecadou</option>
+      <option value="fundos">Mais dinheiro público</option>
+      <option value="privado">Mais dinheiro privado</option>
+      <option value="despesas">Mais gastou</option>
+      <option value="nome">Nome (A–Z)</option>
+    </select>
+  </div>
+
+  <div class="lista" id="lista"></div>
+
+  <h2 class="titulo-secao" id="rot-doadores">Maiores doadores</h2>
+  <div class="doadores" id="doadores"></div>
+
+  <footer>
+    Fonte: <a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" rel="noopener">DivulgaCandContas — Tribunal Superior Eleitoral</a>.
+    Os valores refletem as prestações de contas parciais entregues pelas campanhas e mudam conforme novas entregas são enviadas ao TSE. &quot;Outros recursos&quot; é tudo que não veio do Fundo Eleitoral (FEFC) nem do Fundo Partidário — inclui doações de pessoas físicas, vaquinhas, recursos próprios e repasses do partido feitos com dinheiro não originado dos fundos.
+    <span id="rodape-atualizacao"></span>
+  </footer>
+</div>
+
+<div class="fundo-modal" id="modal">
+  <div class="modal" id="modal-conteudo"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
