@@ -2,9 +2,12 @@
 
 **No ar:** <https://bernardo30001.github.io/ranking-doacoes-novo-sc/>
 
-Painel que acompanha quanto cada candidato do **Partido NOVO em Santa Catarina** a
-**Deputado Federal** e **Deputado Estadual** arrecadou na eleição de 2026, e de onde
-o dinheiro veio (Fundo Eleitoral, Fundo Partidário, doações privadas, vaquinhas).
+Painel que acompanha quanto cada um dos **642 candidatos a Deputado Federal e
+Deputado Estadual em Santa Catarina** arrecadou na eleição de 2026, e de onde o
+dinheiro veio (Fundo Eleitoral, Fundo Partidário, doações privadas, vaquinhas).
+
+Dá para filtrar por cargo, por partido e por nome. O botão **Só o NOVO** deixa
+na tela apenas os candidatos do Partido NOVO.
 
 Os dados vêm direto do [DivulgaCandContas do TSE](https://divulgacandcontas.tse.jus.br/divulga/)
 e são recoletados sozinhos enquanto o servidor estiver rodando.
@@ -37,10 +40,29 @@ python3 coletar.py
 | arquivo | o que é |
 |---|---|
 | `coletar.py` | busca os candidatos e as prestações de contas no TSE → `dados.json` |
+| `verificar.py` | audita se os valores de receita, fundos e despesa fecham entre si |
 | `servidor.py` | serve o site e reexecuta o coletor de tempos em tempos |
 | `index.html` / `estilo.css` / `app.js` | o painel |
 | `dados.json` | último retrato completo (gerado) |
 | `historico.json` | um ponto por dia, usado para mostrar a variação (gerado) |
+
+## Auditoria
+
+`python3 verificar.py` confere, candidato a candidato, se os números do TSE fecham:
+
+- receitas por natureza somam o total recebido;
+- Fundo Eleitoral + Fundo Partidário + outros recursos somam os recursos financeiros;
+- somando RONI e estimáveis, chega-se ao total recebido;
+- despesas pagas ≤ contratadas ≤ limite legal de gastos;
+- fundos públicos ≤ total arrecadado, e nenhum valor negativo.
+
+Sai com código 1 se alguma dessas contas não fechar. Roda também a cada coleta no
+GitHub Actions, sem bloquear a publicação — se o TSE mandar algo estranho, o site
+segue no ar e a divergência fica no log.
+
+O relatório ainda lista quem **contratou mais despesa do que declarou ter
+arrecadado**. Isso não é inconsistência: a despesa pode ser contratada a prazo.
+Mas vale acompanhar.
 
 ## Sobre os dados
 
@@ -56,6 +78,11 @@ python3 coletar.py
   entrega disponível, então "tempo real" aqui significa "o mais recente que o TSE
   publicou", não valores minuto a minuto.
 - Valores são **parciais** até a prestação de contas final.
+- O TSE publica apenas os **5 maiores doadores** de cada candidato. Quando a soma
+  desses cinco fica abaixo do total arrecadado, o painel diz quanto falta.
+- **RONI** é "recurso de origem não identificada"; **estimáveis** são bens e
+  serviços doados em vez de dinheiro. Os dois entram na composição para que a
+  barra sempre feche 100% do arrecadado.
 
 ## Detalhe técnico
 

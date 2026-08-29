@@ -38,6 +38,12 @@ jobs:
       - name: Coletar dados do TSE
         run: python coletar.py
 
+      # Nao bloqueia a publicacao: se o TSE mandar algo estranho, o site
+      # continua no ar e a divergencia fica registrada no log.
+      - name: Auditar os valores
+        continue-on-error: true
+        run: python verificar.py
+
       - name: Montar o site
         run: |
           mkdir -p _site

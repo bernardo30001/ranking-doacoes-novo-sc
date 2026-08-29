@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ranking de Doações — NOVO/SC 2026</title>
-<meta name="description" content="Quanto cada candidato do Partido NOVO em Santa Catarina arrecadou na eleição de 2026, e de onde veio o dinheiro. Dados do TSE.">
+<title>Ranking de Doações — Santa Catarina 2026</title>
+<meta name="description" content="Quanto cada candidato a Deputado Federal e Estadual em Santa Catarina arrecadou na eleição de 2026, e de onde veio o dinheiro. Dados do TSE.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ranking de Doações — NOVO/SC 2026">
-<meta property="og:description" content="Quanto cada candidato do NOVO em Santa Catarina a Deputado Federal e Estadual arrecadou — e quanto disso é dinheiro público. Atualizado de hora em hora com dados do TSE.">
+<meta property="og:title" content="Ranking de Doações — Santa Catarina 2026">
+<meta property="og:description" content="Os 642 candidatos a Deputado Federal e Estadual em SC: quanto cada um arrecadou e quanto disso é dinheiro público. Atualizado de hora em hora com dados do TSE.">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0d1117">
@@ -20,9 +20,9 @@
   <div class="wrap">
     <div class="titulo">
       <h1>Ranking de <span>Doações</span></h1>
-      <span class="selo">NOVO · Santa Catarina · 2026</span>
+      <span class="selo" id="selo">Santa Catarina · 2026</span>
     </div>
-    <p class="sub">Quanto cada candidato a Deputado Federal e Estadual arrecadou — e de onde veio o dinheiro.</p>
+    <p class="sub">Todos os candidatos a Deputado Federal e Estadual em SC: quanto arrecadaram e de onde veio o dinheiro.</p>
     <div class="status">
       <span class="pulso"></span>
       <span id="status">carregando…</span>
@@ -46,6 +46,10 @@
       <button data-cargo="6">Federal</button>
       <button data-cargo="7">Estadual</button>
     </div>
+    <button class="btn-novo" id="btn-novo" title="Mostrar só os candidatos do NOVO">Só o NOVO</button>
+    <select id="partido" aria-label="Filtrar por partido">
+      <option value="">Todos os partidos</option>
+    </select>
     <input type="search" id="busca" placeholder="Buscar candidato…" autocomplete="off">
     <select id="ordem">
       <option value="total">Mais arrecadou</option>
@@ -58,11 +62,12 @@
 
   <div class="lista" id="lista"></div>
 
-  <h2 class="titulo-secao" id="rot-doadores">Maiores doadores</h2>
+  <h2 class="titulo-secao" id="rot-doadores">Maiores doadores <span class="nota-secao">o TSE publica só os 5 maiores de cada candidato</span></h2>
   <div class="doadores" id="doadores"></div>
 
   <footer>
     Fonte: <a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" rel="noopener">DivulgaCandContas — Tribunal Superior Eleitoral</a>.
+    Todos os 642 candidatos a Deputado Federal e Estadual em Santa Catarina.
     Os valores refletem as prestações de contas parciais entregues pelas campanhas e mudam conforme novas entregas são enviadas ao TSE. &quot;Outros recursos&quot; é tudo que não veio do Fundo Eleitoral (FEFC) nem do Fundo Partidário — inclui doações de pessoas físicas, vaquinhas, recursos próprios e repasses do partido feitos com dinheiro não originado dos fundos.
     <span id="rodape-atualizacao"></span>
   </footer>

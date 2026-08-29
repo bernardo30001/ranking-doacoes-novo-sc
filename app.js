@@ -1,9 +1,11 @@
 'use strict';
 
 const FONTES = [
-  { chave: 'fundoEspecial',   rotulo: 'Fundo Eleitoral (FEFC)', cor: 'var(--fefc)' },
-  { chave: 'fundoPartidario', rotulo: 'Fundo Partidário',       cor: 'var(--fundo)' },
-  { chave: 'outros',          rotulo: 'Outros recursos',        cor: 'var(--priv)' },
+  { chave: 'fundoEspecial',   rotulo: 'Fundo Eleitoral (FEFC)',  cor: 'var(--fefc)' },
+  { chave: 'fundoPartidario', rotulo: 'Fundo Partidário',        cor: 'var(--fundo)' },
+  { chave: 'outros',          rotulo: 'Outros recursos',         cor: 'var(--priv)' },
+  { chave: 'roni',            rotulo: 'Origem não identificada', cor: 'var(--roni)' },
+  { chave: 'estimavel',       rotulo: 'Estimáveis (não em R$)',  cor: 'var(--estim)' },
 ];
 
 const RECEITAS = [
@@ -26,7 +28,8 @@ let historico = [];
 /* So o servidor local tem o coletor atras de /api/atualizar. Publicado no
    GitHub Pages a atualizacao vem do cron, entao o botao nao faz sentido. */
 const TEM_COLETOR = ['localhost', '127.0.0.1', ''].includes(location.hostname);
-const filtro = { cargo: 0, busca: '', ordem: 'total' };
+const DESTAQUE = 'NOVO';
+const filtro = { cargo: 0, partido: '', busca: '', ordem: 'total' };
 
 const $ = (s) => document.querySelector(s);
 const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 2 });
@@ -46,6 +49,7 @@ function docFormatado(d) {
 }
 
 function fundosDe(c) { return c.origem.fundoEspecial + c.origem.fundoPartidario; }
+function somaDoadores(c) { return c.doadores.reduce((s, d) => s + d.valor, 0); }
 
 /* Ultimo ponto do historico anterior ao dia de hoje, para calcular a variacao. */
 function pontoAnterior() {
@@ -57,10 +61,12 @@ function pontoAnterior() {
   return null;
 }
 
+/* null quando o candidato nao existia no retrato anterior: ai nao ha variacao
+   a mostrar, e tratar a ausencia como zero inventaria uma alta que nao houve. */
 function variacaoDe(c) {
   const p = pontoAnterior();
-  if (!p) return 0;
-  return c.total - (p.porCandidato[c.id] || 0);
+  if (!p || !(c.id in p.porCandidato)) return null;
+  return c.total - p.porCandidato[c.id];
 }
 
 function dataCurta(iso) {
@@ -75,6 +81,7 @@ async function carregar(silencioso) {
     const r = await fetch('dados.json?t=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     dados = await r.json();
+    montarPartidos();
     try {
       const h = await fetch('historico.json?t=' + Date.now(), { cache: 'no-store' });
       historico = h.ok ? await h.json() : [];
@@ -108,13 +115,39 @@ async function forcarAtualizacao() {
 
 /* ---------------- render ---------------- */
 
+/* O select de partidos vem dos dados, nao de uma lista fixa no codigo. */
+function montarPartidos() {
+  const sel = $('#partido');
+  if (sel.options.length > 1) return;
+  const contagem = {};
+  dados.candidatos.forEach((c) => contagem[c.partido] = (contagem[c.partido] || 0) + 1);
+  sel.insertAdjacentHTML('beforeend', (dados.partidos || []).map((p) =>
+    `<option value="${esc(p)}">${esc(p)} (${contagem[p] || 0})</option>`).join(''));
+  sel.value = filtro.partido;
+}
+
 function render() {
   if (!dados) return;
   renderStatus();
-  renderResumo();
-  renderComposicaoGlobal();
-  renderLista();
-  renderDoadores();
+  aplicarFiltro();
+}
+
+/* Tudo que a tela mostra deriva do recorte ativo, entao um lugar so o recalcula. */
+function aplicarFiltro() {
+  const lista = candidatosFiltrados();
+  renderSelo();
+  renderResumo(lista);
+  renderComposicaoGlobal(lista);
+  renderLista(lista);
+  renderDoadores(lista);
+}
+
+function renderSelo() {
+  const partes = [filtro.partido || 'Todos os partidos'];
+  if (filtro.cargo) partes.push(filtro.cargo === 6 ? 'Dep. Federal' : 'Dep. Estadual');
+  partes.push('Santa Catarina · 2026');
+  $('#selo').textContent = partes.join(' · ');
+  $('#btn-novo').classList.toggle('on', filtro.partido === DESTAQUE);
 }
 
 function renderStatus() {
@@ -127,23 +160,32 @@ function renderStatus() {
   $('#rodape-atualizacao').textContent = ` Última coleta: ${d.toLocaleString('pt-BR')}.`;
 }
 
-function renderResumo() {
-  const r = dados.resumo;
-  const pctFundo = r.totalArrecadado ? (r.totalFundos / r.totalArrecadado * 100) : 0;
-  const partido = dados.candidatos.reduce((s, c) => s + c.receitas.partidos, 0);
-  const pf = dados.candidatos.reduce((s, c) => s + c.receitas.pessoaFisica, 0);
+function renderResumo(lista) {
+  const soma = (f) => lista.reduce((s, c) => s + f(c), 0);
+  const total = soma((c) => c.total) || 0;
+  const pct = (v) => `${(v / (total || 1) * 100).toFixed(1)}% do total`;
+  const comReceita = lista.filter((c) => c.total > 0).length;
+
+  const fundos = soma((c) => c.origem.fundoEspecial + c.origem.fundoPartidario);
+  const doPartido = soma((c) => c.receitas.partidos);
+  const pf = soma((c) => c.receitas.pessoaFisica);
+  const gastos = soma((c) => c.despesas.contratadas);
+
+  // A variacao so faz sentido sobre o mesmo recorte que esta na tela, e so
+  // entre candidatos que ja apareciam no retrato anterior.
   const p = pontoAnterior();
-  const delta = p ? r.totalArrecadado - p.total : 0;
-  const notaTotal = p
-    ? `${delta >= 0 ? '+' : ''}${brl(delta)} desde ${dataCurta(p.data)} · ${r.comArrecadacao}/${r.candidatos} com receita`
-    : `${r.comArrecadacao} de ${r.candidatos} candidatos com receita`;
+  const comparaveis = p ? lista.filter((c) => c.id in p.porCandidato) : [];
+  const delta = comparaveis.reduce((s, c) => s + c.total - p.porCandidato[c.id], 0);
+  const notaTotal = comparaveis.length
+    ? `${delta >= 0 ? '+' : ''}${brl(delta)} desde ${dataCurta(p.data)} · ${comReceita}/${lista.length} com receita`
+    : `${comReceita} de ${lista.length} candidatos com receita`;
 
   const cards = [
-    { rot: 'Total arrecadado', val: brl(r.totalArrecadado), nota: notaTotal, destaque: true },
-    { rot: 'Veio dos fundos públicos', val: brl(r.totalFundos), nota: `${pctFundo.toFixed(1)}% do total · fundo eleitoral + partidário` },
-    { rot: 'Repassado pelo partido', val: brl(partido), nota: `${(partido / (r.totalArrecadado || 1) * 100).toFixed(1)}% do total saiu do NOVO` },
-    { rot: 'Doado por pessoas físicas', val: brl(pf), nota: `${(pf / (r.totalArrecadado || 1) * 100).toFixed(1)}% do total` },
-    { rot: 'Já gastaram', val: brl(r.totalDespesas), nota: 'despesas contratadas declaradas' },
+    { rot: 'Total arrecadado', val: brl(total), nota: notaTotal, destaque: true },
+    { rot: 'Veio dos fundos públicos', val: brl(fundos), nota: `${pct(fundos)} · fundo eleitoral + partidário` },
+    { rot: 'Repassado por partidos', val: brl(doPartido), nota: pct(doPartido) },
+    { rot: 'Doado por pessoas físicas', val: brl(pf), nota: pct(pf) },
+    { rot: 'Já gastaram', val: brl(gastos), nota: 'despesas contratadas declaradas' },
   ];
   $('#resumo').innerHTML = cards.map((c) => `
     <div class="card${c.destaque ? ' destaque' : ''}">
@@ -153,15 +195,16 @@ function renderResumo() {
     </div>`).join('');
 }
 
-function renderComposicaoGlobal() {
-  const soma = { fundoEspecial: 0, fundoPartidario: 0, outros: 0 };
-  dados.candidatos.forEach((c) => FONTES.forEach((f) => soma[f.chave] += c.origem[f.chave]));
-  const total = soma.fundoEspecial + soma.fundoPartidario + soma.outros || 1;
+function renderComposicaoGlobal(lista) {
+  const soma = {};
+  FONTES.forEach((f) => soma[f.chave] = lista.reduce((s, c) => s + c.origem[f.chave], 0));
+  const total = Object.values(soma).reduce((a, b) => a + b, 0) || 1;
 
   $('#barra-global').innerHTML = FONTES.map((f) =>
     `<div style="width:${soma[f.chave] / total * 100}%;background:${f.cor}" title="${f.rotulo}"></div>`).join('');
 
-  $('#legenda-global').innerHTML = FONTES.map((f) =>
+  // Baldes zerados so poluiriam a legenda (RONI e estimaveis quase sempre sao 0).
+  $('#legenda-global').innerHTML = FONTES.filter((f) => soma[f.chave] > 0).map((f) =>
     `<span><i style="background:${f.cor}"></i>${f.rotulo} <b>${brl(soma[f.chave])}</b> · ${(soma[f.chave] / total * 100).toFixed(1)}%</span>`).join('');
 }
 
@@ -169,6 +212,7 @@ function candidatosFiltrados() {
   const busca = filtro.busca.trim().toLowerCase();
   let l = dados.candidatos.filter((c) =>
     (!filtro.cargo || c.cargo === filtro.cargo) &&
+    (!filtro.partido || c.partido === filtro.partido) &&
     (!busca || c.nome.toLowerCase().includes(busca) || (c.nomeCompleto || '').toLowerCase().includes(busca) || String(c.numero).includes(busca))
   );
   const ordens = {
@@ -181,8 +225,7 @@ function candidatosFiltrados() {
   return l.sort(ordens[filtro.ordem]);
 }
 
-function renderLista() {
-  const lista = candidatosFiltrados();
+function renderLista(lista) {
   const maior = Math.max(...lista.map((c) => c.total), 1);
 
   $('#lista').innerHTML = lista.map((c, i) => {
@@ -206,7 +249,7 @@ function renderLista() {
       ${foto}
       <div class="quem">
         <div class="nome">${esc(c.nome)}</div>
-        <div class="meta"><em>${c.numero}</em> · ${esc(c.cargoNome)} · ${esc(c.situacao || '')}</div>
+        <div class="meta"><em>${c.numero}</em> · <span class="sigla${c.partido === DESTAQUE ? ' destaque' : ''}">${esc(c.partido || '—')}</span> · ${esc(c.cargoNome)} · ${esc(c.situacao || '')}</div>
       </div>
       <div class="barra-cell">
         <div class="mini" style="width:${Math.max(larguraTotal, 3)}%">${segmentos}</div>
@@ -224,9 +267,9 @@ function renderLista() {
     el.addEventListener('click', () => abrirModal(el.dataset.id)));
 }
 
-function renderDoadores() {
+function renderDoadores(lista) {
   const mapa = new Map();
-  candidatosFiltrados().forEach((c) => c.doadores.forEach((d) => {
+  lista.forEach((c) => c.doadores.forEach((d) => {
     const k = d.cpfCnpj || d.nome;
     const e = mapa.get(k) || { nome: d.nome, doc: d.cpfCnpj, valor: 0, qtd: 0, candidatos: new Set(), fcc: d.fcc };
     e.valor += d.valor;
@@ -235,9 +278,8 @@ function renderDoadores() {
     mapa.set(k, e);
   }));
 
-  const lista = [...mapa.values()].sort((a, b) => b.valor - a.valor).slice(0, 30);
-  $('#rot-doadores').textContent = `Maiores doadores${filtro.cargo ? ' · ' + (filtro.cargo === 6 ? 'Federal' : 'Estadual') : ''}`;
-  $('#doadores').innerHTML = lista.map((d, i) => `
+  const top = [...mapa.values()].sort((a, b) => b.valor - a.valor).slice(0, 30);
+  $('#doadores').innerHTML = top.map((d, i) => `
     <div class="doador">
       <span class="idx">${i + 1}</span>
       <div class="info">
@@ -272,7 +314,7 @@ function abrirModal(id) {
       <div>
         <h3>${esc(c.nome)}</h3>
         <p>${esc(c.nomeCompleto || '')}</p>
-        <p>${c.numero} · ${esc(c.cargoNome)} · ${esc(c.situacao || '')} · ${esc(c.ocupacao || '')}</p>
+        <p>${c.numero} · ${esc(c.partido || '')} · ${esc(c.cargoNome)} · ${esc(c.situacao || '')} · ${esc(c.ocupacao || '')}</p>
       </div>
       <button class="fechar" aria-label="Fechar">&times;</button>
     </div>
@@ -288,10 +330,13 @@ function abrirModal(id) {
         `<div style="width:${c.origem[f.chave] / c.total * 100}%;background:${f.cor}"></div>`).join('')}</div>` : ''}
 
       <div class="bloco">
-        <h4>Doadores (${c.doadores.length})</h4>
+        <h4>Principais doadores${c.doadores.length ? ` (${c.doadores.length})` : ''}</h4>
         ${c.doadores.length
           ? `<table class="tab">${c.doadores.map((d) =>
-              linhaTabela(d.nome + (d.fcc ? ' 🐖' : ''), docFormatado(d.cpfCnpj) + ` · ${d.qtd}×`, d.valor, c.total ? d.valor / c.total * 100 : 0)).join('')}</table>`
+              linhaTabela(d.nome + (d.fcc ? ' 🐖' : ''), docFormatado(d.cpfCnpj) + ` · ${d.qtd}×`, d.valor, c.total ? d.valor / c.total * 100 : 0)).join('')}</table>
+             ${somaDoadores(c) < c.total - 0.05
+               ? `<p class="ressalva">O TSE publica só os 5 maiores doadores. Faltam ${brl(c.total - somaDoadores(c))} de doadores menores, não detalhados.</p>`
+               : ''}`
           : '<p class="vazio">Nenhuma doação declarada até agora.</p>'}
       </div>
 
@@ -299,6 +344,10 @@ function abrirModal(id) {
         <h4>Natureza das receitas</h4>
         <table class="tab">${receitas.map(([r, v]) => linhaTabela(r, '', v, c.total ? v / c.total * 100 : 0)).join('')}</table>
       </div>` : ''}
+
+      ${c.despesas.contratadas > c.total + 0.05
+        ? `<p class="ressalva alerta">Contratou ${brl(c.despesas.contratadas)} em despesas, mais do que os ${brl(c.total)} que declarou ter arrecadado. É permitido — a despesa pode ser contratada a prazo — mas a receita ainda não apareceu na prestação de contas.</p>`
+        : ''}
 
       <div class="bloco">
         <h4>Despesas</h4>
@@ -343,11 +392,18 @@ $('#abas').addEventListener('click', (e) => {
   if (!b) return;
   $('#abas').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
   filtro.cargo = Number(b.dataset.cargo);
-  renderLista(); renderDoadores();
+  aplicarFiltro();
 });
 
-$('#busca').addEventListener('input', (e) => { filtro.busca = e.target.value; renderLista(); renderDoadores(); });
-$('#ordem').addEventListener('change', (e) => { filtro.ordem = e.target.value; renderLista(); });
+$('#btn-novo').addEventListener('click', () => {
+  filtro.partido = filtro.partido === DESTAQUE ? '' : DESTAQUE;
+  $('#partido').value = filtro.partido;
+  aplicarFiltro();
+});
+
+$('#partido').addEventListener('change', (e) => { filtro.partido = e.target.value; aplicarFiltro(); });
+$('#busca').addEventListener('input', (e) => { filtro.busca = e.target.value; aplicarFiltro(); });
+$('#ordem').addEventListener('change', (e) => { filtro.ordem = e.target.value; aplicarFiltro(); });
 $('#btn-refresh').addEventListener('click', forcarAtualizacao);
 $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') fecharModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharModal(); });
