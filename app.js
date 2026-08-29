@@ -175,8 +175,11 @@ function renderResumo(lista) {
   // entre candidatos que ja apareciam no retrato anterior.
   const p = pontoAnterior();
   const comparaveis = p ? lista.filter((c) => c.id in p.porCandidato) : [];
+  // Se o retrato anterior cobre pouco do que esta na tela, a variacao seria de
+  // um recorte diferente do total exibido — melhor nao mostrar do que enganar.
+  const comparavel = comparaveis.length >= Math.max(1, lista.filter((c) => c.total > 0).length * 0.9);
   const delta = comparaveis.reduce((s, c) => s + c.total - p.porCandidato[c.id], 0);
-  const notaTotal = comparaveis.length
+  const notaTotal = comparavel
     ? `${delta >= 0 ? '+' : ''}${brl(delta)} desde ${dataCurta(p.data)} · ${comReceita}/${lista.length} com receita`
     : `${comReceita} de ${lista.length} candidatos com receita`;
 
