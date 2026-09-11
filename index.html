@@ -78,15 +78,9 @@
           </button>
         </div>
       </header>
-      <section class="hero">
-        <div>
-          <p class="eyebrow"><span class="state-tag">SC</span> ELEIÇÕES 2026</p>
-          <h1>O dinheiro das campanhas,<br /><span>às claras.</span></h1>
-          <p class="intro">
-            Quem recebe, quem financia e para onde vai.<br />Deputados federais
-            e estaduais, em um só lugar.
-          </p>
-        </div>
+      <h1 class="sr-only">Ranking de Doações · Santa Catarina 2026</h1>
+      <section class="collection-strip" aria-label="Cobertura e atualização">
+        <p class="scope-note">Deputados federais e estaduais · Eleições 2026</p>
         <div class="update-box">
           <div class="status-line">
             <span class="source-dot" id="status-dot"></span
@@ -102,38 +96,6 @@
         </div>
       </section>
       <div id="load-error" role="alert" hidden></div>
-      <section class="filterbar" aria-label="Filtros do painel">
-        <div class="filter-top">
-          <div class="segmented" id="abas" aria-label="Cargo">
-            <button data-cargo="0" aria-pressed="true" class="on">
-              Todos os cargos</button
-            ><button data-cargo="6" aria-pressed="false">Federal</button
-            ><button data-cargo="7" aria-pressed="false">Estadual</button>
-          </div>
-          <button class="btn-novo" id="btn-novo" aria-pressed="false">
-            <span class="novo-dot"></span>Só o NOVO</button
-          ><label class="party-filter"
-            ><span class="sr-only">Filtrar por partido</span
-            ><select id="partido">
-              <option value="">Todos os partidos</option>
-            </select></label
-          ><label class="search"
-            ><span data-icon="search"></span
-            ><span class="sr-only">Buscar candidato por nome ou número</span
-            ><input
-              type="search"
-              id="busca"
-              placeholder="Nome ou número do candidato"
-              autocomplete="off"
-          /></label>
-        </div>
-        <div class="filter-bottom">
-          <span id="selo">Todos os partidos · Todos os cargos</span
-          ><button class="text-button" id="clear-filters" hidden>
-            Limpar filtros <span aria-hidden="true">×</span></button
-          ><span id="filter-count" aria-live="polite"></span>
-        </div>
-      </section>
       <div id="dashboard" aria-busy="true">
         <section
           class="metrics"
@@ -184,6 +146,38 @@
             </p>
           </section>
         </div>
+        <section class="filterbar" aria-label="Filtros do painel">
+          <div class="filter-top">
+            <div class="segmented" id="abas" aria-label="Cargo">
+              <button data-cargo="0" aria-pressed="true" class="on">
+                Todos os cargos</button
+              ><button data-cargo="6" aria-pressed="false">Federal</button
+              ><button data-cargo="7" aria-pressed="false">Estadual</button>
+            </div>
+            <button class="btn-novo" id="btn-novo" aria-pressed="false">
+              <span class="novo-dot"></span>Só o NOVO</button
+            ><label class="party-filter"
+              ><span class="sr-only">Filtrar por partido</span
+              ><select id="partido">
+                <option value="">Todos os partidos</option>
+              </select></label
+            ><label class="search"
+              ><span data-icon="search"></span
+              ><span class="sr-only">Buscar candidato por nome ou número</span
+              ><input
+                type="search"
+                id="busca"
+                placeholder="Nome ou número do candidato"
+                autocomplete="off"
+            /></label>
+          </div>
+          <div class="filter-bottom">
+            <span id="selo">Todos os partidos · Todos os cargos</span
+            ><button class="text-button" id="clear-filters" hidden>
+              Limpar filtros <span aria-hidden="true">×</span></button
+            ><span id="filter-count" aria-live="polite"></span>
+          </div>
+        </section>
         <section
           id="view-candidatos"
           class="view panel"

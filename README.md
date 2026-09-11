@@ -10,7 +10,8 @@ na revisão de 11/09/2026, eram 644 candidatos.
 
 - Ranking por arrecadação líquida, fundos públicos, FEFC, Fundo Partidário,
   outros recursos, despesas contratadas ou pagas.
-- Filtros combinados de partido, cargo e nome/número; busca sem acentos.
+- Filtros de partido, cargo e nome/número imediatamente acima da lista de
+  candidatos; busca sem acentos.
 - Doações uma a uma, fornecedores completos e categorias de despesa.
 - Histórico diário e alterações de lançamentos entre coletas completas.
 - Compartilhamento do recorte ou candidato por link, exportação CSV, temas

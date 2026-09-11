@@ -904,7 +904,7 @@ document.addEventListener("click", (e) => {
     view = nav.dataset.view || nav.dataset.go;
     renderView();
     updateURL();
-    $("#view-" + view).scrollIntoView({ block: "start", behavior: "instant" });
+    $(".filterbar").scrollIntoView({ block: "start", behavior: "instant" });
     return;
   }
   const dt = e.target.closest("[data-detail]");

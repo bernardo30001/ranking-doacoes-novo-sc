@@ -1986,3 +1986,62 @@ footer #rodape-atualizacao {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+@media (max-width: 400px) {
+  .filter-top .segmented {
+    flex-basis: 100%;
+  }
+  .filter-top .party-filter {
+    flex: 1;
+  }
+  .filter-top .search {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 360px) {
+  .metric-value {
+    font-size: 20px;
+  }
+  .modal-stats {
+    grid-template-columns: 1fr;
+  }
+  .modal-header {
+    align-items: flex-start;
+  }
+  .modal-header > div {
+    min-width: 0;
+  }
+  .modal-header h2 {
+    overflow-wrap: anywhere;
+  }
+}
+
+.collection-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+}
+.scope-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+.collection-strip .update-box {
+  align-self: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+@media (max-width: 650px) {
+  .collection-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 17px 0;
+  }
+  .scope-note {
+    font-size: 11px;
+  }
+}
