@@ -43,6 +43,9 @@
         <button data-view="candidatos" class="active">
           <span data-icon="ranking"></span>Candidatos
         </button>
+        <button data-view="visao-geral">
+          <span data-icon="overview"></span>Visão geral
+        </button>
         <button data-view="doadores">
           <span data-icon="users"></span>Doadores
         </button>
@@ -81,8 +84,13 @@
             title="Alternar tema"
           >
             <span data-icon="moon"></span></button
-          ><button id="share" class="button secondary">
-            <span data-icon="share"></span>Compartilhar
+          ><button
+            id="share"
+            class="button secondary"
+            aria-label="Compartilhar"
+          >
+            <span data-icon="share"></span
+            ><span class="share-label">Compartilhar</span>
           </button>
         </div>
       </header>
@@ -105,55 +113,6 @@
       </section>
       <div id="load-error" role="alert" hidden></div>
       <div id="dashboard" aria-busy="true">
-        <section
-          class="metrics"
-          id="resumo"
-          aria-label="Resumo do recorte selecionado"
-        >
-          <div class="skeleton"></div>
-          <div class="skeleton"></div>
-          <div class="skeleton"></div>
-          <div class="skeleton"></div>
-        </section>
-        <div class="overview-grid">
-          <section class="panel composition-panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">ORIGEM DOS RECURSOS</p>
-                <h2>De onde vem o dinheiro</h2>
-              </div>
-              <button
-                class="icon-button"
-                data-go="metodologia"
-                aria-label="Entender a origem dos recursos"
-              >
-                <span data-icon="info"></span>
-              </button>
-            </div>
-            <div
-              id="barra-global"
-              class="composition-bar"
-              aria-hidden="true"
-            ></div>
-            <div id="legenda-global" class="legend"></div>
-            <p class="panel-note">
-              Fontes dos recursos recebidos, descontadas as devoluções.
-            </p>
-          </section>
-          <section class="panel trend-panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">AO LONGO DA CAMPANHA</p>
-                <h2>Evolução das receitas</h2>
-              </div>
-              <span id="trend-period" class="tag"></span>
-            </div>
-            <div id="trend"></div>
-            <p class="panel-note" id="trend-note">
-              Histórico das declarações publicadas.
-            </p>
-          </section>
-        </div>
         <section class="filterbar" aria-label="Filtros do painel">
           <div class="filter-top">
             <div class="segmented" id="abas" aria-label="Cargo">
@@ -202,13 +161,13 @@
               <label
                 ><span class="sr-only">Ordenar candidatos</span
                 ><select id="ordem">
-                  <option value="total">Maior arrecadação líquida</option>
-                  <option value="fundos">Mais fundos públicos</option>
-                  <option value="fefc">Mais Fundo Eleitoral</option>
-                  <option value="fp">Mais Fundo Partidário</option>
-                  <option value="outros">Mais outros recursos</option>
-                  <option value="despesas">Mais despesas contratadas</option>
-                  <option value="pagas">Mais despesas pagas</option>
+                  <option value="total">Arrecadação líquida</option>
+                  <option value="fundos">Fundos públicos</option>
+                  <option value="fefc">Fundo Eleitoral</option>
+                  <option value="fp">Fundo Partidário</option>
+                  <option value="outros">Outros recursos</option>
+                  <option value="despesas">Despesas contratadas</option>
+                  <option value="pagas">Despesas pagas</option>
                   <option value="nome">Nome (A–Z)</option>
                 </select></label
               ><button
@@ -236,7 +195,13 @@
                   </th>
                 </tr>
               </thead>
-              <tbody id="lista"></tbody>
+              <tbody id="lista">
+                <tr>
+                  <td colspan="5">
+                    <div class="empty">Carregando candidatos…</div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div class="pagination">
@@ -245,6 +210,66 @@
               <button id="prev" class="button secondary">← Anterior</button
               ><button id="next" class="button secondary">Próxima →</button>
             </div>
+          </div>
+        </section>
+        <section
+          id="view-visao-geral"
+          class="view"
+          aria-labelledby="overview-title"
+          hidden
+        >
+          <div class="view-intro">
+            <h2 id="overview-title">Visão geral</h2>
+            <p>Indicadores e gráficos dos candidatos no recorte selecionado.</p>
+          </div>
+          <section
+            class="metrics"
+            id="resumo"
+            aria-label="Resumo do recorte selecionado"
+          >
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+          </section>
+          <div class="overview-grid">
+            <section class="panel composition-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">ORIGEM DOS RECURSOS</p>
+                  <h2>De onde vem o dinheiro</h2>
+                </div>
+                <button
+                  class="icon-button"
+                  data-go="metodologia"
+                  aria-label="Entender a origem dos recursos"
+                >
+                  <span data-icon="info"></span>
+                </button>
+              </div>
+              <div
+                id="barra-global"
+                class="composition-bar"
+                aria-hidden="true"
+              ></div>
+              <div id="legenda-global" class="legend"></div>
+              <p class="panel-note">
+                Fontes dos recursos recebidos, descontadas as devoluções.
+              </p>
+            </section>
+            <section class="panel trend-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">AO LONGO DA CAMPANHA</p>
+                  <h2>Evolução das receitas</h2>
+                </div>
+                <span id="trend-period" class="tag"></span>
+              </div>
+              <div id="trend"></div>
+              <p class="panel-note" id="trend-note">
+                Histórico das declarações publicadas.
+              </p>
+            </section>
           </div>
         </section>
         <section id="view-doadores" class="view panel" hidden>
@@ -392,11 +417,11 @@
                 As somas dos lançamentos são comparadas aos totais do TSE antes
                 da publicação. Uma coleta incompleta não substitui a anterior.
                 Essa conferência é aritmética e não equivale à aprovação de
-                contas pela Justiça Eleitoral. A variação abaixo de cada candidato
-                compara a arrecadação com a última coleta registrada antes do dia
-                atual. O rótulo indica se a comparação é líquida ou bruta; aumentos
-                aparecem em verde e reduções em laranja. Retificações também podem
-                alterar essa diferença.
+                contas pela Justiça Eleitoral. A variação abaixo de cada
+                candidato compara a arrecadação com a última coleta registrada
+                antes do dia atual. O rótulo indica se a comparação é líquida ou
+                bruta; aumentos aparecem em verde e reduções em laranja.
+                Retificações também podem alterar essa diferença.
               </p>
             </article>
           </div>

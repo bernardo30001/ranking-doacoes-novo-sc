@@ -2,6 +2,7 @@
 const M = Modelo,
   $ = (s) => document.querySelector(s);
 const ICONS = {
+  overview: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z",
   ranking: "M4 19V12h4v7M10 19V5h4v14M16 19V9h4v10",
   users:
     "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M16 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.87M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0",
@@ -84,6 +85,7 @@ const LABELS = {
 };
 const VIEWS = [
   "candidatos",
+  "visao-geral",
   "doadores",
   "despesas",
   "alteracoes",
@@ -308,9 +310,6 @@ function render(save = true) {
   current = M.filter(dados.candidatos, filtro);
   syncFilters();
   renderStatus();
-  renderSummary();
-  renderSources();
-  renderTrend();
   renderView();
   if (save) updateURL();
 }
@@ -447,9 +446,15 @@ function renderView() {
     else b.removeAttribute("aria-current");
   });
   VIEWS.forEach((v) => ($("#view-" + v).hidden = v !== view));
+  if (!dados) return;
   const total = M.sum(current, M.net);
   $("#correction-count").textContent = correcoes.length || "";
   if (view === "candidatos") renderRanking();
+  if (view === "visao-geral") {
+    renderSummary();
+    renderSources();
+    renderTrend();
+  }
   if (view === "doadores") renderDonors(total);
   if (view === "despesas") renderExpenses();
   if (view === "alteracoes") renderCorrections();
@@ -462,8 +467,12 @@ function recentRevenueRow(c, p) {
   const basis = change.basis === "liquida" ? "líquida" : "bruta";
   const period = `${shortDate(p.data)}${p.hora ? " às " + p.hora : ""}`;
   const title = `Variação da arrecadação ${basis} desde a coleta de ${period} (Brasília). Pode incluir novas receitas, devoluções e retificações, conforme a base comparada.`;
-  const color = change.value > 0 ? "positive" : change.value < 0 ? "negative" : "neutral";
-  const amount = change.value === 0 ? "Sem variação" : `${change.value > 0 ? "+" : "−"}${brl(Math.abs(change.value))}`;
+  const color =
+    change.value > 0 ? "positive" : change.value < 0 ? "negative" : "neutral";
+  const amount =
+    change.value === 0
+      ? "Sem variação"
+      : `${change.value > 0 ? "+" : "−"}${brl(Math.abs(change.value))}`;
   return `<div class="row-recent ${color}" title="${esc(title)}">${amount}</div><div class="row-recent-period">Arrecadação ${basis}<br>desde ${shortDate(p.data)}</div>`;
 }
 function renderRanking() {
@@ -482,7 +491,7 @@ function renderRanking() {
         const total = M.net(c),
           pos = (page - 1) * PAGE_SIZE + i + 1,
           value = M.metric(c, filtro.ordem);
-        return `<tr data-id="${c.id}"><td class="rank${pos <= 3 ? " top" : ""}">${pos}</td><td><button class="candidate-open" data-open="${c.id}" aria-label="Ver contas de ${esc(c.nome)}">${avatar(c)}<span class="candidate-info"><span class="candidate-name">${esc(c.nome)}</span><span class="candidate-meta"><span class="party-tag${c.partido === "NOVO" ? " novo" : ""}">${esc(c.partido)}</span><span>${c.numero}</span><span>· ${c.cargo === 6 ? "Federal" : "Estadual"}</span></span></span></button></td><td class="source-cell"><div class="mini-bar" aria-hidden="true">${bar(sources([c]))}</div><div class="mini-note">${total ? pct(M.publicFunds(c), total) + " de fundos públicos" : c.temContas ? "Sem receita declarada" : "Sem prestação disponível"}</div></td><td class="money"><div class="row-value">${c.temContas ? brl(value) : "—"}</div>${c.temContas ? recentRevenueRow(c, p) : ""}<div class="row-sub">${c.temContas ? (c.qtdLancamentos ?? c.qtdDoacoes) + " lançamentos" : "Sem prestação"}</div></td><td class="chevron-cell"><span class="chevron" aria-hidden="true">›</span></td></tr>`;
+        return `<tr data-id="${c.id}" data-open="${c.id}"><td class="rank${pos <= 3 ? " top" : ""}">${pos}</td><td><button class="candidate-open" data-open="${c.id}" aria-label="Ver contas de ${esc(c.nome)}">${avatar(c)}<span class="candidate-info"><span class="candidate-name">${esc(c.nome)}</span><span class="candidate-meta"><span class="party-tag${c.partido === "NOVO" ? " novo" : ""}">${esc(c.partido)}</span><span>${c.numero}</span><span>· ${c.cargo === 6 ? "Federal" : "Estadual"}</span></span></span></button></td><td class="source-cell"><div class="mini-bar" aria-hidden="true">${bar(sources([c]))}</div><div class="mini-note">${total ? pct(M.publicFunds(c), total) + " de fundos públicos" : c.temContas ? "Sem receita declarada" : "Sem prestação disponível"}</div></td><td class="money"><div class="row-value" data-label="${LABELS[filtro.ordem]}">${c.temContas ? brl(value) : "—"}</div>${c.temContas ? recentRevenueRow(c, p) : ""}<div class="row-sub">${c.temContas ? (c.qtdLancamentos ?? c.qtdDoacoes) + " lançamentos" : "Sem prestação"}</div></td><td class="chevron-cell"><span class="chevron" aria-hidden="true">›</span></td></tr>`;
       })
       .join("") ||
     `<tr><td colspan="5">${empty("Nenhum candidato encontrado", "Tente outro nome, número ou partido.")}</td></tr>`;
@@ -843,6 +852,7 @@ document
   .querySelectorAll("[data-icon]")
   .forEach((e) => (e.innerHTML = icon(e.dataset.icon)));
 hydrateURL();
+renderView();
 // A chave anterior também guardava o tema claro aplicado automaticamente.
 // A nova preferência começa no escuro e respeita mudanças feitas pelo botão.
 setTheme(document.documentElement.dataset.theme !== "light");

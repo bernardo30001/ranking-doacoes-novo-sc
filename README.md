@@ -8,6 +8,11 @@ na revisão de 11/09/2026, eram 644 candidatos.
 
 ## Consultas disponíveis
 
+A página inicial abre diretamente nos candidatos. A aba **Visão geral** reúne
+arrecadação, fundos públicos, despesas, composição das receitas e histórico.
+Os filtros valem em todas as abas. No celular, o ranking usa cartões com nomes
+e valores maiores, mantendo o aumento recente em verde abaixo do total.
+
 - Ranking por arrecadação líquida, fundos públicos, FEFC, Fundo Partidário,
   outros recursos, despesas contratadas ou pagas.
 - Filtros de partido, cargo e nome/número imediatamente acima da lista de
