@@ -28,18 +28,25 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # Guarda entre execucoes o historico (variacao diaria), o estado dos
-      # lancamentos e o feed de correcoes — sem isso nao ha com que comparar.
+      # Dois passos de cache de proposito: o actions/cache versiona a entrada
+      # pelo conjunto de "path", entao juntar os arquivos num passo so tornaria
+      # invisiveis os caches antigos de historico.json e a serie diaria ja
+      # acumulada se perderia. Este passo mantem o path original.
+      - uses: actions/cache@v4
+        with:
+          path: historico.json
+          key: historico-${{ github.run_id }}
+          restore-keys: historico-
+
+      # Estado dos lancamentos e feed de correcoes: base da comparacao entre
+      # rodadas que alimenta o detector de redeclaracoes.
       - uses: actions/cache@v4
         with:
           path: |
-            historico.json
             estado.json
             correcoes.json
           key: estado-${{ github.run_id }}
-          restore-keys: |
-            estado-
-            historico-
+          restore-keys: estado-
 
       - name: Coletar dados do TSE
         run: python coletar.py
