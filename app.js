@@ -473,7 +473,7 @@ function recentRevenueRow(c, p) {
     change.value === 0
       ? "Sem variação"
       : `${change.value > 0 ? "+" : "−"}${brl(Math.abs(change.value))}`;
-  return `<div class="row-recent ${color}" title="${esc(title)}">${amount}</div><div class="row-recent-period">Arrecadação ${basis}<br>desde ${shortDate(p.data)}</div>`;
+  return `<div class="row-recent ${color}" title="${esc(title)}">${amount}</div><div class="row-recent-period"><span>Arrecadação ${basis}</span> <span>desde ${shortDate(p.data)}</span></div>`;
 }
 function renderRanking() {
   const maxPage = Math.max(1, Math.ceil(current.length / PAGE_SIZE));
