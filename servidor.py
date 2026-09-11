@@ -63,8 +63,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(corpo)
 
     def end_headers(self):
-        # dados.json nao pode ficar em cache, senao o painel congela
-        if self.path.startswith("/dados.json") or self.path.startswith("/historico.json"):
+        # nenhum JSON pode ficar em cache, senao o painel congela
+        if self.path.split("?")[0].endswith(".json"):
             self.send_header("Cache-Control", "no-store")
         super().end_headers()
 

@@ -24,6 +24,9 @@ const RECEITAS = [
 
 let dados = null;
 let historico = [];
+let agregados = null;      // doadores/fornecedores/categorias por candidato
+let correcoes = [];        // redeclaracoes de prestacao de contas
+const detalhes = new Map();  // cache dos lancamentos, um arquivo por candidato
 
 /* So o servidor local tem o coletor atras de /api/atualizar. Publicado no
    GitHub Pages a atualizacao vem do cron, entao o botao nao faz sentido. */
@@ -49,7 +52,6 @@ function docFormatado(d) {
 }
 
 function fundosDe(c) { return c.origem.fundoEspecial + c.origem.fundoPartidario; }
-function somaDoadores(c) { return c.doadores.reduce((s, d) => s + d.valor, 0); }
 
 /* Ultimo ponto do historico anterior ao dia de hoje, para calcular a variacao. */
 function pontoAnterior() {
@@ -87,9 +89,41 @@ async function carregar(silencioso) {
       historico = h.ok ? await h.json() : [];
     } catch { historico = []; }
     render();
+    carregarPesados();
   } catch (e) {
     if (!silencioso) $('#status').textContent = 'não consegui carregar dados.json — rode o coletor primeiro';
   }
+}
+
+/* Agregados e correcoes chegam depois do primeiro desenho: o ranking aparece
+   na hora e as secoes que dependem deles se preenchem quando os arquivos caem. */
+async function carregarPesados() {
+  const pega = async (arq) => {
+    try {
+      const r = await fetch(arq + '?t=' + Date.now(), { cache: 'no-store' });
+      return r.ok ? await r.json() : null;
+    } catch { return null; }
+  };
+  const [a, c] = await Promise.all([pega('agregados.json'), pega('correcoes.json')]);
+  if (a) agregados = a;
+  if (c) correcoes = c;
+  if (!dados) return;
+  const lista = candidatosFiltrados();
+  renderDoadores(lista);
+  renderFornecedores(lista);
+  renderCorrecoes();
+}
+
+function agregadoDe(c) { return (agregados && agregados[c.id]) || null; }
+
+async function detalheDe(id) {
+  if (detalhes.has(id)) return detalhes.get(id);
+  try {
+    const r = await fetch(`detalhe/${id}.json?t=` + Date.now(), { cache: 'no-store' });
+    const j = r.ok ? await r.json() : null;
+    detalhes.set(id, j);
+    return j;
+  } catch { return null; }
 }
 
 async function forcarAtualizacao() {
@@ -140,6 +174,8 @@ function aplicarFiltro() {
   renderComposicaoGlobal(lista);
   renderLista(lista);
   renderDoadores(lista);
+  renderFornecedores(lista);
+  renderCorrecoes();
 }
 
 function renderSelo() {
@@ -271,26 +307,109 @@ function renderLista(lista) {
 }
 
 function renderDoadores(lista) {
+  const alvo = $('#doadores');
+  if (!agregados) { alvo.innerHTML = '<p class="vazio">carregando doadores…</p>'; return; }
+
   const mapa = new Map();
-  lista.forEach((c) => c.doadores.forEach((d) => {
+  lista.forEach((c) => ((agregadoDe(c) || {}).doadores || []).forEach((d) => {
     const k = d.cpfCnpj || d.nome;
     const e = mapa.get(k) || { nome: d.nome, doc: d.cpfCnpj, valor: 0, qtd: 0, candidatos: new Set(), fcc: d.fcc };
     e.valor += d.valor;
     e.qtd += d.qtd;
     e.candidatos.add(c.nome);
+    e.fcc = e.fcc || d.fcc;
     mapa.set(k, e);
   }));
 
   const top = [...mapa.values()].sort((a, b) => b.valor - a.valor).slice(0, 30);
-  $('#doadores').innerHTML = top.map((d, i) => `
+  alvo.innerHTML = top.map((d, i) => `
     <div class="doador">
       <span class="idx">${i + 1}</span>
       <div class="info">
         <b>${esc(d.nome)}${d.fcc ? '<span class="etiqueta">vaquinha</span>' : ''}</b>
-        <span>${docFormatado(d.doc)} · ${d.candidatos.size} ${d.candidatos.size === 1 ? 'candidato' : 'candidatos'}</span>
+        <span>${docFormatado(d.doc)} · ${d.qtd} ${d.qtd === 1 ? 'doação' : 'doações'} · ${d.candidatos.size} ${d.candidatos.size === 1 ? 'candidato' : 'candidatos'}</span>
       </div>
       <span class="v">${brlCurto(d.valor)}</span>
     </div>`).join('') || '<p class="vazio">Nenhuma doação registrada ainda.</p>';
+}
+
+/* Para onde o dinheiro vai: fornecedores e categorias de despesa. */
+function renderFornecedores(lista) {
+  const alvoF = $('#fornecedores');
+  const alvoC = $('#categorias');
+  if (!agregados) { alvoF.innerHTML = '<p class="vazio">carregando despesas…</p>'; alvoC.innerHTML = ''; return; }
+
+  const forn = new Map();
+  const cat = new Map();
+  lista.forEach((c) => {
+    const a = agregadoDe(c);
+    if (!a) return;
+    (a.fornecedores || []).forEach((f) => {
+      const k = f.cpfCnpj || f.nome;
+      const e = forn.get(k) || { nome: f.nome, doc: f.cpfCnpj, valor: 0, qtd: 0, candidatos: new Set() };
+      e.valor += f.valor; e.qtd += f.qtd; e.candidatos.add(c.nome);
+      forn.set(k, e);
+    });
+    Object.entries(a.categorias || {}).forEach(([k, v]) => cat.set(k, (cat.get(k) || 0) + v));
+  });
+
+  const topF = [...forn.values()].sort((a, b) => b.valor - a.valor).slice(0, 24);
+  alvoF.innerHTML = topF.map((f, i) => `
+    <div class="doador">
+      <span class="idx">${i + 1}</span>
+      <div class="info">
+        <b>${esc(f.nome)}</b>
+        <span>${docFormatado(f.doc)} · ${f.candidatos.size} ${f.candidatos.size === 1 ? 'candidato' : 'candidatos'}</span>
+      </div>
+      <span class="v">${brlCurto(f.valor)}</span>
+    </div>`).join('') || '<p class="vazio">Nenhuma despesa declarada ainda.</p>';
+
+  const topC = [...cat.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const maiorC = topC.length ? topC[0][1] : 1;
+  alvoC.innerHTML = topC.map(([k, v]) => `
+    <div class="categoria">
+      <div class="cab"><span>${esc(k)}</span><b>${brl(v)}</b></div>
+      <div class="trilho"><div style="width:${v / maiorC * 100}%"></div></div>
+    </div>`).join('');
+}
+
+/* Feed de redeclaracoes: quando uma campanha muda o valor de uma doacao que
+   ja tinha declarado, ou apaga uma. Doacao nova nao entra aqui. */
+function renderCorrecoes() {
+  const alvo = $('#correcoes');
+  const secao = $('#secao-correcoes');
+  const uteis = correcoes.filter((e) =>
+    (!filtro.cargo || e.cargo === filtro.cargo) &&
+    (!filtro.partido || e.partido === filtro.partido)).slice(0, 12);
+
+  secao.hidden = !uteis.length;
+  if (!uteis.length) return;
+
+  alvo.innerHTML = uteis.map((e) => {
+    const dif = (e.totalDepois || 0) - (e.totalAntes || 0);
+    const linhas = [
+      ...e.alteracoes.map((a) =>
+        `<li>doação de ${esc(a.doador || 'doador não identificado')}${a.data ? ` (${esc(a.data)})` : ''}:
+          <s>${brl(a.de)}</s> → <b>${brl(a.para)}</b></li>`),
+      ...e.removidos.map((r) =>
+        `<li>doação de ${esc(r.doador || 'doador não identificado')}${r.data ? ` (${esc(r.data)})` : ''}
+          <b>${brl(r.valor)}</b> foi retirada</li>`),
+    ].slice(0, 5).join('');
+    return `
+      <div class="correcao" data-id="${esc(e.id)}">
+        <div class="cab">
+          <b>${esc(e.nome)}</b> <span class="sigla">${esc(e.partido || '')}</span>
+          <span class="quando">${new Date(e.quando).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}</span>
+        </div>
+        <div class="salto ${dif < 0 ? 'baixa' : 'alta'}">
+          ${brl(e.totalAntes || 0)} → ${brl(e.totalDepois || 0)} <span>(${dif >= 0 ? '+' : ''}${brl(dif)})</span>
+        </div>
+        <ul>${linhas}</ul>
+      </div>`;
+  }).join('');
+
+  alvo.querySelectorAll('.correcao').forEach((el) =>
+    el.addEventListener('click', () => abrirModal(el.dataset.id)));
 }
 
 /* ---------------- modal ---------------- */
@@ -298,6 +417,7 @@ function renderDoadores(lista) {
 function abrirModal(id) {
   const c = dados.candidatos.find((x) => x.id === id);
   if (!c) return;
+  const doad = (agregadoDe(c) || {}).doadores || [];
 
   const iniciais = c.nome.split(/\s+/).slice(0, 2).map((p) => p[0]).join('');
   const foto = c.foto
@@ -323,24 +443,27 @@ function abrirModal(id) {
     </div>
     <div class="modal-corpo">
       <div class="grade">
-        <div class="mini-card"><div class="rot">Arrecadado</div><div class="val" style="color:var(--novo)">${brl(c.total)}</div></div>
+        <div class="mini-card"><div class="rot">Arrecadado</div><div class="val" style="color:var(--novo)">${brl(c.liquido ?? c.total)}</div>${
+          c.devolvido ? `<div class="rot" style="margin-top:4px;text-transform:none;letter-spacing:0">bruto ${brl(c.total)}, devolveu ${brl(c.devolvido)}</div>` : ''}</div>
         <div class="mini-card"><div class="rot">Fundo Eleitoral</div><div class="val" style="color:var(--fefc)">${brl(c.origem.fundoEspecial)}</div></div>
         <div class="mini-card"><div class="rot">Fundo Partidário</div><div class="val" style="color:var(--fundo)">${brl(c.origem.fundoPartidario)}</div></div>
         <div class="mini-card"><div class="rot">Outros recursos</div><div class="val" style="color:var(--priv)">${brl(c.origem.outros)}</div></div>
       </div>
 
-      ${c.total ? `<div class="barra">${FONTES.map((f) =>
-        `<div style="width:${c.origem[f.chave] / c.total * 100}%;background:${f.cor}"></div>`).join('')}</div>` : ''}
+      ${c.liquido ? `<div class="barra">${FONTES.map((f) =>
+        `<div style="width:${c.origem[f.chave] / c.liquido * 100}%;background:${f.cor}"></div>`).join('')}</div>` : ''}
 
       <div class="bloco">
-        <h4>Principais doadores${c.doadores.length ? ` (${c.doadores.length})` : ''}</h4>
-        ${c.doadores.length
-          ? `<table class="tab">${c.doadores.map((d) =>
-              linhaTabela(d.nome + (d.fcc ? ' 🐖' : ''), docFormatado(d.cpfCnpj) + ` · ${d.qtd}×`, d.valor, c.total ? d.valor / c.total * 100 : 0)).join('')}</table>
-             ${somaDoadores(c) < c.total - 0.05
-               ? `<p class="ressalva">O TSE publica só os 5 maiores doadores. Faltam ${brl(c.total - somaDoadores(c))} de doadores menores, não detalhados.</p>`
-               : ''}`
+        <h4>Doadores${doad.length ? ` (${doad.length})` : ''}</h4>
+        ${doad.length
+          ? `<div class="${doad.length > 12 ? 'rolagem' : ''}"><table class="tab">${doad.map((d) =>
+              linhaTabela(d.nome + (d.fcc ? ' 🐖' : ''), docFormatado(d.cpfCnpj) + ` · ${d.qtd}×`, d.valor, c.liquido ? d.valor / c.liquido * 100 : 0)).join('')}</table></div>`
           : '<p class="vazio">Nenhuma doação declarada até agora.</p>'}
+      </div>
+
+      <div class="bloco" id="bloco-lancamentos">
+        <h4>Doações uma a uma</h4>
+        <p class="vazio">carregando lançamentos…</p>
       </div>
 
       ${receitas.length ? `<div class="bloco">
@@ -361,14 +484,14 @@ function abrirModal(id) {
         </table>
       </div>
 
-      ${c.fornecedores.length ? `<div class="bloco">
-        <h4>Fornecedores</h4>
-        <table class="tab">${c.fornecedores.map((f) => linhaTabela(f.nome, docFormatado(f.cpfCnpj), f.valor)).join('')}</table>
-      </div>` : ''}
+      <div class="bloco" id="bloco-despesas">
+        <h4>Para onde foi o dinheiro</h4>
+        <p class="vazio">carregando despesas…</p>
+      </div>
 
       ${c.entregas.length ? `<div class="bloco">
         <h4>Entregas de prestação de contas (${c.entregas.length})</h4>
-        <table class="tab">${c.entregas.slice(0, 8).map((e) =>
+        <table class="tab">${c.entregas.map((e) =>
           `<tr><td>${esc(e.data)}${e.retificadora ? '<div class="doc">retificadora</div>' : ''}</td><td style="font-weight:400;color:var(--txt-2)">${esc(e.tipo)}</td></tr>`).join('')}</table>
       </div>` : ''}
 
@@ -381,6 +504,49 @@ function abrirModal(id) {
   $('#modal').classList.add('on');
   document.body.style.overflow = 'hidden';
   $('#modal-conteudo .fechar').addEventListener('click', fecharModal);
+  preencherLancamentos(c, linhaTabela);
+}
+
+/* Os lancamentos vivem num arquivo por candidato, buscado so agora. */
+async function preencherLancamentos(c, linhaTabela) {
+  const det = await detalheDe(c.id);
+  const blocoR = $('#bloco-lancamentos');
+  const blocoD = $('#bloco-despesas');
+  if (!blocoR || !document.querySelector('#modal').classList.contains('on')) return;
+
+  const receitas = (det && det.receitas) || [];
+  blocoR.innerHTML = `
+    <h4>Doações uma a uma (${receitas.length})</h4>
+    ${receitas.length
+      ? `<div class="rolagem"><table class="tab tab-itens">
+          <thead><tr><th>data</th><th>doador e origem</th><th>valor</th></tr></thead>
+          <tbody>${[...receitas].sort((a, b) => b.valor - a.valor).map((r) => `
+            <tr>
+              <td class="doc">${esc(r.data || '—')}</td>
+              <td>${esc(r.doador || '—')}<div class="doc">${
+                [r.fonte, r.especie].filter(Boolean).map(esc).join(' · ') || '—'}</div></td>
+              <td>${brl(r.valor)}</td>
+            </tr>`).join('')}</tbody></table></div>`
+      : '<p class="vazio">Nenhum lançamento de receita publicado.</p>'}`;
+
+  const despesas = (det && det.despesas) || [];
+  const porForn = new Map();
+  despesas.forEach((x) => {
+    const k = x.cpfCnpj || x.fornecedor;
+    const e = porForn.get(k) || { nome: x.fornecedor, doc: x.cpfCnpj, valor: 0, qtd: 0, cats: new Set() };
+    e.valor += x.valor; e.qtd += 1;
+    if (x.categoria) e.cats.add(x.categoria);
+    porForn.set(k, e);
+  });
+  const forn = [...porForn.values()].sort((a, b) => b.valor - a.valor);
+
+  blocoD.innerHTML = `
+    <h4>Para onde foi o dinheiro (${forn.length} ${forn.length === 1 ? 'fornecedor' : 'fornecedores'})</h4>
+    ${forn.length
+      ? `<div class="${forn.length > 12 ? 'rolagem' : ''}"><table class="tab">${forn.map((f) => linhaTabela(
+          f.nome, `${docFormatado(f.doc)}${f.cats.size ? ' · ' + esc([...f.cats][0]) : ''} · ${f.qtd}×`,
+          f.valor, c.despesas.contratadas ? f.valor / c.despesas.contratadas * 100 : null)).join('')}</table></div>`
+      : '<p class="vazio">Nenhuma despesa declarada até agora.</p>'}`;
 }
 
 function fecharModal() {

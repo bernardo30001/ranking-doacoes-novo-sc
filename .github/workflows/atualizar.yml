@@ -28,12 +28,18 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # Guarda o historico entre execucoes, para o painel mostrar a variacao diaria.
+      # Guarda entre execucoes o historico (variacao diaria), o estado dos
+      # lancamentos e o feed de correcoes — sem isso nao ha com que comparar.
       - uses: actions/cache@v4
         with:
-          path: historico.json
-          key: historico-${{ github.run_id }}
-          restore-keys: historico-
+          path: |
+            historico.json
+            estado.json
+            correcoes.json
+          key: estado-${{ github.run_id }}
+          restore-keys: |
+            estado-
+            historico-
 
       - name: Coletar dados do TSE
         run: python coletar.py
@@ -47,8 +53,9 @@ jobs:
       - name: Montar o site
         run: |
           mkdir -p _site
-          cp index.html estilo.css app.js dados.json _site/
-          cp historico.json _site/ 2>/dev/null || true
+          cp index.html estilo.css app.js dados.json agregados.json _site/
+          cp historico.json correcoes.json _site/ 2>/dev/null || true
+          cp -r detalhe _site/ 2>/dev/null || true
           # O GitHub Pages cacheia os assets por ~10 min. Carimbar o commit na
           # URL garante que um visitante recorrente pegue o CSS/JS novos.
           V=$(git rev-parse --short HEAD)

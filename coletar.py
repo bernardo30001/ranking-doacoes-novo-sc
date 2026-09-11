@@ -30,6 +30,11 @@ TRABALHADORES = 8            # requisicoes simultaneas ao TSE
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SAIDA = os.path.join(AQUI, "dados.json")
 HISTORICO = os.path.join(AQUI, "historico.json")
+AGREGADOS = os.path.join(AQUI, "agregados.json")
+CORRECOES = os.path.join(AQUI, "correcoes.json")
+ESTADO = os.path.join(AQUI, "estado.json")
+DETALHE = os.path.join(AQUI, "detalhe")
+MAX_FORNECEDORES = 20        # por candidato no arquivo de agregados
 FUSO = timezone(timedelta(hours=-3))  # horario de Brasilia
 
 HEADERS = {
@@ -83,6 +88,54 @@ def num(v):
         return 0.0
 
 
+def receitas_itemizadas(id_prestador, id_entrega):
+    """Lancamentos de receita, um a um. Substitui o ranking do TSE, que so
+    publica os 5 maiores doadores de cada candidato."""
+    l = get(f"{BASE}/prestador/consulta/receitas/{ID_ELEICAO}/{id_prestador}/{id_entrega}/lista?pagina=1")
+    return [{
+        "data": r.get("dtReceita"),
+        "doador": r.get("nomeDoador"),
+        "cpfCnpj": r.get("cpfCnpjDoador"),
+        "origBem": r.get("nomeDoadorOriginario") if r.get("cpfCnpjDoadorOriginario") != r.get("cpfCnpjDoador") else None,
+        "valor": num(r.get("valorReceita")),
+        "fonte": r.get("fonteOrigem"),
+        "especie": r.get("especieRecurso"),
+        "doc": r.get("nrDocumento"),
+        "fcc": bool(r.get("stFinanciamentoColetivo")),
+    } for r in (l or [])]
+
+
+def despesas_itemizadas(id_prestador, id_entrega):
+    """Lancamentos de despesa: para quem foi o dinheiro e em que categoria."""
+    l = get(f"{BASE}/prestador/consulta/despesas/{ID_ELEICAO}/{id_prestador}/{id_entrega}")
+    return [{
+        "data": x.get("data"),
+        "fornecedor": x.get("nomeFornecedor"),
+        "cpfCnpj": x.get("cpfCnpjFornecedor"),
+        "valor": num(x.get("valor")),
+        "categoria": x.get("tipoDespesa"),
+        "descricao": x.get("descricaoDespesa"),
+        "especie": x.get("especieRecurso"),
+        "doc": x.get("numeroDocumento"),
+    } for x in (l or [])]
+
+
+def agrupar(itens, chave_nome, chave_doc):
+    """Soma os lancamentos por pessoa/empresa, preservando a contagem."""
+    por = {}
+    for i in itens:
+        k = i[chave_doc] or i[chave_nome]
+        e = por.setdefault(k, {"cpfCnpj": i[chave_doc], "nome": i[chave_nome],
+                               "qtd": 0, "valor": 0.0, "fcc": False})
+        e["qtd"] += 1
+        e["valor"] += i["valor"]
+        e["fcc"] = e["fcc"] or bool(i.get("fcc"))
+    l = sorted(por.values(), key=lambda x: -x["valor"])
+    for e in l:
+        e["valor"] = round(e["valor"], 2)
+    return l
+
+
 def coletar_um(item):
     cargo, base, nr_partido = item
     id_cand = base["id"]
@@ -94,33 +147,27 @@ def coletar_um(item):
     d = (contas or {}).get("dadosConsolidados") or {}
     desp = (contas or {}).get("despesas") or {}
 
-    doadores = []
-    for x in (contas or {}).get("rankingDoadores") or []:
-        doadores.append({
-            "cpfCnpj": x.get("cpfCnpj"),
-            "nome": x.get("nome"),
-            "qtd": int(x.get("qntd") or 0),
-            "valor": num(x.get("valor")),
-            "fcc": bool(x.get("stFinanciamentoColetivo")),
-        })
-    doadores.sort(key=lambda x: -x["valor"])
+    id_prestador = (contas or {}).get("idPrestador")
+    id_entrega = (contas or {}).get("idUltimaEntrega")
 
-    fornecedores = []
-    for x in (contas or {}).get("rankingFornecedores") or []:
-        fornecedores.append({
-            "cpfCnpj": x.get("cpfCnpj"),
-            "nome": x.get("nome"),
-            "qtd": int(x.get("qntd") or 0),
-            "valor": num(x.get("valor")),
-        })
-    fornecedores.sort(key=lambda x: -x["valor"])
-    fornecedores = fornecedores[:10]
+    receitas, despesas = [], []
+    if id_prestador and id_entrega:
+        receitas = receitas_itemizadas(id_prestador, id_entrega)
+        despesas = despesas_itemizadas(id_prestador, id_entrega)
+
+    doadores = agrupar(receitas, "doador", "cpfCnpj")
+    fornecedores = agrupar(despesas, "fornecedor", "cpfCnpj")
+
+    categorias = {}
+    for x in despesas:
+        c = x["categoria"] or "Nao especificada"
+        categorias[c] = round(categorias.get(c, 0) + x["valor"], 2)
 
     entregas = [{
         "data": e.get("dataEntrega"),
         "tipo": e.get("tipo"),
         "retificadora": e.get("retificadora") == "SIM",
-    } for e in ((contas or {}).get("historicoEntregas") or [])[:6]]
+    } for e in ((contas or {}).get("historicoEntregas") or [])]
 
     partido = (base.get("partido") or {})
 
@@ -154,6 +201,8 @@ def coletar_um(item):
 
         # Total e composicao por natureza da receita
         "total": num(d.get("totalRecebido")),
+        "devolvido": num(d.get("totalDoacaoDevolvida")),
+        "liquido": round(num(d.get("totalRecebido")) - num(d.get("totalDoacaoDevolvida")), 2),
         "qtdDoacoes": int(d.get("qtdRecebido") or 0),
         "financeiro": num(d.get("totalFinanceiro")),
         "estimado": num(d.get("totalEstimados")),
@@ -184,9 +233,17 @@ def coletar_um(item):
             "contratadas": num(desp.get("totalDespesasContratadas")),
             "pagas": num(desp.get("totalDespesasPagas")),
         },
-        "doadores": doadores,
-        "fornecedores": fornecedores,
         "entregas": entregas,
+        "qtdDoadores": len(doadores),
+        "qtdFornecedores": len(fornecedores),
+        "qtdLancamentos": len(receitas),
+        # Fica fora do dados.json: vira agregados.json e detalhe/<id>.json.
+        "_agregado": {
+            "doadores": doadores,
+            "fornecedores": fornecedores[:MAX_FORNECEDORES],
+            "categorias": categorias,
+        },
+        "_itens": {"receitas": receitas, "despesas": despesas},
     }
 
 
@@ -220,6 +277,16 @@ def main():
     for i, c in enumerate(candidatos, 1):
         c["posicao"] = i
 
+    # Separa o que sai do dados.json antes de montar a saida.
+    agregados, itens = {}, {}
+    for c in candidatos:
+        agregados[c["id"]] = c.pop("_agregado")
+        itens[c["id"]] = c.pop("_itens")
+
+    correcoes = detectar_correcoes(agora, candidatos, itens)
+    gravar_agregados(agregados)
+    gravar_detalhes(agora, candidatos, itens)
+
     total_geral = sum(c["total"] for c in candidatos)
     partidos = sorted({c["partido"] for c in candidatos if c["partido"]})
 
@@ -239,6 +306,8 @@ def main():
         "candidatos": candidatos,
     }
 
+    saida["correcoesRecentes"] = len(correcoes)
+
     tmp = SAIDA + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(saida, f, ensure_ascii=False, indent=1)
@@ -248,6 +317,143 @@ def main():
 
     print(f"  total arrecadado: R$ {total_geral:,.2f}".replace(",", "."))
     print(f"  gravado em {SAIDA}")
+
+
+def gravar_agregados(agregados):
+    """Doadores, fornecedores e categorias por candidato. Sai do dados.json
+    para o painel abrir rapido; o front busca este arquivo depois."""
+    tmp = AGREGADOS + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(agregados, f, ensure_ascii=False, separators=(",", ":"))
+    os.replace(tmp, AGREGADOS)
+
+
+def gravar_detalhes(agora, candidatos, itens):
+    """Um arquivo por candidato com os lancamentos um a um, carregado so
+    quando alguem abre o card daquele candidato."""
+    os.makedirs(DETALHE, exist_ok=True)
+    vivos = set()
+    for c in candidatos:
+        it = itens.get(c["id"]) or {}
+        if not it.get("receitas") and not it.get("despesas"):
+            continue
+        vivos.add(f'{c["id"]}.json')
+        corpo = {
+            "id": c["id"],
+            "nome": c["nome"],
+            "atualizadoEm": agora.isoformat(),
+            "receitas": it["receitas"],
+            "despesas": it["despesas"],
+        }
+        with open(os.path.join(DETALHE, f'{c["id"]}.json'), "w", encoding="utf-8") as f:
+            json.dump(corpo, f, ensure_ascii=False, separators=(",", ":"))
+
+    # Candidato que zerou a prestacao nao pode ficar com o detalhe antigo no ar.
+    for nome in os.listdir(DETALHE):
+        if nome.endswith(".json") and nome not in vivos:
+            os.remove(os.path.join(DETALHE, nome))
+
+
+def _chaves(receitas):
+    """Multiconjunto dos lancamentos. E multiconjunto, e nao dicionario, porque
+    doc+data+doador+fonte se repete (doacoes iguais no mesmo dia) e 41 de cada
+    500 lancamentos vem sem numero de documento."""
+    from collections import Counter
+    return Counter(
+        f'{r["doc"] or ""}|{r["data"] or ""}|{r["cpfCnpj"] or ""}|{r["fonte"] or ""}|{r["valor"]:.2f}'
+        for r in receitas
+    )
+
+
+def detectar_correcoes(agora, candidatos, itens):
+    """Compara os lancamentos com os da rodada anterior e registra quando uma
+    campanha muda o valor de uma doacao ja declarada, ou apaga uma.
+
+    Doacao nova nao entra: isso e o fluxo normal da campanha. O que interessa
+    e a redeclaracao — foi assim que a Bia Borba passou de R$ 814 mil para
+    R$ 546 mil, com um PIX de 04/09 reescrito de R$ 280 mil para R$ 12 mil.
+    """
+    from collections import Counter, defaultdict
+
+    try:
+        with open(ESTADO, encoding="utf-8") as f:
+            antes = json.load(f)
+    except (OSError, ValueError):
+        antes = {}
+
+    try:
+        with open(CORRECOES, encoding="utf-8") as f:
+            feed = json.load(f)
+    except (OSError, ValueError):
+        feed = []
+
+    eventos, estado = [], {}
+    for c in candidatos:
+        receitas = (itens.get(c["id"]) or {}).get("receitas") or []
+        agora_ct = _chaves(receitas)
+        estado[c["id"]] = {"total": c["total"], "itens": dict(agora_ct)}
+
+        ant = antes.get(c["id"])
+        if not ant:
+            continue  # candidato novo no retrato: nada com que comparar
+
+        ant_ct = Counter(ant.get("itens") or {})
+        saiu, entrou = ant_ct - agora_ct, agora_ct - ant_ct
+        if not saiu and not entrou:
+            continue
+
+        def por_lancamento(ct):
+            g = defaultdict(list)
+            for k, n in ct.items():
+                *ident, valor = k.split("|")
+                g["|".join(ident)] += [float(valor)] * n
+            return g
+
+        gs, ge = por_lancamento(saiu), por_lancamento(entrou)
+        nomes = {f'{r["doc"] or ""}|{r["data"] or ""}|{r["cpfCnpj"] or ""}|{r["fonte"] or ""}':
+                 (r["doador"], r["data"], r["fonte"]) for r in receitas}
+
+        alteracoes, removidos = [], []
+        for ident, velhos in gs.items():
+            novos = ge.get(ident, [])
+            doador, data, fonte = nomes.get(ident, (None, ident.split("|")[1], ident.split("|")[3]))
+            for i, v in enumerate(sorted(velhos, reverse=True)):
+                if i < len(novos):
+                    n = sorted(novos, reverse=True)[i]
+                    alteracoes.append({"data": data, "doador": doador, "fonte": fonte,
+                                       "de": v, "para": n})
+                else:
+                    removidos.append({"data": data, "doador": doador, "fonte": fonte, "valor": v})
+            ge[ident] = novos[len(velhos):]
+
+        novos_lancamentos = sum(len(v) for v in ge.values())
+        if not alteracoes and not removidos:
+            continue  # so entrou dinheiro novo: fluxo normal, nao e correcao
+
+        eventos.append({
+            "quando": agora.isoformat(),
+            "id": c["id"], "nome": c["nome"], "partido": c["partido"],
+            "cargo": c["cargo"], "cargoNome": c["cargoNome"],
+            "totalAntes": ant.get("total"), "totalDepois": c["total"],
+            "alteracoes": alteracoes, "removidos": removidos,
+            "novos": novos_lancamentos,
+        })
+
+    if eventos:
+        eventos.sort(key=lambda e: -abs((e["totalDepois"] or 0) - (e["totalAntes"] or 0)))
+        feed = eventos + feed
+        print(f"  {len(eventos)} correcao(oes) de prestacao detectada(s)")
+        for e in eventos[:5]:
+            print(f'     {e["nome"]} ({e["partido"]}): '
+                  f'{e["totalAntes"]:,.2f} -> {e["totalDepois"]:,.2f}')
+
+    for arq, dado in ((CORRECOES, feed[:300]), (ESTADO, estado)):
+        tmp = arq + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(dado, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp, arq)
+
+    return eventos
 
 
 def registrar_historico(agora, candidatos, total_geral):

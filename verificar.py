@@ -25,17 +25,33 @@ def main():
     with open(os.path.join(AQUI, "dados.json"), encoding="utf-8") as f:
         d = json.load(f)
     cands = d["candidatos"]
+    try:
+        with open(os.path.join(AQUI, "agregados.json"), encoding="utf-8") as f:
+            agr = json.load(f)
+    except (OSError, ValueError):
+        agr = {}
+    for c in cands:
+        a = agr.get(c["id"]) or {}
+        c["_doadores"] = a.get("doadores") or []
+        c["_categorias"] = a.get("categorias") or {}
 
     checagens = [
-        ("receitas por natureza == total recebido",
-         lambda c: (sum(c["receitas"][k] for k in c["receitas"] if k != "devolvidas"), c["total"])),
+        ("receitas por natureza + devolvidas == total bruto",
+         lambda c: (sum(c["receitas"][k] for k in c["receitas"] if k != "devolvidas")
+                    + c["receitas"]["devolvidas"], c["total"])),
         ("fundos + outros == recursos financeiros",
          lambda c: (c["origem"]["fundoEspecial"] + c["origem"]["fundoPartidario"]
                     + c["origem"]["outros"], c["financeiro"])),
-        ("origem completa == total recebido",
-         lambda c: (sum(c["origem"].values()), c["total"])),
-        ("financeiro + RONI + estimavel == total recebido",
-         lambda c: (c["financeiro"] + c["receitas"]["roni"] + c["estimado"], c["total"])),
+        ("origem completa == total líquido",
+         lambda c: (sum(c["origem"].values()), c["total"] - c["receitas"]["devolvidas"])),
+        ("financeiro + RONI + estimavel == total líquido",
+         lambda c: (c["financeiro"] + c["receitas"]["roni"] + c["estimado"],
+                    c["total"] - c["receitas"]["devolvidas"])),
+        ("doacoes itemizadas == total líquido",
+         lambda c: (sum(x["valor"] for x in c["_doadores"]),
+                    c["total"] - c["receitas"]["devolvidas"])),
+        ("despesas por categoria == despesas contratadas",
+         lambda c: (sum(c["_categorias"].values()), c["despesas"]["contratadas"])),
     ]
 
     print(f"Auditoria de {len(cands)} candidatos — {d['eleicao']['uf']} {d['eleicao']['ano']}\n")
@@ -63,8 +79,6 @@ def main():
          lambda c: not c["limiteGasto"] or c["despesas"]["contratadas"] <= c["limiteGasto"] + TOL),
         ("fundos publicos <= total arrecadado",
          lambda c: c["origem"]["fundoPartidario"] + c["origem"]["fundoEspecial"] <= c["total"] + TOL),
-        ("ranking de doadores <= total (o TSE publica so os 5 maiores)",
-         lambda c: sum(x["valor"] for x in c["doadores"]) <= c["total"] + TOL),
         ("nenhum valor negativo",
          lambda c: min([c["total"], c["financeiro"], c["estimado"],
                         *c["origem"].values(), *c["receitas"].values(),
