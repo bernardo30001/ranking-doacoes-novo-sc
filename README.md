@@ -22,8 +22,13 @@ na revisão de 11/09/2026, eram 644 candidatos.
 **Líquido = total recebido − receitas devolvidas.** O ranking, os indicadores e
 as exportações descontam as devoluções. O histórico anterior não registrava
 esse desconto: o gráfico identifica explicitamente os valores como brutos.
-Variações líquidas só aparecem quando existe um ponto líquido anterior para
-todos os candidatos do recorte; ausência de registro não equivale a zero.
+Abaixo do valor de cada candidato, o ranking mostra a variação desde a última
+coleta registrada antes do dia atual: aumentos em verde, reduções em laranja e
+valores estáveis como “Sem variação”. Usa líquido com líquido quando essa base
+existe; nos registros antigos, compara bruto com bruto, com o rótulo explícito.
+A variação pode incluir retificações, além de novas receitas. Ausência de
+registro aparece como “Sem base anterior”, nunca como zero. O resumo só mostra
+variação líquida quando todos os candidatos do recorte têm base líquida anterior.
 
 **Quem transferiu e a fonte são classificações diferentes do mesmo valor.** Um
 repasse de um candidato ou partido pode conservar a origem Fundo Partidário ou

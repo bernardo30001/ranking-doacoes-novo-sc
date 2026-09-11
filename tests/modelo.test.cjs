@@ -70,3 +70,21 @@ test("coluna de valor corresponde à ordenação selecionada", () => {
   assert.equal(M.metric(a, "despesas"), 12);
   assert.equal(M.metric(a, "pagas"), 5);
 });
+
+test("variação recente compara bruto com bruto ao recuperar o histórico antigo", () => {
+  const c = candidate("a", 150, 60);
+  assert.deepEqual(M.recentRevenue(c, {porCandidato: {a: 100}}), {value: 50, basis: "bruta"});
+  assert.deepEqual(M.recentRevenue(c, {porCandidato: {a: 100}, porCandidatoLiquido: {a: 100}}), {value: -10, basis: "liquida"});
+});
+test("variação recente distingue zero registrado de candidato sem histórico", () => {
+  const c = candidate("a", 100);
+  assert.deepEqual(M.recentRevenue(c, {porCandidato: {a: 0}}), {value: 100, basis: "bruta"});
+  assert.equal(M.recentRevenue(c, {porCandidato: {b: 100}}), null);
+  assert.equal(M.recentRevenue(c, {porCandidato: {a: null}}), null);
+  assert.equal(M.recentRevenue(c, undefined), null);
+});
+test("variação recente conserva centavos e identifica ausência de mudança", () => {
+  const c = candidate("a", 100.02);
+  assert.deepEqual(M.recentRevenue(c, {porCandidato: {a: 100}}), {value: .02, basis: "bruta"});
+  assert.deepEqual(M.recentRevenue(c, {porCandidatoLiquido: {a: 100.02}}), {value: 0, basis: "liquida"});
+});

@@ -2060,3 +2060,9 @@ html[data-theme="dark"] #resumo .metric.featured { border-color:#3b5d51; }
   #resumo .metric-value { font-size:20px; }
   #resumo .metric-label { font-size:10px; }
 }
+
+/* A variação recente fica em uma linha própria abaixo do valor do candidato. */
+.row-recent { font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; margin-top:5px; line-height:1.3; }
+.row-recent-period { font-size:10px; font-weight:400; color:var(--muted); margin-top:3px; line-height:1.35; }
+.row-recent.neutral { color:var(--muted); font-size:11px; font-weight:400; }
+@media(max-width:650px) { .row-recent { font-size:11px; } .ranking-table th.money-col { width:132px; } }

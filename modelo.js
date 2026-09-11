@@ -51,6 +51,18 @@
     const before = previousNet(c, p);
     return before === null ? null : (cent(net(c)) - cent(before)) / 100;
   };
+  function recentRevenue(c, p) {
+    const liquid = previousNet(c, p);
+    if (liquid !== null && Number.isFinite(liquid)) {
+      return { value: (cent(net(c)) - cent(liquid)) / 100, basis: "liquida" };
+    }
+    // O histórico antigo permite comparar bruto com bruto, nunca com líquido.
+    const gross = p?.porCandidato?.[c.id];
+    if (!Object.hasOwn(p?.porCandidato || {}, c.id) || !Number.isFinite(gross)) {
+      return null;
+    }
+    return { value: (cent(c.total) - cent(gross)) / 100, basis: "bruta" };
+  }
   function aggregate(cands, ag, field) {
     const map = new Map();
     for (const c of cands)
@@ -108,6 +120,7 @@
     filter,
     previousNet,
     delta,
+    recentRevenue,
     aggregate,
     safeURL,
     csvCell,

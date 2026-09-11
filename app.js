@@ -454,6 +454,18 @@ function renderView() {
   if (view === "despesas") renderExpenses();
   if (view === "alteracoes") renderCorrections();
 }
+function recentRevenueRow(c, p) {
+  const change = M.recentRevenue(c, p);
+  if (!change) {
+    return '<div class="row-recent neutral" title="Não há valor anterior registrado para comparar este candidato.">Sem base anterior</div>';
+  }
+  const basis = change.basis === "liquida" ? "líquida" : "bruta";
+  const period = `${shortDate(p.data)}${p.hora ? " às " + p.hora : ""}`;
+  const title = `Variação da arrecadação ${basis} desde a coleta de ${period} (Brasília). Pode incluir novas receitas, devoluções e retificações, conforme a base comparada.`;
+  const color = change.value > 0 ? "positive" : change.value < 0 ? "negative" : "neutral";
+  const amount = change.value === 0 ? "Sem variação" : `${change.value > 0 ? "+" : "−"}${brl(Math.abs(change.value))}`;
+  return `<div class="row-recent ${color}" title="${esc(title)}">${amount}</div><div class="row-recent-period">Arrecadação ${basis}<br>desde ${shortDate(p.data)}</div>`;
+}
 function renderRanking() {
   const maxPage = Math.max(1, Math.ceil(current.length / PAGE_SIZE));
   page = Math.min(page, maxPage);
@@ -469,9 +481,8 @@ function renderRanking() {
       .map((c, i) => {
         const total = M.net(c),
           pos = (page - 1) * PAGE_SIZE + i + 1,
-          delta = M.delta(c, p),
           value = M.metric(c, filtro.ordem);
-        return `<tr data-id="${c.id}"><td class="rank${pos <= 3 ? " top" : ""}">${pos}</td><td><button class="candidate-open" data-open="${c.id}" aria-label="Ver contas de ${esc(c.nome)}">${avatar(c)}<span class="candidate-info"><span class="candidate-name">${esc(c.nome)}</span><span class="candidate-meta"><span class="party-tag${c.partido === "NOVO" ? " novo" : ""}">${esc(c.partido)}</span><span>${c.numero}</span><span>· ${c.cargo === 6 ? "Federal" : "Estadual"}</span></span></span></button></td><td class="source-cell"><div class="mini-bar" aria-hidden="true">${bar(sources([c]))}</div><div class="mini-note">${total ? pct(M.publicFunds(c), total) + " de fundos públicos" : c.temContas ? "Sem receita declarada" : "Sem prestação disponível"}</div></td><td class="money"><div class="row-value">${c.temContas ? brl(value) : "—"}</div><div class="row-sub">${c.temContas ? (c.qtdLancamentos ?? c.qtdDoacoes) + " lançamentos" : "Sem prestação"}${delta !== null && Math.abs(delta) > 0.05 ? ` · <span class="${delta < 0 ? "negative" : "positive"}">${delta >= 0 ? "+" : ""}${short(delta)}</span>` : ""}</div></td><td class="chevron-cell"><span class="chevron" aria-hidden="true">›</span></td></tr>`;
+        return `<tr data-id="${c.id}"><td class="rank${pos <= 3 ? " top" : ""}">${pos}</td><td><button class="candidate-open" data-open="${c.id}" aria-label="Ver contas de ${esc(c.nome)}">${avatar(c)}<span class="candidate-info"><span class="candidate-name">${esc(c.nome)}</span><span class="candidate-meta"><span class="party-tag${c.partido === "NOVO" ? " novo" : ""}">${esc(c.partido)}</span><span>${c.numero}</span><span>· ${c.cargo === 6 ? "Federal" : "Estadual"}</span></span></span></button></td><td class="source-cell"><div class="mini-bar" aria-hidden="true">${bar(sources([c]))}</div><div class="mini-note">${total ? pct(M.publicFunds(c), total) + " de fundos públicos" : c.temContas ? "Sem receita declarada" : "Sem prestação disponível"}</div></td><td class="money"><div class="row-value">${c.temContas ? brl(value) : "—"}</div>${c.temContas ? recentRevenueRow(c, p) : ""}<div class="row-sub">${c.temContas ? (c.qtdLancamentos ?? c.qtdDoacoes) + " lançamentos" : "Sem prestação"}</div></td><td class="chevron-cell"><span class="chevron" aria-hidden="true">›</span></td></tr>`;
       })
       .join("") ||
     `<tr><td colspan="5">${empty("Nenhum candidato encontrado", "Tente outro nome, número ou partido.")}</td></tr>`;
