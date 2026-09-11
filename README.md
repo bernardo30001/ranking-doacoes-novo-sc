@@ -15,7 +15,7 @@ na revisão de 11/09/2026, eram 644 candidatos.
 - Doações uma a uma, fornecedores completos e categorias de despesa.
 - Histórico diário e alterações de lançamentos entre coletas completas.
 - Compartilhamento do recorte ou candidato por link, exportação CSV, temas
-  claro e escuro e navegação adaptada ao celular e ao teclado.
+  claro e escuro (escuro por padrão) e navegação adaptada ao celular e ao teclado.
 
 ## Como os números são interpretados
 

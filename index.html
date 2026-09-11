@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,15 @@
     />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary" />
-    <meta name="theme-color" content="#f6f7f9" />
+    <meta name="theme-color" content="#12191d" />
+    <script>
+      // Aplica a preferência antes do CSS, sem mostrar um quadro claro ao abrir.
+      try {
+        if (localStorage.getItem("ranking-theme-preference") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch {}
+    </script>
     <link rel="icon" href="icone.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="estilo.css" />
   </head>
@@ -69,7 +77,7 @@
           <button
             id="theme"
             class="icon-button"
-            aria-label="Ativar tema escuro"
+            aria-label="Ativar tema claro"
             title="Alternar tema"
           >
             <span data-icon="moon"></span></button

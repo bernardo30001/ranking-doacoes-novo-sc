@@ -813,12 +813,13 @@ function exportCSV() {
 }
 function setTheme(dark) {
   document.documentElement.dataset.theme = dark ? "dark" : "light";
+  $('meta[name="theme-color"]').content = dark ? "#12191d" : "#f6f7f9";
   $("#theme").setAttribute(
     "aria-label",
     dark ? "Ativar tema claro" : "Ativar tema escuro",
   );
   try {
-    localStorage.setItem("ranking-theme", dark ? "dark" : "light");
+    localStorage.setItem("ranking-theme-preference", dark ? "dark" : "light");
   } catch {}
 }
 function changed() {
@@ -831,11 +832,9 @@ document
   .querySelectorAll("[data-icon]")
   .forEach((e) => (e.innerHTML = icon(e.dataset.icon)));
 hydrateURL();
-try {
-  setTheme(localStorage.getItem("ranking-theme") === "dark");
-} catch {
-  setTheme(false);
-}
+// A chave anterior também guardava o tema claro aplicado automaticamente.
+// A nova preferência começa no escuro e respeita mudanças feitas pelo botão.
+setTheme(document.documentElement.dataset.theme !== "light");
 $("#theme").onclick = () =>
   setTheme(document.documentElement.dataset.theme !== "dark");
 $("#abas").onclick = (e) => {

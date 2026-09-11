@@ -2045,3 +2045,18 @@ footer #rodape-atualizacao {
     font-size: 11px;
   }
 }
+
+/* Indicadores iniciais compactos; os detalhes mantêm seu espaço de leitura. */
+#resumo { grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:16px; }
+#resumo .metric { padding:11px 14px; border-radius:10px; }
+#resumo .metric-label { margin-bottom:5px; }
+#resumo .metric-value { font-size:21px; line-height:1.2; letter-spacing:-.5px; }
+#resumo .metric-note { font-size:10px; margin-top:4px; line-height:1.4; }
+#resumo .exact { margin-top:2px; font-size:10px; }
+html[data-theme="dark"] #resumo .metric.featured { border-color:#3b5d51; }
+@media(max-width:650px) {
+  #resumo { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-bottom:12px; }
+  #resumo .metric { padding:10px 12px; }
+  #resumo .metric-value { font-size:20px; }
+  #resumo .metric-label { font-size:10px; }
+}
