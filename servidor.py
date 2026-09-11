@@ -20,7 +20,7 @@ import time
 import webbrowser
 from datetime import datetime
 
-import coletar
+import atualizar
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 trava = threading.Lock()
@@ -31,7 +31,7 @@ def coletar_agora():
     """Roda o coletor. Uma execucao por vez."""
     with trava:
         try:
-            coletar.main()
+            atualizar.executar()
             ultima_coleta.update(quando=datetime.now().isoformat(), erro=None)
             return True, None
         except Exception as e:
@@ -54,6 +54,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         if self.path.rstrip("/") != "/api/atualizar":
             return self.send_error(404)
+        from urllib.parse import urlsplit
+        origin = self.headers.get("Origin")
+        if origin and urlsplit(origin).netloc != self.headers.get("Host"):
+            return self.send_error(403)
         ok, erro = coletar_agora()
         corpo = json.dumps({"ok": ok, "erro": erro}).encode()
         self.send_response(200 if ok else 503)
@@ -83,6 +87,8 @@ def main():
     p.add_argument("--minutos", type=int, default=30, help="intervalo entre coletas")
     p.add_argument("--sem-navegador", action="store_true")
     args = p.parse_args()
+    if args.minutos < 1 or not 1 <= args.porta <= 65535:
+        p.error("Use intervalo de pelo menos 1 minuto e porta entre 1 e 65535.")
 
     if not os.path.exists(os.path.join(AQUI, "dados.json")):
         coletar_agora()
@@ -90,7 +96,7 @@ def main():
     threading.Thread(target=laco, args=(args.minutos,), daemon=True).start()
 
     url = f"http://localhost:{args.porta}"
-    with Servidor(("", args.porta), Handler) as s:
+    with Servidor(("127.0.0.1", args.porta), Handler) as s:
         print(f"\n  Painel no ar: {url}")
         print(f"  Atualizando os dados a cada {args.minutos} min. Ctrl+C para parar.\n")
         if not args.sem_navegador:

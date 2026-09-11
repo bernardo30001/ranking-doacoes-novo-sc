@@ -1,96 +1,446 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ranking de Doações — Santa Catarina 2026</title>
-<meta name="description" content="Quanto cada candidato a Deputado Federal e Estadual em Santa Catarina arrecadou na eleição de 2026, e de onde veio o dinheiro. Dados do TSE.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ranking de Doações — Santa Catarina 2026">
-<meta property="og:description" content="Os 642 candidatos a Deputado Federal e Estadual em SC: quanto cada um arrecadou e quanto disso é dinheiro público. Atualizado de hora em hora com dados do TSE.">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#0d1117">
-<link rel="stylesheet" href="estilo.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💰</text></svg>">
-</head>
-<body>
-
-<header>
-  <div class="wrap">
-    <div class="titulo">
-      <h1>Ranking de <span>Doações</span></h1>
-      <span class="selo" id="selo">Santa Catarina · 2026</span>
-    </div>
-    <p class="sub">Todos os candidatos a Deputado Federal e Estadual em SC: quanto arrecadaram e de onde veio o dinheiro.</p>
-    <div class="status">
-      <span class="pulso"></span>
-      <span id="status">carregando…</span>
-      <button class="btn-refresh" id="btn-refresh">Atualizar agora</button>
-    </div>
-  </div>
-</header>
-
-<div class="wrap">
-  <section class="resumo" id="resumo"></section>
-
-  <section class="composicao">
-    <h2>De onde vem o dinheiro — fundos públicos x outros recursos</h2>
-    <div class="barra" id="barra-global"></div>
-    <div class="legenda" id="legenda-global"></div>
-  </section>
-
-  <div class="controles">
-    <div class="abas" id="abas">
-      <button data-cargo="0" class="on">Todos</button>
-      <button data-cargo="6">Federal</button>
-      <button data-cargo="7">Estadual</button>
-    </div>
-    <button class="btn-novo" id="btn-novo" title="Mostrar só os candidatos do NOVO">Só o NOVO</button>
-    <select id="partido" aria-label="Filtrar por partido">
-      <option value="">Todos os partidos</option>
-    </select>
-    <input type="search" id="busca" placeholder="Buscar candidato…" autocomplete="off">
-    <select id="ordem">
-      <option value="total">Mais arrecadou</option>
-      <option value="fundos">Mais dinheiro público</option>
-      <option value="privado">Mais dinheiro privado</option>
-      <option value="despesas">Mais gastou</option>
-      <option value="nome">Nome (A–Z)</option>
-    </select>
-  </div>
-
-  <div class="lista" id="lista"></div>
-
-  <section id="secao-correcoes" hidden>
-    <h2 class="titulo-secao">Correções de prestação de contas
-      <span class="nota-secao">quando uma campanha muda o valor de uma doação que já havia declarado</span></h2>
-    <div class="correcoes" id="correcoes"></div>
-  </section>
-
-  <h2 class="titulo-secao" id="rot-doadores">Maiores doadores
-    <span class="nota-secao">lista completa, doação a doação</span></h2>
-  <div class="doadores" id="doadores"></div>
-
-  <h2 class="titulo-secao">Para onde vai o dinheiro
-    <span class="nota-secao">fornecedores contratados pelas campanhas</span></h2>
-  <div class="doadores" id="fornecedores"></div>
-
-  <h2 class="titulo-secao">Em que gastam</h2>
-  <div class="categorias" id="categorias"></div>
-
-  <footer>
-    Fonte: <a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" rel="noopener">DivulgaCandContas — Tribunal Superior Eleitoral</a>.
-    Todos os 642 candidatos a Deputado Federal e Estadual em Santa Catarina.
-    Os valores refletem as prestações de contas parciais entregues pelas campanhas e mudam conforme novas entregas são enviadas ao TSE. &quot;Outros recursos&quot; é tudo que não veio do Fundo Eleitoral (FEFC) nem do Fundo Partidário — inclui doações de pessoas físicas, vaquinhas, recursos próprios e repasses do partido feitos com dinheiro não originado dos fundos.
-    <span id="rodape-atualizacao"></span>
-  </footer>
-</div>
-
-<div class="fundo-modal" id="modal">
-  <div class="modal" id="modal-conteudo"></div>
-</div>
-
-<script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ranking de Doações · Santa Catarina 2026</title>
+    <meta
+      name="description"
+      content="Acompanhe as receitas, os fundos públicos e as despesas dos candidatos a deputado federal e estadual em Santa Catarina. Dados do TSE, com filtros por partido."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Ranking de Doações · Santa Catarina 2026"
+    />
+    <meta
+      property="og:description"
+      content="De onde vem e para onde vai o dinheiro das campanhas em SC. Consulte candidatos, doadores, despesas e alterações nas declarações."
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <link rel="icon" href="icone.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
+    <a class="skip" href="#principal">Pular para o conteúdo</a>
+    <aside class="sidebar">
+      <a class="brand" href="./" aria-label="Ranking de Doações, início"
+        ><span class="brand-mark" aria-hidden="true">r<span>.</span></span
+        ><span>ranking de<br /><strong>doações</strong></span></a
+      >
+      <div class="rail-label">OBSERVATÓRIO ELEITORAL</div>
+      <nav class="navigation" aria-label="Seções do painel">
+        <button data-view="candidatos" class="active">
+          <span data-icon="ranking"></span>Candidatos
+        </button>
+        <button data-view="doadores">
+          <span data-icon="users"></span>Doadores
+        </button>
+        <button data-view="despesas">
+          <span data-icon="wallet"></span>Despesas
+        </button>
+        <button data-view="alteracoes">
+          <span data-icon="activity"></span>Alterações
+          <span class="nav-count" id="correction-count"></span>
+        </button>
+        <button data-view="metodologia">
+          <span data-icon="info"></span>Como ler os dados
+        </button>
+      </nav>
+      <div class="rail-bottom">
+        <span class="source-dot"></span><strong>Dados públicos do TSE</strong>
+        <p>Painel independente.<br />Santa Catarina · Eleições 2026</p>
+        <a
+          href="https://divulgacandcontas.tse.jus.br/divulga/"
+          target="_blank"
+          rel="noopener"
+          >Consultar a fonte <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </aside>
+    <main id="principal" tabindex="-1">
+      <header class="topbar">
+        <span class="breadcrumb"
+          >Transparência eleitoral <span>/</span> Santa Catarina</span
+        >
+        <div class="top-actions">
+          <button
+            id="theme"
+            class="icon-button"
+            aria-label="Ativar tema escuro"
+            title="Alternar tema"
+          >
+            <span data-icon="moon"></span></button
+          ><button id="share" class="button secondary">
+            <span data-icon="share"></span>Compartilhar
+          </button>
+        </div>
+      </header>
+      <section class="hero">
+        <div>
+          <p class="eyebrow"><span class="state-tag">SC</span> ELEIÇÕES 2026</p>
+          <h1>O dinheiro das campanhas,<br /><span>às claras.</span></h1>
+          <p class="intro">
+            Quem recebe, quem financia e para onde vai.<br />Deputados federais
+            e estaduais, em um só lugar.
+          </p>
+        </div>
+        <div class="update-box">
+          <div class="status-line">
+            <span class="source-dot" id="status-dot"></span
+            ><strong id="status">Carregando dados…</strong>
+          </div>
+          <span id="status-date">Consultando a última publicação</span
+          ><span>Coleta programada de hora em hora</span
+          ><button id="btn-refresh" class="text-button" hidden>
+            Consultar o TSE agora</button
+          ><button id="retry" class="text-button" hidden>
+            Tentar carregar novamente
+          </button>
+        </div>
+      </section>
+      <div id="load-error" role="alert" hidden></div>
+      <section class="filterbar" aria-label="Filtros do painel">
+        <div class="filter-top">
+          <div class="segmented" id="abas" aria-label="Cargo">
+            <button data-cargo="0" aria-pressed="true" class="on">
+              Todos os cargos</button
+            ><button data-cargo="6" aria-pressed="false">Federal</button
+            ><button data-cargo="7" aria-pressed="false">Estadual</button>
+          </div>
+          <button class="btn-novo" id="btn-novo" aria-pressed="false">
+            <span class="novo-dot"></span>Só o NOVO</button
+          ><label class="party-filter"
+            ><span class="sr-only">Filtrar por partido</span
+            ><select id="partido">
+              <option value="">Todos os partidos</option>
+            </select></label
+          ><label class="search"
+            ><span data-icon="search"></span
+            ><span class="sr-only">Buscar candidato por nome ou número</span
+            ><input
+              type="search"
+              id="busca"
+              placeholder="Nome ou número do candidato"
+              autocomplete="off"
+          /></label>
+        </div>
+        <div class="filter-bottom">
+          <span id="selo">Todos os partidos · Todos os cargos</span
+          ><button class="text-button" id="clear-filters" hidden>
+            Limpar filtros <span aria-hidden="true">×</span></button
+          ><span id="filter-count" aria-live="polite"></span>
+        </div>
+      </section>
+      <div id="dashboard" aria-busy="true">
+        <section
+          class="metrics"
+          id="resumo"
+          aria-label="Resumo do recorte selecionado"
+        >
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </section>
+        <div class="overview-grid">
+          <section class="panel composition-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">ORIGEM DOS RECURSOS</p>
+                <h2>De onde vem o dinheiro</h2>
+              </div>
+              <button
+                class="icon-button"
+                data-go="metodologia"
+                aria-label="Entender a origem dos recursos"
+              >
+                <span data-icon="info"></span>
+              </button>
+            </div>
+            <div
+              id="barra-global"
+              class="composition-bar"
+              aria-hidden="true"
+            ></div>
+            <div id="legenda-global" class="legend"></div>
+            <p class="panel-note">
+              Fontes dos recursos recebidos, descontadas as devoluções.
+            </p>
+          </section>
+          <section class="panel trend-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">AO LONGO DA CAMPANHA</p>
+                <h2>Evolução das receitas</h2>
+              </div>
+              <span id="trend-period" class="tag"></span>
+            </div>
+            <div id="trend"></div>
+            <p class="panel-note" id="trend-note">
+              Histórico das declarações publicadas.
+            </p>
+          </section>
+        </div>
+        <section
+          id="view-candidatos"
+          class="view panel"
+          aria-labelledby="ranking-title"
+        >
+          <div class="panel-head ranking-head">
+            <div>
+              <h2 id="ranking-title">Ranking de candidatos</h2>
+              <p id="ranking-sub" class="muted">
+                Do maior para o menor valor arrecadado
+              </p>
+            </div>
+            <div class="list-actions">
+              <label
+                ><span class="sr-only">Ordenar candidatos</span
+                ><select id="ordem">
+                  <option value="total">Maior arrecadação líquida</option>
+                  <option value="fundos">Mais fundos públicos</option>
+                  <option value="fefc">Mais Fundo Eleitoral</option>
+                  <option value="fp">Mais Fundo Partidário</option>
+                  <option value="outros">Mais outros recursos</option>
+                  <option value="despesas">Mais despesas contratadas</option>
+                  <option value="pagas">Mais despesas pagas</option>
+                  <option value="nome">Nome (A–Z)</option>
+                </select></label
+              ><button
+                id="export"
+                class="icon-button"
+                aria-label="Baixar o ranking filtrado em CSV"
+                title="Baixar CSV"
+              >
+                <span data-icon="download"></span>
+              </button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="rank-col">#</th>
+                  <th scope="col">Candidato</th>
+                  <th scope="col" class="source-col">Composição da receita</th>
+                  <th scope="col" class="money-col" id="metric-title">
+                    Arrecadação líquida
+                  </th>
+                  <th scope="col" class="chevron-col">
+                    <span class="sr-only">Detalhes</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="lista"></tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <span id="page-info" aria-live="polite"></span>
+            <div>
+              <button id="prev" class="button secondary">← Anterior</button
+              ><button id="next" class="button secondary">Próxima →</button>
+            </div>
+          </div>
+        </section>
+        <section id="view-doadores" class="view panel" hidden>
+          <div class="panel-head">
+            <div>
+              <h2>Quem financia as campanhas</h2>
+              <p class="muted">
+                Doações agrupadas por doador no recorte selecionado.
+              </p>
+            </div>
+            <label class="compact-search"
+              ><span class="sr-only">Buscar doador</span
+              ><input
+                id="donor-search"
+                type="search"
+                placeholder="Buscar doador ou documento"
+            /></label>
+          </div>
+          <div class="funding-summary" id="funding-summary"></div>
+          <p class="panel-note">
+            Repasses de partidos podem vir dos fundos ou de outros recursos. As
+            duas classificações não devem ser somadas.
+          </p>
+          <div id="doadores" class="entity-list"></div>
+          <button class="button secondary more" id="more-donors" hidden>
+            Mostrar mais doadores
+          </button>
+        </section>
+        <section id="view-despesas" class="view" hidden>
+          <div class="expense-metrics" id="expense-metrics"></div>
+          <div class="expense-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Principais fornecedores</h2>
+                  <p class="muted">Despesas contratadas no recorte.</p>
+                </div>
+              </div>
+              <label class="compact-search supplier-search"
+                ><span class="sr-only">Buscar fornecedor</span
+                ><input
+                  type="search"
+                  id="supplier-search"
+                  placeholder="Buscar fornecedor ou documento"
+              /></label>
+              <div id="fornecedores" class="entity-list"></div>
+              <button class="button secondary more" id="more-suppliers" hidden>
+                Mostrar mais fornecedores
+              </button>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Em que gastam</h2>
+                  <p class="muted">Categorias declaradas ao TSE.</p>
+                </div>
+              </div>
+              <div id="categorias" class="categories"></div>
+            </section>
+          </div>
+        </section>
+        <section id="view-alteracoes" class="view panel" hidden>
+          <div class="panel-head">
+            <div>
+              <h2>Alterações nas declarações</h2>
+              <p class="muted">
+                Diferenças observadas entre coletas completas.
+              </p>
+            </div>
+          </div>
+          <p class="panel-note">
+            Uma alteração não comprova erro ou irregularidade. Consulte as
+            entregas da campanha no TSE para verificar o contexto.
+          </p>
+          <div id="correcoes" class="correction-list"></div>
+        </section>
+        <section id="view-metodologia" class="view panel methodology" hidden>
+          <p class="eyebrow">TRANSPARÊNCIA TAMBÉM NOS CRITÉRIOS</p>
+          <h2>Como ler este painel</h2>
+          <div class="method-grid">
+            <article>
+              <h3>Arrecadação líquida</h3>
+              <p>
+                É o total bruto declarado menos as receitas devolvidas. O
+                ranking, os cartões e os percentuais usam essa mesma base. No
+                detalhe, você encontra bruto e devoluções separados.
+              </p>
+            </article>
+            <article>
+              <h3>Quem entregou × de onde veio</h3>
+              <p>
+                Um candidato pode repassar dinheiro do Fundo Partidário. O
+                doador é o candidato; a fonte continua sendo o fundo. Repasses
+                de partidos e fundos públicos são formas diferentes de olhar os
+                mesmos recursos.
+              </p>
+            </article>
+            <article>
+              <h3>Fundos e outros recursos</h3>
+              <p>
+                Fundo Eleitoral (FEFC) e Fundo Partidário são fontes de
+                financiamento. “Outros recursos” é a classificação do TSE para
+                recursos que não vieram desses dois fundos. Não significa apenas
+                doação de pessoa física.
+              </p>
+            </article>
+            <article>
+              <h3>Contratado não é pago</h3>
+              <p>
+                Despesas contratadas são compromissos declarados. Despesas pagas
+                são pagamentos declarados. Diferenças entre receita, contratação
+                e pagamento, isoladamente, não permitem concluir se há
+                irregularidade.
+              </p>
+            </article>
+            <article>
+              <h3>Estimáveis e origem não identificada</h3>
+              <p>
+                Recursos estimáveis são bens ou serviços doados, avaliados em
+                reais. RONI significa recurso de origem não identificada. Ambos
+                aparecem separados na composição.
+              </p>
+            </article>
+            <article>
+              <h3>Somar campanhas tem um limite</h3>
+              <p>
+                O total do painel soma as receitas dos candidatos no recorte. Um
+                repasse entre duas campanhas pode aparecer na arrecadação de
+                ambas. Por isso, essa soma não representa dinheiro único que
+                entrou na eleição.
+              </p>
+            </article>
+            <article>
+              <h3>Atualização e cobertura</h3>
+              <p>
+                Consultamos candidatos a deputado federal e estadual em SC. A
+                coleta é programada de hora em hora e pode atrasar. O horário do
+                painel indica a última coleta concluída; a data da prestação de
+                cada campanha aparece no detalhe.
+              </p>
+            </article>
+            <article>
+              <h3>Conferência e alterações</h3>
+              <p>
+                As somas dos lançamentos são comparadas aos totais do TSE antes
+                da publicação. Uma coleta incompleta não substitui a anterior.
+                Essa conferência é aritmética e não equivale à aprovação de
+                contas pela Justiça Eleitoral.
+              </p>
+            </article>
+          </div>
+          <div class="method-footer">
+            <a
+              class="button primary"
+              href="https://divulgacandcontas.tse.jus.br/divulga/"
+              target="_blank"
+              rel="noopener"
+              >Consultar DivulgaCandContas ↗</a
+            ><a
+              href="https://github.com/bernardo30001/ranking-doacoes-novo-sc"
+              target="_blank"
+              rel="noopener"
+              >Ver código e critérios ↗</a
+            >
+          </div>
+        </section>
+      </div>
+      <footer>
+        <span><strong>ranking de doações</strong> · SC 2026</span>
+        <p>
+          Dados declarados pelas campanhas e publicados pelo
+          <a
+            href="https://divulgacandcontas.tse.jus.br/divulga/"
+            target="_blank"
+            rel="noopener"
+            >TSE</a
+          >. Painel independente; valores sujeitos a atualização.
+        </p>
+        <span id="rodape-atualizacao"></span>
+      </footer>
+    </main>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div id="modal-conteudo"></div>
+    </dialog>
+    <button
+      id="back-filters"
+      class="button back-filters"
+      hidden
+      aria-label="Voltar aos filtros"
+    >
+      Filtros ↑
+    </button>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <noscript
+      >Ative o JavaScript para consultar o painel. Os dados também estão
+      disponíveis no DivulgaCandContas do TSE.</noscript
+    >
+    <script src="modelo.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

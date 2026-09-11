@@ -2,13 +2,14 @@ name: Atualizar dados e publicar
 
 on:
   schedule:
-    - cron: '17 * * * *'   # de hora em hora
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -19,58 +20,69 @@ concurrency:
 jobs:
   publicar:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-
+          python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: Testar cálculos e preservação de dados
+        run: |
+          node --test tests/modelo.test.cjs
+          python -m unittest discover -s tests
 
-      # Dois passos de cache de proposito: o actions/cache versiona a entrada
-      # pelo conjunto de "path", entao juntar os arquivos num passo so tornaria
-      # invisiveis os caches antigos de historico.json e a serie diaria ja
-      # acumulada se perderia. Este passo mantem o path original.
-      - uses: actions/cache@v4
+      # Manter os paths separados preserva a compatibilidade dos caches antigos.
+      - uses: actions/cache/restore@v4
         with:
           path: historico.json
-          key: historico-${{ github.run_id }}
+          key: historico-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: historico-
-
-      # Estado dos lancamentos e feed de correcoes: base da comparacao entre
-      # rodadas que alimenta o detector de redeclaracoes.
-      - uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
         with:
           path: |
             estado.json
             correcoes.json
-          key: estado-${{ github.run_id }}
+          key: estado-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: estado-
 
-      - name: Coletar dados do TSE
-        run: python coletar.py
+      - name: Recuperar última publicação e histórico
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python recuperar.py
 
-      # Nao bloqueia a publicacao: se o TSE mandar algo estranho, o site
-      # continua no ar e a divergencia fica registrada no log.
-      - name: Auditar os valores
+      - name: Coletar e conferir uma nova versão completa
+        id: coleta
         continue-on-error: true
-        run: python verificar.py
+        run: python atualizar.py
 
-      - name: Montar o site
+      - name: Informar preservação da última coleta
+        if: steps.coleta.outcome != 'success'
         run: |
-          mkdir -p _site
-          cp index.html estilo.css app.js dados.json agregados.json _site/
-          cp historico.json correcoes.json _site/ 2>/dev/null || true
-          cp -r detalhe _site/ 2>/dev/null || true
-          # O GitHub Pages cacheia os assets por ~10 min. Carimbar o commit na
-          # URL garante que um visitante recorrente pegue o CSS/JS novos.
-          V=$(git rev-parse --short HEAD)
-          sed -i "s|href=\"estilo.css\"|href=\"estilo.css?v=$V\"|; s|src=\"app.js\"|src=\"app.js?v=$V\"|" _site/index.html
-          grep -o 'estilo.css?v=[a-f0-9]*' _site/index.html
+          echo '::warning::Nova coleta não concluída. Publicando a última coleta completa, com data original e aviso no painel.'
+          echo 'A nova coleta falhou. O site mantém os dados da última publicação completa, com a data original.' >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Conferir e montar o site
+        run: python publicar.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-
       - uses: actions/deploy-pages@v4
+        id: deploy
+
+      # O detector só avança depois de uma coleta conferida e publicada.
+      - uses: actions/cache/save@v4
+        if: steps.coleta.outcome == 'success'
+        with:
+          path: historico.json
+          key: historico-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/cache/save@v4
+        if: steps.coleta.outcome == 'success'
+        with:
+          path: |
+            estado.json
+            correcoes.json
+          key: estado-${{ github.run_id }}-${{ github.run_attempt }}

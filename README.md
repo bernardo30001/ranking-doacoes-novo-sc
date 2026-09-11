@@ -1,146 +1,103 @@
-# Ranking de Doações — NOVO / Santa Catarina · 2026
+# Ranking de Doações · Santa Catarina 2026
 
-**No ar:** <https://bernardo30001.github.io/ranking-doacoes-novo-sc/>
+[Consultar o painel](https://bernardo30001.github.io/ranking-doacoes-novo-sc/)
 
-Painel que acompanha quanto cada um dos **642 candidatos a Deputado Federal e
-Deputado Estadual em Santa Catarina** arrecadou na eleição de 2026, e de onde o
-dinheiro veio (Fundo Eleitoral, Fundo Partidário, doações privadas, vaquinhas).
+Acompanha os candidatos a deputado federal e estadual de **todos os partidos em
+Santa Catarina**, com o atalho **Só o NOVO**. A lista vem do TSE a cada coleta;
+na revisão de 11/09/2026, eram 644 candidatos.
 
-Dá para filtrar por cargo, por partido e por nome. O botão **Só o NOVO** deixa
-na tela apenas os candidatos do Partido NOVO.
+## Consultas disponíveis
 
-O painel mostra, para cada candidato, **todas** as doações uma a uma (data, doador,
-fonte e espécie), **para quem** a campanha pagou (fornecedor, CNPJ e categoria) e um
-feed de **correções** — quando uma campanha muda o valor de uma doação que já havia
-declarado ao TSE.
+- Ranking por arrecadação líquida, fundos públicos, FEFC, Fundo Partidário,
+  outros recursos, despesas contratadas ou pagas.
+- Filtros combinados de partido, cargo e nome/número; busca sem acentos.
+- Doações uma a uma, fornecedores completos e categorias de despesa.
+- Histórico diário e alterações de lançamentos entre coletas completas.
+- Compartilhamento do recorte ou candidato por link, exportação CSV, temas
+  claro e escuro e navegação adaptada ao celular e ao teclado.
 
-Os dados vêm direto do [DivulgaCandContas do TSE](https://divulgacandcontas.tse.jus.br/divulga/)
-e são recoletados sozinhos enquanto o servidor estiver rodando.
+## Como os números são interpretados
 
-## Como rodar
+**Líquido = total recebido − receitas devolvidas.** O ranking, os indicadores e
+as exportações descontam as devoluções. O histórico anterior não registrava
+esse desconto: o gráfico identifica explicitamente os valores como brutos.
+Variações líquidas só aparecem quando existe um ponto líquido anterior para
+todos os candidatos do recorte; ausência de registro não equivale a zero.
 
-```bash
+**Quem transferiu e a fonte são classificações diferentes do mesmo valor.** Um
+repasse de um candidato ou partido pode conservar a origem Fundo Partidário ou
+Fundo Eleitoral informada pelo TSE. O painel preserva os rótulos de cada
+lançamento. A soma entre campanhas pode contar o recebimento original e um
+repasse posterior: não representa dinheiro único que entrou no estado.
+
+**Contratado não significa pago.** Os fornecedores e categorias somam as despesas
+contratadas; os pagamentos aparecem separadamente. As checagens são de
+consistência aritmética, não de aprovação ou regularidade jurídica das contas.
+
+Fonte: [DivulgaCandContas / TSE](https://divulgacandcontas.tse.jus.br/divulga/),
+eleição `20322002026`, ano 2026, UF SC, cargos 6 e 7. Os valores refletem as
+prestações disponibilizadas pelas campanhas e podem ser retificados.
+
+## Atualização e publicação
+
+O GitHub Actions está programado para executar de hora em hora, no minuto 17,
+e também a cada alteração na `main`. Não depende de computador ligado.
+O horário é uma programação, não garantia de execução pontual: depende da
+fila do GitHub e da disponibilidade do TSE. A página consulta novas publicações
+a cada minuto enquanto estiver visível.
+
+1. Recupera a última publicação concluída e os caches de histórico e comparação.
+2. Coleta em uma pasta temporária e confere os valores de todos os candidatos.
+3. Só incorpora o novo conjunto se a coleta e a conferência passarem.
+4. Se houver falha, conserva a última coleta completa, a data original e um
+   aviso visível. A execução seguinte tenta novamente.
+5. Publica os recursos com identificação pelo conteúdo, evitando mistura de
+   arquivos de coletas diferentes e de versões antigas de CSS/JavaScript.
+6. Salva os caches de comparação somente depois da publicação de dados novos.
+
+`historico.json` e `estado.json`/`correcoes.json` usam caches separados para
+preservar compatibilidade com a série já acumulada. O histórico também é
+recuperado da publicação anterior caso o cache expire. Conserva-se até 45 dias;
+o gráfico apresenta os últimos 14 registros disponíveis a partir da ampliação
+para todos os partidos. O detector mantém os 300 eventos mais recentes e a
+interface exibe até 60 por recorte. Se o estado de comparação expirar, a coleta
+seguinte monta uma nova base, sem inventar alterações anteriores.
+
+## Desenvolvimento e verificação
+
+```sh
 pip3 install -r requirements.txt
 python3 servidor.py
 ```
 
-O painel abre em <http://localhost:8000> e se atualiza a cada 30 minutos.
+O servidor abre em `http://localhost:8000`, restrito à própria máquina. Opções:
+`--porta 8080`, `--minutos 30` e `--sem-navegador`. A coleta inicial pode demorar.
+O botão de consulta ao TSE só existe no servidor local.
 
-| opção | o que faz |
-|---|---|
-| `--minutos 10` | muda o intervalo entre coletas |
-| `--porta 8080` | muda a porta |
-| `--sem-navegador` | não abre o navegador sozinho |
-
-O botão **Atualizar agora** no cabeçalho força uma coleta na hora.
-
-Para só baixar os dados, sem servidor:
-
-```bash
-python3 coletar.py
+```sh
+python3 atualizar.py                 # coleta e auditoria antes de substituir dados
+python3 verificar.py                 # confere os arquivos existentes
+python3 publicar.py                  # confere e monta _site para o GitHub Pages
+python3 -m unittest discover -s tests
+node --test tests/modelo.test.cjs
 ```
 
-## Arquivos
+O coletor usa `curl_cffi` para compatibilidade com a conexão HTTPS do TSE.
+Falhas de rede, arquivos incompletos, valores inválidos e desaparecimento de
+prestações antes disponíveis interrompem a nova coleta, sem transformar falha
+em receita zero. As 12 checagens financeiras precisam passar para publicação.
+Os testes cobrem devoluções, agregação completa, homônimos, filtros, histórico,
+retificações, falhas de rede e preservação da última versão.
 
-| arquivo | o que é |
-|---|---|
-| `coletar.py` | busca os candidatos e as prestações de contas no TSE → `dados.json` |
-| `verificar.py` | audita se os valores de receita, fundos e despesa fecham entre si |
-| `servidor.py` | serve o site e reexecuta o coletor de tempos em tempos |
-| `index.html` / `estilo.css` / `app.js` | o painel |
-| `dados.json` | o ranking: um registro por candidato, sem os lançamentos (gerado) |
-| `agregados.json` | doadores, fornecedores e categorias por candidato (gerado) |
-| `detalhe/<id>.json` | os lançamentos um a um, buscados só ao abrir um candidato (gerado) |
-| `correcoes.json` | feed de redeclarações de prestação de contas (gerado) |
-| `estado.json` | retrato dos lançamentos da rodada anterior, base da comparação (gerado, fora do git) |
-| `historico.json` | um ponto por dia, usado para mostrar a variação (gerado) |
+O front-end não exige compilação: `index.html`, `estilo.css`, `modelo.js` e
+`app.js`. `recuperar.py`, `atualizar.py` e `publicar.py` cuidam da recuperação,
+atualização e montagem do site. Arquivos de dados publicados são gerados pelo
+coletor; `estado.json` fica fora do site e do Git.
 
-O painel carrega `dados.json` primeiro e busca o resto em segundo plano, para o
-ranking aparecer sem esperar. Os lançamentos de um candidato só são baixados
-quando alguém abre o card dele.
+## Backup anterior à revisão
 
-## Auditoria
+[Repositório privado do backup de 11/09/2026](https://github.com/bernardo30001/ranking-doacoes-novo-sc-backup-2026-09-11)
 
-`python3 verificar.py` confere, candidato a candidato, se os números do TSE fecham:
-
-- receitas por natureza somam o total recebido;
-- Fundo Eleitoral + Fundo Partidário + outros recursos somam os recursos financeiros;
-- somando RONI e estimáveis, chega-se ao total líquido;
-- a soma das doações itemizadas bate com o total líquido;
-- a soma das despesas por categoria bate com o total de despesas contratadas;
-- despesas pagas ≤ contratadas ≤ limite legal de gastos;
-- fundos públicos ≤ total arrecadado, e nenhum valor negativo.
-
-Sai com código 1 se alguma dessas contas não fechar. Roda também a cada coleta no
-GitHub Actions, sem bloquear a publicação — se o TSE mandar algo estranho, o site
-segue no ar e a divergência fica no log.
-
-O relatório ainda lista quem **contratou mais despesa do que declarou ter
-arrecadado**. Isso não é inconsistência: a despesa pode ser contratada a prazo.
-Mas vale acompanhar.
-
-## Sobre os dados
-
-- **Fundo Eleitoral (FEFC)** e **Fundo Partidário** são dinheiro público. O partido
-  recebe e repassa aos candidatos.
-- **Outros recursos** é tudo que não saiu desses dois fundos: doações de pessoas
-  físicas, vaquinhas, recursos próprios e repasses do partido feitos com dinheiro
-  próprio dele.
-- Por isso um repasse do "Direção Nacional – NOVO" pode aparecer dividido entre fundo
-  e outros recursos: o TSE rastreia a origem original de cada real.
-- O TSE atualiza os dados de candidatura a cada 60 minutos. As prestações de contas
-  mudam quando cada campanha entrega um novo relatório — o painel reflete a última
-  entrega disponível, então "tempo real" aqui significa "o mais recente que o TSE
-  publicou", não valores minuto a minuto.
-- Valores são **parciais** até a prestação de contas final.
-- O ranking de doadores que o TSE exibe na tela do candidato traz só os **5
-  maiores**. O painel não usa esse ranking: busca os lançamentos um a um, então a
-  lista de doadores é completa. (Ex.: um candidato que aparecia com 5 doadores
-  no TSE tem, de fato, 164.)
-- **Bruto x líquido:** `totalRecebido` do TSE é bruto e inclui doação que foi
-  devolvida. O painel mostra o líquido e, quando houve devolução, diz o valor.
-- **RONI** é "recurso de origem não identificada"; **estimáveis** são bens e
-  serviços doados em vez de dinheiro. Os dois entram na composição para que a
-  barra sempre feche 100% do arrecadado.
-
-## Detalhe técnico
-
-O TSE fica atrás de um WAF (Akamai) que bloqueia clientes HTTP comuns pelo
-*fingerprint* de TLS — `curl` e `requests` levam 403. Por isso o coletor usa
-`curl_cffi`, que imita o handshake do Chrome.
-
-## Como o site publicado se mantém atualizado
-
-`.github/workflows/atualizar.yml` roda de hora em hora no GitHub Actions: coleta do
-TSE, monta a pasta do site e publica no GitHub Pages. Não é preciso deixar nada
-ligado aqui.
-
-O `historico.json` (usado para a variação diária) sobrevive entre execuções via
-cache do Actions.
-
-Para forçar uma atualização fora da hora:
-
-```bash
-gh workflow run "Atualizar dados e publicar"
-```
-
-No site publicado o botão "Atualizar agora" não aparece — não há coletor do outro
-lado. Ele só existe quando você roda `servidor.py` na sua máquina.
-
-## Detector de correções
-
-A cada coleta o `coletar.py` compara os lançamentos de cada candidato com os da
-rodada anterior (`estado.json`). Quando uma campanha **muda o valor de uma doação
-que já havia declarado**, ou apaga uma, o evento entra em `correcoes.json` e
-aparece no painel. Doação nova não entra: isso é o fluxo normal.
-
-A comparação é por multiconjunto, e não por chave única, porque
-`documento + data + doador + fonte` se repete (doações iguais no mesmo dia) e
-parte dos lançamentos vem sem número de documento.
-
-Foi assim que a Bia Borba (NOVO) saltou de R$ 814 mil para R$ 546 mil em 07/09:
-um PIX de 04/09 foi redeclarado de R$ 280.000,00 para R$ 12.000,00.
-
-## Fonte
-
-Tribunal Superior Eleitoral — DivulgaCandContas, eleição `20322002026` (Geral Federal 2026).
+Contém o histórico Git anterior, os arquivos efetivamente publicados, os dados
+e o histórico diário daquele momento, além de `RESTAURAR.md`. As automações
+estão desativadas nesse repositório para manter o retrato preservado.

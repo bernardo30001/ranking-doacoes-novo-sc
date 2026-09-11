@@ -11,10 +11,11 @@ entao usamos curl_cffi para imitar o handshake TLS do Chrome.
 """
 
 import json
+import math
 import os
 import sys
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone, timedelta
 
 from curl_cffi import requests
@@ -27,14 +28,13 @@ CARGOS = {6: "Deputado Federal", 7: "Deputado Estadual"}
 DESTAQUE = "NOVO"            # partido em destaque no painel
 TRABALHADORES = 8            # requisicoes simultaneas ao TSE
 
-AQUI = os.path.dirname(os.path.abspath(__file__))
+AQUI = os.environ.get("RANKING_DATA_DIR", os.path.dirname(os.path.abspath(__file__)))
 SAIDA = os.path.join(AQUI, "dados.json")
 HISTORICO = os.path.join(AQUI, "historico.json")
 AGREGADOS = os.path.join(AQUI, "agregados.json")
 CORRECOES = os.path.join(AQUI, "correcoes.json")
 ESTADO = os.path.join(AQUI, "estado.json")
 DETALHE = os.path.join(AQUI, "detalhe")
-MAX_FORNECEDORES = 20        # por candidato no arquivo de agregados
 FUSO = timezone(timedelta(hours=-3))  # horario de Brasilia
 
 HEADERS = {
@@ -42,6 +42,10 @@ HEADERS = {
     "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
     "Referer": "https://divulgacandcontas.tse.jus.br/divulga/",
 }
+
+
+class ErroColeta(RuntimeError):
+    """Uma falha de transporte nunca deve virar receita zero."""
 
 
 def get(url, tentativas=4):
@@ -61,7 +65,7 @@ def get(url, tentativas=4):
         except Exception as e:
             print(f"  ! {type(e).__name__}: {e}", file=sys.stderr)
         time.sleep(1.5 * (i + 1))
-    return None
+    raise ErroColeta(f"TSE indisponível após {tentativas} tentativas: {url}")
 
 
 def listar_candidatos(cargo):
@@ -70,7 +74,10 @@ def listar_candidatos(cargo):
     j = get(url)
     if not j:
         raise RuntimeError(f"nao consegui listar candidatos do cargo {cargo}")
-    return j.get("candidatos") or []
+    lista = j.get("candidatos")
+    if not isinstance(lista, list) or not lista:
+        raise ErroColeta(f"Listagem incompleta para cargo {cargo}")
+    return lista
 
 
 def numeros_de_partido(cargo):
@@ -83,15 +90,20 @@ def numeros_de_partido(cargo):
 def num(v):
     """Normaliza valores monetarios (None -> 0.0)."""
     try:
-        return round(float(v or 0), 2)
-    except (TypeError, ValueError):
-        return 0.0
+        value = round(float(v or 0), 2)
+        if not math.isfinite(value):
+            raise ValueError("Valor não finito")
+        return value
+    except (TypeError, ValueError) as exc:
+        raise ErroColeta("O TSE retornou um valor monetário inválido") from exc
 
 
 def receitas_itemizadas(id_prestador, id_entrega):
     """Lancamentos de receita, um a um. Substitui o ranking do TSE, que so
     publica os 5 maiores doadores de cada candidato."""
     l = get(f"{BASE}/prestador/consulta/receitas/{ID_ELEICAO}/{id_prestador}/{id_entrega}/lista?pagina=1")
+    if not isinstance(l, list):
+        raise ErroColeta(f"Lista de receitas indisponível: {id_prestador}/{id_entrega}")
     return [{
         "data": r.get("dtReceita"),
         "doador": r.get("nomeDoador"),
@@ -108,6 +120,8 @@ def receitas_itemizadas(id_prestador, id_entrega):
 def despesas_itemizadas(id_prestador, id_entrega):
     """Lancamentos de despesa: para quem foi o dinheiro e em que categoria."""
     l = get(f"{BASE}/prestador/consulta/despesas/{ID_ELEICAO}/{id_prestador}/{id_entrega}")
+    if not isinstance(l, list):
+        raise ErroColeta(f"Lista de despesas indisponível: {id_prestador}/{id_entrega}")
     return [{
         "data": x.get("data"),
         "fornecedor": x.get("nomeFornecedor"),
@@ -141,9 +155,13 @@ def coletar_um(item):
     id_cand = base["id"]
     numero = base["numero"]
 
-    detalhe = get(f"{BASE}/candidatura/buscar/{ANO}/{UF}/{ID_ELEICAO}/candidato/{id_cand}") or {}
+    detalhe = get(f"{BASE}/candidatura/buscar/{ANO}/{UF}/{ID_ELEICAO}/candidato/{id_cand}")
+    if not isinstance(detalhe, dict) or str(detalhe.get("id")) != str(id_cand):
+        raise ErroColeta(f"Cadastro indisponível: {id_cand}")
     contas = get(f"{BASE}/prestador/consulta/{ID_ELEICAO}/{ANO}/{UF}/{cargo}/{nr_partido}/{numero}/{id_cand}")
 
+    if contas is not None and (not isinstance(contas, dict) or str(contas.get("idCandidato")) != str(id_cand)):
+        raise ErroColeta(f"Prestação incompatível: {id_cand}")
     d = (contas or {}).get("dadosConsolidados") or {}
     desp = (contas or {}).get("despesas") or {}
 
@@ -197,6 +215,9 @@ def coletar_um(item):
             f"SUL/{UF}/{ID_ELEICAO}/{id_cand}/{ANO}/{UF}"
         ),
         "temContas": contas is not None,
+        "idPrestador": id_prestador,
+        "idEntrega": id_entrega,
+        "despesasDisponiveis": desp.get("totalDespesasContratadas") is not None,
         "contasAtualizadas": (contas or {}).get("dataUltimaAtualizacaoContas"),
 
         # Total e composicao por natureza da receita
@@ -240,11 +261,27 @@ def coletar_um(item):
         # Fica fora do dados.json: vira agregados.json e detalhe/<id>.json.
         "_agregado": {
             "doadores": doadores,
-            "fornecedores": fornecedores[:MAX_FORNECEDORES],
+            "fornecedores": fornecedores,
             "categorias": categorias,
         },
         "_itens": {"receitas": receitas, "despesas": despesas},
     }
+
+
+def validar_candidato(c):
+    """Rejeita coleta incompleta antes de gerar quedas ou apagar histórico."""
+    a, it = c["_agregado"], c["_itens"]
+    pares = [
+        (sum(c["origem"].values()), c["liquido"], "origem"),
+        (sum(c["receitas"].values()), c["total"], "natureza"),
+        (sum(x["valor"] for x in it["receitas"]), c["liquido"], "receitas itemizadas"),
+        (sum(x["valor"] for x in it["despesas"]), c["despesas"]["contratadas"], "despesas itemizadas"),
+        (sum(x["valor"] for x in a["fornecedores"]), c["despesas"]["contratadas"], "fornecedores"),
+    ]
+    import math
+    for obtido, esperado, rotulo in pares:
+        if not math.isfinite(obtido) or not math.isfinite(esperado) or abs(obtido - esperado) > 0.05:
+            raise ErroColeta(f"{c['nome']}: {rotulo} incompletas ({obtido:.2f} vs {esperado:.2f})")
 
 
 def main():
@@ -269,11 +306,32 @@ def main():
             print(f"    (numero do partido deduzido para: {', '.join(sorted(map(str, faltando)))})")
 
     inicio = time.time()
-    with ThreadPoolExecutor(max_workers=TRABALHADORES) as pool:
-        candidatos = list(pool.map(coletar_um, alvos))
+    pool = ThreadPoolExecutor(max_workers=TRABALHADORES)
+    jobs = [pool.submit(coletar_um, alvo) for alvo in alvos]
+    try:
+        candidatos = [job.result() for job in as_completed(jobs)]
+    finally:
+        # Não inicia centenas de consultas pendentes depois de uma falha.
+        pool.shutdown(wait=True, cancel_futures=True)
     print(f"  {len(candidatos)} prestacoes de contas em {time.time() - inicio:.0f}s")
 
-    candidatos.sort(key=lambda c: -c["total"])
+    # Validar ANTES de atualizar o histórico ou o detector de alterações.
+    try:
+        anteriores = {c["id"]: c for c in json.load(open(SAIDA, encoding="utf-8"))["candidatos"]}
+    except FileNotFoundError:
+        anteriores = {}
+    ids = {c["id"] for c in candidatos}
+    if len(ids) != len(candidatos):
+        raise ErroColeta("Candidatos duplicados na listagem")
+    desaparecidos = set(anteriores) - ids
+    if desaparecidos:
+        raise ErroColeta(f"A listagem deixou de incluir {len(desaparecidos)} candidatos; requer conferência")
+    for c in candidatos:
+        if not c["temContas"] and anteriores.get(c["id"], {}).get("temContas"):
+            raise ErroColeta(f"Prestação antes disponível desapareceu: {c['nome']}")
+        validar_candidato(c)
+    agora = datetime.now(FUSO)
+    candidatos.sort(key=lambda c: -c["liquido"])
     for i, c in enumerate(candidatos, 1):
         c["posicao"] = i
 
@@ -292,14 +350,18 @@ def main():
 
     saida = {
         "atualizadoEm": agora.isoformat(),
+        "versaoSchema": 2,
+        "auditoria": {"status": "ok", "candidatos": len(candidatos), "tipo": "Conferência aritmética; não é aprovação de contas"},
         "eleicao": {"id": ID_ELEICAO, "ano": int(ANO), "uf": UF, "destaque": DESTAQUE},
         "partidos": partidos,
         "resumo": {
             "candidatos": len(candidatos),
             "comArrecadacao": sum(1 for c in candidatos if c["total"] > 0),
-            "totalArrecadado": round(total_geral, 2),
+            "totalArrecadado": round(sum(c["liquido"] for c in candidatos), 2),
+            "totalBruto": round(total_geral, 2),
+            "totalDevolvido": round(sum(c["devolvido"] for c in candidatos), 2),
             "porCargo": {
-                CARGOS[k]: round(sum(c["total"] for c in candidatos if c["cargo"] == k), 2)
+                CARGOS[k]: round(sum(c["liquido"] for c in candidatos if c["cargo"] == k), 2)
                 for k in CARGOS
             },
         },
@@ -335,12 +397,12 @@ def gravar_detalhes(agora, candidatos, itens):
     vivos = set()
     for c in candidatos:
         it = itens.get(c["id"]) or {}
-        if not it.get("receitas") and not it.get("despesas"):
-            continue
         vivos.add(f'{c["id"]}.json')
         corpo = {
             "id": c["id"],
             "nome": c["nome"],
+            "idPrestador": c["idPrestador"],
+            "idEntrega": c["idEntrega"],
             "atualizadoEm": agora.isoformat(),
             "receitas": it["receitas"],
             "despesas": it["despesas"],
@@ -391,7 +453,10 @@ def detectar_correcoes(agora, candidatos, itens):
     for c in candidatos:
         receitas = (itens.get(c["id"]) or {}).get("receitas") or []
         agora_ct = _chaves(receitas)
-        estado[c["id"]] = {"total": c["total"], "itens": dict(agora_ct)}
+        meta = {f'{r["doc"] or ""}|{r["data"] or ""}|{r["cpfCnpj"] or ""}|{r["fonte"] or ""}':
+                [r["doador"], r["data"], r["fonte"]] for r in receitas}
+        estado[c["id"]] = {"total": c["total"], "liquido": c["liquido"], "itens": dict(agora_ct),
+                           "meta": meta, "idPrestador": c["idPrestador"], "idEntrega": c["idEntrega"]}
 
         ant = antes.get(c["id"])
         if not ant:
@@ -410,8 +475,9 @@ def detectar_correcoes(agora, candidatos, itens):
             return g
 
         gs, ge = por_lancamento(saiu), por_lancamento(entrou)
-        nomes = {f'{r["doc"] or ""}|{r["data"] or ""}|{r["cpfCnpj"] or ""}|{r["fonte"] or ""}':
-                 (r["doador"], r["data"], r["fonte"]) for r in receitas}
+        nomes = dict(ant.get("meta") or {})
+        nomes.update({f'{r["doc"] or ""}|{r["data"] or ""}|{r["cpfCnpj"] or ""}|{r["fonte"] or ""}':
+                 (r["doador"], r["data"], r["fonte"]) for r in receitas})
 
         alteracoes, removidos = [], []
         for ident, velhos in gs.items():
@@ -420,10 +486,12 @@ def detectar_correcoes(agora, candidatos, itens):
             for i, v in enumerate(sorted(velhos, reverse=True)):
                 if i < len(novos):
                     n = sorted(novos, reverse=True)[i]
-                    alteracoes.append({"data": data, "doador": doador, "fonte": fonte,
+                    if abs(v - n) <= 0.05:
+                        continue
+                    alteracoes.append({"doc": ident.split("|")[0], "data": data, "doador": doador, "fonte": fonte,
                                        "de": v, "para": n})
                 else:
-                    removidos.append({"data": data, "doador": doador, "fonte": fonte, "valor": v})
+                    removidos.append({"doc": ident.split("|")[0], "data": data, "doador": doador, "fonte": fonte, "valor": v})
             ge[ident] = novos[len(velhos):]
 
         novos_lancamentos = sum(len(v) for v in ge.values())
@@ -435,6 +503,7 @@ def detectar_correcoes(agora, candidatos, itens):
             "id": c["id"], "nome": c["nome"], "partido": c["partido"],
             "cargo": c["cargo"], "cargoNome": c["cargoNome"],
             "totalAntes": ant.get("total"), "totalDepois": c["total"],
+            "idPrestador": c["idPrestador"], "entregaAntes": ant.get("idEntrega"), "entregaDepois": c["idEntrega"],
             "alteracoes": alteracoes, "removidos": removidos,
             "novos": novos_lancamentos,
         })
@@ -468,17 +537,19 @@ def registrar_historico(agora, candidatos, total_geral):
         "data": agora.strftime("%Y-%m-%d"),
         "hora": agora.strftime("%H:%M"),
         "total": round(total_geral, 2),
-        "porCandidato": {c["id"]: c["total"] for c in candidatos if c["total"] > 0},
+        "porCandidato": {c["id"]: c["total"] for c in candidatos},
+        "porCandidatoLiquido": {c["id"]: c["liquido"] for c in candidatos},
+        "escopoCompleto": True,
     }
     hist = [p for p in hist if p["data"] != ponto["data"]]
     hist.append(ponto)
     hist.sort(key=lambda p: p["data"])
-    # Sao 640 candidatos: guardar muitos dias deixaria o arquivo pesado
-    # para quem abre o painel. O painel so usa o ponto do dia anterior.
+    # Mantém até 45 dias; o gráfico exibe os 14 registros mais recentes.
     hist = hist[-45:]
 
-    with open(HISTORICO, "w", encoding="utf-8") as f:
+    with open(HISTORICO + ".tmp", "w", encoding="utf-8") as f:
         json.dump(hist, f, ensure_ascii=False, indent=1)
+    os.replace(HISTORICO + ".tmp", HISTORICO)
 
 
 if __name__ == "__main__":

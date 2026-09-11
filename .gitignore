@@ -6,3 +6,6 @@ estado.json
 # gerados pelo coletor a cada build; nao precisam versionar
 detalhe/
 agregados.json
+_site/
+*.tmp
+.coleta-anterior/

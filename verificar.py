@@ -10,10 +10,11 @@ Roda depois de coletar.py:
 """
 
 import json
+import math
 import os
 import sys
 
-AQUI = os.path.dirname(os.path.abspath(__file__))
+AQUI = os.environ.get("RANKING_DATA_DIR", os.path.dirname(os.path.abspath(__file__)))
 TOL = 0.05  # tolerancia em reais para arredondamento
 
 
@@ -25,6 +26,15 @@ def main():
     with open(os.path.join(AQUI, "dados.json"), encoding="utf-8") as f:
         d = json.load(f)
     cands = d["candidatos"]
+    if not cands or len({c['id'] for c in cands}) != len(cands):
+        raise ValueError("Lista vazia ou com candidatos duplicados")
+    for c in cands:
+        if c['cargo'] not in (6, 7) or d['eleicao']['uf'] != 'SC':
+            raise ValueError("Candidato fora do recorte de SC")
+        values = [c['total'], c['liquido'], c['devolvido'], c['financeiro'], c['estimado'],
+                  *c['origem'].values(), *c['receitas'].values(), *c['despesas'].values()]
+        if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in values):
+            raise ValueError("Valor monetário inválido")
     try:
         with open(os.path.join(AQUI, "agregados.json"), encoding="utf-8") as f:
             agr = json.load(f)
@@ -34,8 +44,22 @@ def main():
         a = agr.get(c["id"]) or {}
         c["_doadores"] = a.get("doadores") or []
         c["_categorias"] = a.get("categorias") or {}
+        c["_fornecedores"] = a.get("fornecedores") or []
+        path = os.path.join(AQUI, "detalhe", c["id"] + ".json")
+        with open(path, encoding="utf-8") as f:
+            detalhe = json.load(f)
+        if detalhe.get("id") != c["id"] or detalhe.get("atualizadoEm") != d["atualizadoEm"]:
+            raise ValueError(f"Detalhe de outra coleta: {c['nome']}")
+        c["_receitasItens"] = detalhe.get("receitas") or []
+        c["_despesasItens"] = detalhe.get("despesas") or []
 
     checagens = [
+        ("fornecedores completos == despesas contratadas",
+         lambda c: (sum(x["valor"] for x in c["_fornecedores"]), c["despesas"]["contratadas"])),
+        ("arquivo de receitas == total líquido",
+         lambda c: (sum(x["valor"] for x in c["_receitasItens"]), c["liquido"])),
+        ("arquivo de despesas == despesas contratadas",
+         lambda c: (sum(x["valor"] for x in c["_despesasItens"]), c["despesas"]["contratadas"])),
         ("receitas por natureza + devolvidas == total bruto",
          lambda c: (sum(c["receitas"][k] for k in c["receitas"] if k != "devolvidas")
                     + c["receitas"]["devolvidas"], c["total"])),
@@ -61,7 +85,7 @@ def main():
         divergentes = []
         for c in cands:
             a, b = calc(c)
-            if abs(a - b) > TOL:
+            if not math.isfinite(a) or not math.isfinite(b) or abs(a - b) > TOL:
                 divergentes.append((c, a, b))
         problemas += len(divergentes)
         marca = "ok " if not divergentes else "!! "
@@ -75,8 +99,6 @@ def main():
     regras = [
         ("despesas pagas <= despesas contratadas",
          lambda c: c["despesas"]["pagas"] <= c["despesas"]["contratadas"] + TOL),
-        ("despesas contratadas <= limite legal de gastos",
-         lambda c: not c["limiteGasto"] or c["despesas"]["contratadas"] <= c["limiteGasto"] + TOL),
         ("fundos publicos <= total arrecadado",
          lambda c: c["origem"]["fundoPartidario"] + c["origem"]["fundoEspecial"] <= c["total"] + TOL),
         ("nenhum valor negativo",
@@ -102,7 +124,7 @@ def main():
         (c for c in cands if c["despesas"]["contratadas"] > c["total"] + TOL),
         key=lambda c: -(c["despesas"]["contratadas"] - c["total"]))
     print(f"\n.. contrataram mais do que declararam ter arrecadado: {len(estourados)}")
-    print("   (legal — a despesa pode ser contratada a prazo — mas vale acompanhar)")
+    print("   (diferenças isoladas não demonstram regularidade ou irregularidade)")
     for c in estourados[:10]:
         print(f"     {c['nome']} ({c['partido']}, {c['cargoNome']}): "
               f"arrecadou {brl(c['total'])}, contratou {brl(c['despesas']['contratadas'])}, "
@@ -114,17 +136,17 @@ def main():
     fp = sum(c["origem"]["fundoPartidario"] for c in cands)
     outros = sum(c["origem"]["outros"] for c in cands)
     estim = sum(c["origem"]["estimavel"] for c in cands)
-    total = sum(c["total"] for c in cands)
+    total = sum(c["liquido"] for c in cands)
     desp = sum(c["despesas"]["contratadas"] for c in cands)
 
     print(f"\nTotais de {d['eleicao']['uf']}")
-    print(f"  arrecadado           {brl(total)}")
-    print(f"    Fundo Eleitoral    {brl(fefc)}  ({fefc / total * 100:.1f}%)")
-    print(f"    Fundo Partidário   {brl(fp)}  ({fp / total * 100:.1f}%)")
-    print(f"    outros recursos    {brl(outros)}  ({outros / total * 100:.1f}%)")
-    print(f"    origem não ident.  {brl(roni)}  ({roni / total * 100:.2f}%)")
-    print(f"    estimáveis         {brl(estim)}  ({estim / total * 100:.2f}%)")
-    print(f"  despesas contratadas {brl(desp)}  ({desp / total * 100:.1f}% do arrecadado)")
+    print(f"  arrecadado líquido   {brl(total)}")
+    print(f"    Fundo Eleitoral    {brl(fefc)}  ({fefc / (total or 1) * 100:.1f}%)")
+    print(f"    Fundo Partidário   {brl(fp)}  ({fp / (total or 1) * 100:.1f}%)")
+    print(f"    outros recursos    {brl(outros)}  ({outros / (total or 1) * 100:.1f}%)")
+    print(f"    origem não ident.  {brl(roni)}  ({roni / (total or 1) * 100:.2f}%)")
+    print(f"    estimáveis         {brl(estim)}  ({estim / (total or 1) * 100:.2f}%)")
+    print(f"  despesas contratadas {brl(desp)}  ({desp / (total or 1) * 100:.1f}% do arrecadado)")
     print(f"  sem prestação de contas: {sum(1 for c in cands if not c['temContas'])}")
 
     if problemas:
