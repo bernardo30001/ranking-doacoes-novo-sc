@@ -9,3 +9,5 @@ agregados.json
 _site/
 *.tmp
 .coleta-anterior/
+alertas-estado.json
+.alertas-conexao/

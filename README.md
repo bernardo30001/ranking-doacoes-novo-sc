@@ -100,6 +100,55 @@ em receita zero. As 12 checagens financeiras precisam passar para publicação.
 Os testes cobrem devoluções, agregação completa, homônimos, filtros, histórico,
 retificações, falhas de rede e preservação da última versão.
 
+## Alertas pessoais no celular
+
+`alertas.py` acompanha apenas o NOVO em SC, nos cargos federal e estadual.
+Depois da publicação conferida, compara receitas e despesas itemizadas,
+arrecadação bruta/líquida, devoluções, pagamentos, fontes, natureza das receitas
+e limite de gastos. Novas entregas com os mesmos dados financeiros não disparam
+avisos. A primeira execução cria a base e envia apenas a confirmação de ativação;
+não apresenta todo o passado como doações novas.
+
+- O endereço aleatório do canal fica no secret `NTFY_TOPIC` do GitHub e na pasta
+  local ignorada `.alertas-conexao/`. Não vai para o site, Git ou artefatos.
+- A inscrição é feita no aplicativo ntfy, usando o servidor `https://ntfy.sh`.
+  No serviço gratuito, quem conhece o tópico consegue ler e publicar no canal;
+  por isso seu endereço deve ser guardado como uma senha.
+- Uma mensagem por candidato e coleta agrupa as mudanças, com valores anteriores
+  e atuais, doadores/fornecedores disponíveis e link para as contas. Se ultrapassar
+  o tamanho de uma notificação, informa quantas mudanças adicionais existem.
+- Lançamentos idênticos são preservados em multiconjuntos. Uma retificação só é
+  associada a um lançamento anterior quando documento, data e CPF/CNPJ formam
+  uma identificação única; nos demais casos, o texto descreve o que entrou ou
+  deixou de constar. CPF/CNPJ não são enviados na mensagem.
+- O checkpoint `alertas-estado` é um artefato separado do Pages, retido por 30
+  dias. Guarda a comparação, fila pendente e recibos, inclusive após falha parcial.
+  O arquivo usa apenas dados públicos e identificadores de entrega, sem o tópico.
+- Cada evento tem um identificador estável. Antes de tentar de novo, o monitor
+  consulta os recibos ainda disponíveis no ntfy. Isso reduz duplicações após um
+  timeout; não é garantia de entrega exatamente uma vez em falhas prolongadas.
+- Até 50 avisos por execução e 200 em 24 horas, com excedentes mantidos na fila.
+  Limites do ntfy ou falhas de rede também preservam a fila para nova tentativa.
+- Falha de coleta não vira queda nas receitas. Falha dos alertas não impede a
+  publicação do site e fica sinalizada no passo de alertas do GitHub Actions.
+
+Os avisos refletem mudanças publicadas pelo TSE, não o horário real do PIX. A
+frequência acompanha a atualização do site, programada de hora em hora e sujeita
+à fila do GitHub. O recebimento no aparelho depende da inscrição e da permissão
+de notificações no aplicativo.
+
+Para testar a comparação sem enviar mensagens, numa cópia de dados conferidos:
+
+```sh
+python3 alertas.py --data-dir /caminho/da/copia --local-state --dry-run
+python3 -m unittest discover -s tests
+```
+
+Para pausar o envio, remova o secret `NTFY_TOPIC`; para apenas silenciar o celular,
+silencie a inscrição no ntfy. Se o checkpoint remoto estiver corrompido ou houver
+artefatos expirados, a rotina para os alertas em vez de inventar uma nova base.
+O site continua publicando normalmente.
+
 O front-end não exige compilação: `index.html`, `estilo.css`, `modelo.js` e
 `app.js`. `recuperar.py`, `atualizar.py` e `publicar.py` cuidam da recuperação,
 atualização e montagem do site. Arquivos de dados publicados são gerados pelo

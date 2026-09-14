@@ -86,3 +86,23 @@ jobs:
             estado.json
             correcoes.json
           key: estado-${{ github.run_id }}-${{ github.run_attempt }}
+
+      # Alertas são independentes da publicação: falha no ntfy não tira o site do ar.
+      - name: Enviar alertas das finanças do NOVO SC
+        id: ntfy
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python alertas.py
+
+      # Salva também após envio parcial ou timeout, para tentar apenas os pendentes.
+      # Não contém tópico/token e não faz parte do GitHub Pages.
+      - name: Preservar fila e recibos dos alertas
+        if: always() && steps.ntfy.outcome != 'skipped' && hashFiles('alertas-estado.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: alertas-estado
+          path: alertas-estado.json
+          retention-days: 30
+          overwrite: true
